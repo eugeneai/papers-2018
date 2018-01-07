@@ -1,28 +1,25 @@
 #+TITLE: Model Driven Architecture Based on Linked Data
 #+AUTHOR: Cheeriness Evgeny, Alexey Kopaigorodsky, Ljubica Kazi, ...
 #+EMAIL: eugeneai@irnok.net, digger@istu.edu, ljubica.kazi@gmail.com, ...
-* The problem
 
 We consider tools for developing information systems with extensive use of Linked Open Data technologies [[[Bizer]]].  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols [[[Cherk]]].  An application of semantic models at run time [[[Kopay]]] allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  The system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.
 
 The present research deals with developing a software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD [[[MDA]]].  The Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, /etc./).  The model form a ~namespace~ of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, /i.e./ with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).
 
-The ~ClipPatria~ ontology server [[[Clio]]] and the SWI Prolog language [[[SWI]]] is used as tools of MDA model querying and processing.
+The ~ClipPatria~ ontology server and the SWI Prolog language [[[Clio]]] is used as tools of MDA model querying and processing.
 
 One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing the stereotype aspect of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
 
 The tools will allow us to join the MDA static means of code generation and configuration at development stage with the techniques of flexible data structure processing at run time, thus, producing even more productive information system development and maintenance.
 
 
-* References
-1. <<Bizer>> Ch. Bizer, T. Heath, T. Berners-Lee. Linked Data – The Story So Far // International Journal on Semantic Web and Information Systems. 2009. Vol. 5 (3). p. 1–22.
-2. <<Cherk>> E. Cherkashin, I. Orlova. Instrumental tools for construction of the digital archives of the documents based on Linked Data. Modern technologies, System analysis, Modeling. 4(56) 2017 p. 100-107 (in Russian) =DOI:= [[DOI:10.26731/1813-9108.2017.4(56).100-107]], =URL:= [[http://stsam.irgups.ru/sites/default/files/articles_pdf_files/100-107.pdf]]
-3. <<Kopay>> N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p 78--89 (in Russian) =URL:= [[http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf]]
-4. <<MDA>> MDA book
-5. <<Clio>> ClioPatria
-6. <<SWI>> SWI Prolog
+*References*
+1. <<Bizer>> Ch. Bizer, T. Heath, T. Berners-Lee. Linked Data – The Story So Far // International Journal on Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
+2. <<Cherk>> E. Cherkashin, I. Orlova. Instrumental tools for construction of the digital archives of the documents based on Linked Data. Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) =DOI:= [[DOI:10.26731/1813-9108.2017.4(56).100-107]], =URL:= [[http://stsam.irgups.ru/sites/default/files/articles_pdf_files/100-107.pdf]]
+3. <<Kopay>> N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p. 78--89 (in Russian) =URL:= [[http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf]]
+4. <<MDA>> D. Frankel. Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
+5. <<Clio>> J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web. Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. =DOI:= [[doi:10.3233/SW-150191]]
 
-* Appendix
-** Org mode fantastic examples
+*Appendix*
 
-  1. [[http://ehneilsen.net/notebook/orgExamples/org-examples.html]]
+  1. Org mode fantastic examples: [[http://ehneilsen.net/notebook/orgExamples/org-examples.html]]

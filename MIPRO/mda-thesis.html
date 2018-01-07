@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <title>Model Driven Architecture Based on Linked Data</title>
-<!-- 2018-01-07 Sun 11:26 -->
+<!-- 2018-01-07 Sun 13:19 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="generator" content="Org-mode">
@@ -193,53 +193,55 @@ $(function() {
 <body>
 <div id="content" class="container">
 <div class="row"><div class="col-md-9"><h1 class="title">Model Driven Architecture Based on Linked Data</h1>
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> The problem</h2>
-<div class="outline-text-2" id="text-1">
 <p>
-We consider tools for developing information systems with extensive use of Linked Data technologies <sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>
+We consider tools for developing information systems with extensive use of Linked Open Data technologies [<a href="#Bizer">1</a>].  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols [<a href="#Cherk">2</a>].  An application of semantic models at run time [<a href="#Kopay">3</a>] allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  The system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.
 </p>
-</div>
-</div>
+
+<p>
+The present research deals with developing a software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD [<a href="#MDA">4</a>].  The Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, <i>etc.</i>).  The model form a <code>namespace</code> of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, <i>i.e.</i> with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).
+</p>
+
+<p>
+The <code>ClipPatria</code> ontology server and the SWI Prolog language [<a href="#Clio">5</a>] is used as tools of MDA model querying and processing.
+</p>
+
+<p>
+One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing the stereotype aspect of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
+</p>
+
+<p>
+The tools will allow us to join the MDA static means of code generation and configuration at development stage with the techniques of flexible data structure processing at run time, thus, producing even more productive information system development and maintenance.
+</p>
 
 
-
-
-
-
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> References</h2>
-<div class="outline-text-2" id="text-2">
+<p>
+<b>References</b>
+</p>
 <ol class="org-ol">
-<li>Ch. Bizer, T. Heath, T. Berners-Lee. Linked Data – The Story So Far // International Journal on Semantic Web and Information Systems. 2009. Vol. 5 (3). p. 1–22.
+<li><a id="Bizer" name="Bizer"></a> Ch. Bizer, T. Heath, T. Berners-Lee. Linked Data – The Story So Far // International Journal on Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
 </li>
-<li>N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p 78&#x2013;89 (in Russian) <code>URL</code>:<a href="http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf">http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf</a>
+<li><a id="Cherk" name="Cherk"></a> E. Cherkashin, I. Orlova. Instrumental tools for construction of the digital archives of the documents based on Linked Data. Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) <code>DOI:</code> <a href="10.26731/1813-9108.2017.4(56).100-107">10.26731/1813-9108.2017.4(56).100-107</a>, <code>URL:</code> <a href="http://stsam.irgups.ru/sites/default/files/articles_pdf_files/100-107.pdf">http://stsam.irgups.ru/sites/default/files/articles_pdf_files/100-107.pdf</a>
 </li>
-<li>E. Cherkashin, I. Orlova. Instrumental tools for construction of the digital archives of the documents based on Linked Data. Modern technologies, System analysis, Modeling. 4(56) 2017 p. 100-107 (in Russian) <code>DOI:</code> <a href="10.26731/1813-9108.2017.4(56).100-107">10.26731/1813-9108.2017.4(56).100-107</a>, <code>URL</code> <a href="http://stsam.irgups.ru/sites/default/files/articles_pdf_files/100-107.pdf">http://stsam.irgups.ru/sites/default/files/articles_pdf_files/100-107.pdf</a>
+<li><a id="Kopay" name="Kopay"></a> N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p. 78&#x2013;89 (in Russian) <code>URL:</code> <a href="http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf">http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf</a>
+</li>
+<li><a id="MDA" name="MDA"></a> D. Frankel. Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
+</li>
+<li><a id="Clio" name="Clio"></a> J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web. Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. <code>DOI:</code> <a href="10.3233/SW-150191">10.3233/SW-150191</a>
 </li>
 </ol>
-</div>
-</div>
-<div id="footnotes">
-<h2 class="footnotes">Footnotes: </h2>
-<div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> DEFINITION NOT FOUND.</div>
+<p>
+<b>Appendix</b>
+</p>
 
-
-</div>
-</div></div><div class="col-md-3"><nav id="table-of-contents">
-<div id="text-table-of-contents" class="bs-docs-sidebar">
-<ul class="nav">
-<li><a href="#sec-1">1. The problem</a></li>
-<li><a href="#sec-2">2. References</a></li>
-</ul>
-</div>
-</nav>
-</div></div></div>
+<ol class="org-ol">
+<li>Org mode fantastic examples: <a href="http://ehneilsen.net/notebook/orgExamples/org-examples.html">http://ehneilsen.net/notebook/orgExamples/org-examples.html</a>
+</li>
+</ol>
+</div><div class="col-md-3"></div></div></div>
 <footer id="postamble" class="">
 <div><p class="author">Author: Cheeriness Evgeny, Alexey Kopaigorodsky, Ljubica Kazi, &#x2026;</p>
-<p class="date">Created: 2018-01-07 Sun 11:26</p>
+<p class="date">Created: 2018-01-07 Sun 13:19</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org-mode</a> 8.2.10)</p>
 </div>
 </footer>
