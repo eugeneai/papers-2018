@@ -1,0 +1,10 @@
+#+TITLE: Model Driven Architecture Based on Linked Data
+#+AUTHOR: Cheeriness Evgeny, Alexey Kopaigorodsky, Ljubica Kazi, ...
+* The problem
+
+
+
+
+
+* References
+N. Kopaigorodsky Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, pp 78--89 (in Russian) =URL:http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf=
