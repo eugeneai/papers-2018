@@ -2,9 +2,14 @@
 #+AUTHOR: Cheeriness Evgeny, Alexey Kopaigorodsky, Ljubica Kazi, ...
 * The problem
 
+We consider tools for developing information systems with extensive use of Linked Open Data technologies [1], [2].  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols.
+
+
 
 
 
 
 * References
-N. Kopaigorodsky Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, pp 78--89 (in Russian) =URL:http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf=
+1. Ch. Bizer, T. Heath, T. Berners-Lee. Linked Data – The Story So Far // International Journal on Semantic Web and Information Systems. 2009. Vol. 5 (3). p. 1–22.
+2. E. Cherkashin, I. Orlova. Instrumental tools for construction of the digital archives of the documents based on Linked Data. Modern technologies, System analysis, Modeling. 4(56) 2017 p. 100-107 (in Russian) =DOI:= [[DOI:10.26731/1813-9108.2017.4(56).100-107]], =URL:= [[http://stsam.irgups.ru/sites/default/files/articles_pdf_files/100-107.pdf]]
+3. N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p 78--89 (in Russian) =URL:= [[http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf]]
