@@ -22,4 +22,11 @@ The tools will allow us to join the MDA static means of code generation and conf
 
 *Appendix*
 
-  1. Org mode fantastic examples: [[http://ehneilsen.net/notebook/orgExamples/org-examples.html]]
+  1. Org mode fantastic examples: [[http://ehneilsen.net/notebook/orgExamples/org-examples.html]].
+  1. ODM UML profile for OWL: [[http://www.omg.org/spec/ODM/1.0/PDF/]].
+  2. OMG Ontology Domain Modeling example: [[https://thematix.com/tools/vom/]].
+  3. OWL UML Visualizer: [[http://owlgred.lumii.lv/]].
+  4. UMLtoOWL: Converter from UML to OWL: [[http://www.sfu.ca/~dgasevic/projects/UMLtoOWL/]]. Uses XSLT to convert from XMI to OWL.
+  5. Book: Model Driven Engineering and Ontology Development. Authors: Dragan Gaševic,Dragan Djuric,Vladan Devedžic: [[http://www.springer.com/gp/book/9783642002816]] 2009.
+  6. AToM3: A tool for multi-paradigm modeling. [[http://atom3.cs.mcgill.ca/]].
+  7. Belghiat, Aissam & Bourahla, Mustapha. (2012). UML Class Diagrams to OWL Ontologies: A Graph Transformation based Approach. International Journal of Computer Applications. 41. 41-46. 10.5120/5525-7566.
