@@ -30,3 +30,4 @@ The tools will allow us to join the MDA static means of code generation and conf
   5. Book: Model Driven Engineering and Ontology Development. Authors: Dragan Gaševic,Dragan Djuric,Vladan Devedžic: [[http://www.springer.com/gp/book/9783642002816]] 2009.
   6. AToM3: A tool for multi-paradigm modeling. [[http://atom3.cs.mcgill.ca/]].
   7. Belghiat, Aissam & Bourahla, Mustapha. (2012). UML Class Diagrams to OWL Ontologies: A Graph Transformation based Approach. International Journal of Computer Applications. 41. 41-46. 10.5120/5525-7566.
+  8. *Semantic WEB Software Engineering*: [[http://www.webist.org/Documents/Previous_Invited_Speakers/2012/WEBIST2012_Pan.pdf]]. Book: [[https://www.iospress.nl/book/semantic-web-enabled-software-engineering/]].
