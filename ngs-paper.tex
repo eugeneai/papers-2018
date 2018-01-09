@@ -350,7 +350,7 @@
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
 \date{}
-\title{Model Driven Architecture Based on Linked Data}
+\title{Rule Based Language and Framework for Spreadsheet Data Transformation}
 
 %\author{Evgeny Cherkashin, Alexey Kopaigorodsky, Ljubica Kazi.}
 
@@ -382,11 +382,13 @@
 % for over three affiliations, or if they all won't fit within the width
 % of the page, use this alternative format:
 %
+
 \author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
 Homer Simpson\IEEEauthorrefmark{2},
 James Kirk\IEEEauthorrefmark{3},
 Montgomery Scott\IEEEauthorrefmark{3} and
 Eldon Tyrell\IEEEauthorrefmark{4}}
+%
 \IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
 Georgia Institute of Technology,
 Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
@@ -411,16 +413,10 @@ Telephone: (800) 555--1212, Fax: (888) 555--1212}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-We consider tools for developing information systems with extensive use of Linked Open Data technologies (LOD).  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols.  An application of semantic models at run time  allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.
-
-The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a namespace of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).
-
-The ClioPatria ontology server and the SWI Prolog language  are used as tools of MDA model querying and processing.
-
-One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing stereotype aspects of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
-
-The tools will allow us to join the MDA static means of code generation and configuration at development stage with the techniques of flexible data structure processing at run time, thus, producing even more productive information system development and maintenance.  This research corresponds to nowadays direction of Semantic Web Software Engineering approach (J.Z. Pan, Y. Zhao, 2014) with aim of construction LOD based information systems as a peculiar case of Semantic Web technologies.
+  A big volume of arbitrary tables (e.g. cross-tabulations, invoices, roadmaps, and data collection forms) circulates in spreadsheet-like formats. These tables can be a valuable data source in business intelligence and data-driven research. However, difficulties that inevitably arise with extraction and integration of the tabular data often hinder the intensive use of them in the mentioned areas. This work is built on the approach to table understanding based on executing rules for table analysis and interpretation with a rule engine. A novel table object model and domain-specific language of table analysis and interpretation rules are defined. In contrast to the existing data transformation languages, we carry on this process as consecutive steps of role analysis, structural analysis, and interpretation. The proposed technique of interpretation is used to transform tabular data into the relational form in terms of the table understanding. The last step of interpretation allows us to convert the spreadsheet data from arbitrary to relational tables. Performance evaluations are carried out automatically for both role and structural analyses with the prepared ground-truth data. A high F-measure from 95.82\% to 99.06\% is shown for different recovered items in the existing dataset of 200 arbitrary tables of the same genre (government statistics).
 \end{abstract}
+
+%%%% KEYWORDS spreadsheet data transformation, table analysis, table interpretation, rule-based systems
 
 % no keywords
 
@@ -441,24 +437,7 @@ The tools will allow us to join the MDA static means of code generation and conf
 
 \section{Introduction}
 % no \IEEEPARstart
-We consider tools for developing information systems with extensive use of Linked Open Data technologies (LOD) \cite{Bizer}.  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols \cite{Cherk}.  An application of semantic models at run time \cite{Kopay} allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.
-
-The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a \verb~namespace~ of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).
-
-The \verb~ClioPatria~ ontology server and the SWI Prolog language \cite{Clio} are used as tools of MDA model querying and processing.
-
-One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing stereotype aspects of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
-
-This demo file is intended to serve as a ``starter file''
-for IEEE conference papers produced under \LaTeX\ using
-IEEEtran.cls version 1.8a and later.
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
-I wish you the best of success.
-
-\hfill mds
-
-\hfill September 17, 2014
+ A big volume of arbitrary tables (e.g. cross-tabulations, invoices, roadmaps, and data collection forms) circulates in spreadsheet-like formats. These tables can be a valuable data source in business intelligence and data-driven research. However, difficulties that inevitably arise with extraction and integration of the tabular data often hinder the intensive use of them in the mentioned areas. This work is built on the approach to table understanding based on executing rules for table analysis and interpretation with a rule engine. A novel table object model and domain-specific language of table analysis and interpretation rules are defined. In contrast to the existing data transformation languages, we carry on this process as consecutive steps of role analysis, structural analysis, and interpretation. The proposed technique of interpretation is used to transform tabular data into the relational form in terms of the table understanding. The last step of interpretation allows us to convert the spreadsheet data from arbitrary to relational tables. Performance evaluations are carried out automatically for both role and structural analyses with the prepared ground-truth data. A high F-measure from 95.82% to 99.06% is shown for different recovered items in the existing dataset of 200 arbitrary tables of the same genre (government statistics).
 
 \subsection{Subsection Heading Here}
 Subsection text here.
@@ -634,5 +613,4 @@ H.~Kopka and P.~W. Daly, ``A Guide to \LaTeX,'' 3rd~ed.\hskip 1em plus
 \end{document}
 
 %%% Local Variables:
-%%% TeX-master: t
 %%% End:
