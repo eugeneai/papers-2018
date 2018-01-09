@@ -54,7 +54,7 @@
 
 
 
-\documentclass[conference]{IEEEtran}
+\documentclass[conference,a4paper]{IEEEtran}
 % Some Computer Society conferences also require the compsoc mode option,
 % but others use the standard conference format.
 %
@@ -95,7 +95,7 @@
 
 % *** CITATION PACKAGES ***
 %
-%\usepackage{cite}
+\usepackage{cite}
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of IEEE. Loading the cite package will
@@ -111,7 +111,28 @@
 % http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
 % The documentation is contained in the cite.sty file itself.
 
-
+\usepackage{hyperref}
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    %pdftitle={},    % title
+    %pdfauthor={Author},     % author
+    %pdfsubject={Subject},   % subject of the document
+    %pdfcreator={Creator},   % creator of the document
+    %pdfproducer={Producer}, % producer of the document
+    %pdfkeywords={keyword1, key2, key3}, % list of keywords
+    %pdfnewwindow=true,      % links in new PDF window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black,           % color of external links
+    final=true
+  }
 
 
 
@@ -316,8 +337,11 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
+\providecommand\url[1]{\texttt{#1}}
 
 \begin{document}
+\urlstyle{tt}
+
 %
 % paper title
 % Titles are generally capitalized except for words such as a, an, and, as,
@@ -387,11 +411,11 @@ Fax: (888) 555--1212}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-We consider tools for developing information systems with extensive use of Linked Open Data technologies (LOD) [\ref{Bizer}].  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols [\ref{Cherk}].  An application of semantic models at run time [\ref{Kopay}] allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.
+We consider tools for developing information systems with extensive use of Linked Open Data technologies (LOD).  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols.  An application of semantic models at run time  allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.
 
-The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD [\ref{MDA}].  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a \verb~namespace~ of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).
+The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a namespace of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).
 
-The \verb~ClipPatria~ ontology server and the SWI Prolog language [\ref{Clio}] are used as tools of MDA model querying and processing.
+The ClioPatria ontology server and the SWI Prolog language  are used as tools of MDA model querying and processing.
 
 One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing stereotype aspects of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
 
@@ -417,11 +441,11 @@ The tools will allow us to join the MDA static means of code generation and conf
 
 \section{Introduction}
 % no \IEEEPARstart
-We consider tools for developing information systems with extensive use of Linked Open Data technologies (LOD) [\ref{Bizer}].  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols [\ref{Cherk}].  An application of semantic models at run time [\ref{Kopay}] allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.
+We consider tools for developing information systems with extensive use of Linked Open Data technologies (LOD) \cite{Bizer}.  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols \cite{Cherk}.  An application of semantic models at run time \cite{Kopay} allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.
 
-The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD [\ref{MDA}].  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a \verb~namespace~ of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).
+The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a \verb~namespace~ of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).
 
-The \verb~ClipPatria~ ontology server and the SWI Prolog language [\ref{Clio}] are used as tools of MDA model querying and processing.
+The \verb~ClioPatria~ ontology server and the SWI Prolog language \cite{Clio} are used as tools of MDA model querying and processing.
 
 One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing stereotype aspects of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
 
@@ -582,16 +606,16 @@ The authors would like to thank...
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
+\begin{thebibliography}{11}
 
 \bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+H.~Kopka and P.~W. Daly, ``A Guide to \LaTeX,'' 3rd~ed.\hskip 1em plus
   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-\bibitem{Bizer} Ch. Bizer, T. Heath, T. Berners-Lee. Linked Data – The Story So Far // International Journal on Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
-\bibitem{Cherk} E. Cherkashin, I. Orlova. Instrumental tools for construction of the digital archives of the documents based on Linked Data. Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, \texttt{URL:} \url{http://stsam.irgups.ru/sites/default/files/articles_pdf_files/100-107.pdf}
-\bibitem{Kopay} N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p. 78--89 (in Russian) \texttt{URL:} \url{http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf}
+\bibitem{Bizer} Ch. Bizer, T. Heath, T. Berners-Lee. ``Linked Data – The Story So Far,'' Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
+\bibitem{Cherk} E. Cherkashin, I. Orlova. Instrumental tools for construction of the digital archives of the documents based on Linked Data. Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, \texttt{URL:} \url{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}
+\bibitem{Kopay} N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p. 78--89 (in Russian) \texttt{URL:} \url{http://agora.guru.ru/scientific\_journal/files/Ontology\_Of\_Designing\_4\_2014\_opt1.pdf}
 \bibitem{MDA} D. Frankel. Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
-\bibitem{Clio} J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web. Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. \texttt{DOI:} \url{10.3233/SW-150191}
+ \bibitem{Clio} J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web. Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. \texttt{DOI:} \url{10.3233/SW-150191}
 
 \bibitem{org} Org mode fantastic examples: \url{http://ehneilsen.net/notebook/orgExamples/org-examples.html}.
 \bibitem{odmprof} ODM UML profile for OWL: \url{http://www.omg.org/spec/ODM/1.0/PDF/}.
@@ -600,7 +624,7 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 \bibitem{uml2owd} UMLtoOWL: Converter from UML to OWL: \url{http://www.sfu.ca/~dgasevic/projects/UMLtoOWL/}. Uses XSLT to convert from XMI to OWL.
 \bibitem{atmo3} AToM3: A tool for multi-paradigm modeling. \url{http://atom3.cs.mcgill.ca/}.
 \bibitem{GT} Belghiat, Aissam \& Bourahla, Mustapha. (2012). UML Class Diagrams to OWL Ontologies: A Graph Transformation based Approach. International Journal of Computer Applications. 41. 41-46. 10.5120/5525-7566.
-\bibitem{SWEB} \textbf{Semantic WEB Software Engineering}: \url{http://www.webist.org/Documents/Previous_Invited_Speakers/2012/WEBIST2012_Pan.pdf}. Book: \url{https://www.iospress.nl/book/semantic-web-enabled-software-engineering/}.
+\bibitem{SWEB} \textbf{Semantic WEB Software Engineering}: \url{http://www.webist.org/Documents/Previous\_Invited\_Speakers/2012/WEBIST2012\_Pan.pdf}. Book: \url{https://www.iospress.nl/book/semantic-web-enabled-software-engineering/}.
 \end{thebibliography}
 
 
@@ -610,6 +634,5 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 \end{document}
 
 %%% Local Variables:
-%%% mode: latex
 %%% TeX-master: t
 %%% End:
