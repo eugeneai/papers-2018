@@ -350,7 +350,7 @@
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
 \date{}
-\title{Rule Based Language and Framework for Spreadsheet Data Transformation}
+\title{Toward Big Data Analysis in the Baikal Microbiome Study}
 
 %\author{Evgeny Cherkashin, Alexey Kopaigorodsky, Ljubica Kazi.}
 
@@ -383,23 +383,23 @@
 % of the page, use this alternative format:
 %
 
-\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
-Homer Simpson\IEEEauthorrefmark{2},
-James Kirk\IEEEauthorrefmark{3},
-Montgomery Scott\IEEEauthorrefmark{3} and
-Eldon Tyrell\IEEEauthorrefmark{4}}
+
+\author{\IEEEauthorblockN{Fedor Malkov\IEEEauthorrefmark{1},
+Evgeny Cherkashin\IEEEauthorrefmark{1,2,3,5},
+Sergey Gorsky\IEEEauthorrefmark{3},
+Alexey Shigarov\IEEEauthorrefmark{3},\\
+Yury Galachyants\IEEEauthorrefmark{4},
+Alexey Morozov\IEEEauthorrefmark{4},
+Yelens Likhoshway\IEEEauthorrefmark{4},
+and
+Ivan Mikhailov\IEEEauthorrefmark{4}}\\[-0.9em]
 %
-\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
-Georgia Institute of Technology,
-Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
-\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
-Email: homer@thesimpsons.com}
-\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
-Telephone: (800) 555--1212, Fax: (888) 555--1212}
-\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
-
-
-
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Irkutsk Scientific Center of SB RAS, 134 Lermontov Street, Russia, 664033}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, Russia, 664033}
+\IEEEauthorblockA{\IEEEauthorrefmark{3}Irkutsk State University, 20 Gagarina Avenue, Russia, 664002}
+\IEEEauthorblockA{\IEEEauthorrefmark{4}Limnological Institute of SB RAS, 3 Ulan-Batorskaya Street, Russia, 664033}
+\IEEEauthorblockA{\IEEEauthorrefmark{5}National Research Irkutsk State Technical University, 83 Lermontov Street, Russia, 664074}
+E-mail:\texttt{\{malkov,eugeneai,gorsky,shig\}@icc.ru,\{,,,,\}@lin.irk.ru}}
 
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
@@ -413,7 +413,7 @@ Telephone: (800) 555--1212, Fax: (888) 555--1212}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-  A big volume of arbitrary tables (e.g. cross-tabulations, invoices, roadmaps, and data collection forms) circulates in spreadsheet-like formats. These tables can be a valuable data source in business intelligence and data-driven research. However, difficulties that inevitably arise with extraction and integration of the tabular data often hinder the intensive use of them in the mentioned areas. This work is built on the approach to table understanding based on executing rules for table analysis and interpretation with a rule engine. A novel table object model and domain-specific language of table analysis and interpretation rules are defined. In contrast to the existing data transformation languages, we carry on this process as consecutive steps of role analysis, structural analysis, and interpretation. The proposed technique of interpretation is used to transform tabular data into the relational form in terms of the table understanding. The last step of interpretation allows us to convert the spreadsheet data from arbitrary to relational tables. Performance evaluations are carried out automatically for both role and structural analyses with the prepared ground-truth data. A high F-measure from 95.82\% to 99.06\% is shown for different recovered items in the existing dataset of 200 arbitrary tables of the same genre (government statistics).
+  The Baikal microbiome study is being conducted in Limnological Institute of SB RAS, the study is based on the next-generation sequencing data analysis. As a result, the study generates a big volume of metagenomic data. A seasonal monitoring of Baikal microbiome requires the study of thousands of samples. The process of metagenomic data analysis is multi-stage, e.g. for amplicons up to 50 consecutive steps can be included. This requires microbiologist to be able to construct and execute a pipeline of the processing, which consists of command-line utilities like MOTHUR or QIIME, scripts of the Python programming language, statistical processing with R modules. Additionally, the execution of the pipeline requires interaction with a storage and management software of metagenomic data. At the current state of the automation of the analysis, microbiologist is not always able to cope with the complex task independently. In this work, we present an environment that supports visual planning and parallel execution of pipelines of the metagenomic data analysis. The visual planning is implemented as a plug-in module of RAPID MINER system, and the parallel execution is provided by the instrumental system ORLANDO. The big data storage facility is based on Hadoop infrastructure. The environment under construction simplifies the research activity of microbiologist, making the metagenomic analysis to be more accessible for researcher without in-depth programming and data science skills.
 \end{abstract}
 
 %%%% KEYWORDS spreadsheet data transformation, table analysis, table interpretation, rule-based systems
@@ -437,8 +437,120 @@ Telephone: (800) 555--1212, Fax: (888) 555--1212}
 
 \section{Introduction}
 % no \IEEEPARstart
- A big volume of arbitrary tables (e.g. cross-tabulations, invoices, roadmaps, and data collection forms) circulates in spreadsheet-like formats. These tables can be a valuable data source in business intelligence and data-driven research. However, difficulties that inevitably arise with extraction and integration of the tabular data often hinder the intensive use of them in the mentioned areas. This work is built on the approach to table understanding based on executing rules for table analysis and interpretation with a rule engine. A novel table object model and domain-specific language of table analysis and interpretation rules are defined. In contrast to the existing data transformation languages, we carry on this process as consecutive steps of role analysis, structural analysis, and interpretation. The proposed technique of interpretation is used to transform tabular data into the relational form in terms of the table understanding. The last step of interpretation allows us to convert the spreadsheet data from arbitrary to relational tables. Performance evaluations are carried out automatically for both role and structural analyses with the prepared ground-truth data. A high F-measure from 95.82% to 99.06% is shown for different recovered items in the existing dataset of 200 arbitrary tables of the same genre (government statistics).
 
+\paragraph{FROM ABSTRACT}
+
+The Baikal microbiome study is being conducted in Limnological Institute of SB RAS, the study is based on the next-generation sequencing data analysis. As a result, the study generates a big volume of metagenomic data. A seasonal monitoring of Baikal microbiome requires the study of thousands of samples. The process of metagenomic data analysis is multi-stage, e.g. for amplicons up to 50 consecutive steps can be included. This requires microbiologist to be able to construct and execute a pipeline of the processing, which consists of command-line utilities like MOTHUR or QIIME, scripts of the Python programming language, statistical processing with R modules. Additionally, the execution of the pipeline requires interaction with a storage and management software of metagenomic data. At the current state of the automation of the analysis, microbiologist is not always able to cope with the complex task independently. In this work, we present an environment that supports visual planning and parallel execution of pipelines of the metagenomic data analysis. The visual planning is implemented as a plug-in module of RAPID MINER system, and the parallel execution is provided by the instrumental system ORLANDO. The big data storage facility is based on Hadoop infrastructure. The environment under construction simplifies the research activity of microbiologist, making the metagenomic analysis to be more accessible for researcher without in-depth programming and data science skills.
+
+
+In the last decade, thanks to the invention of next-generation sequencing (NGS) methods and their introduction in practice of research of biological systems a field of research of molecular genetics, namely metagenomics, has been arisen. Its basic principle is that the object under investigation is not a separate microscopic organism, but their communities (microbiomes). The sampled probes stand out with a total DNA sequencing data over the whole set of genes of all microorganisms in the probe. That is, the studied object is the microbiome as a whole, not only those organisms which can be cultivated in laboratory conditions or identified with microscopic or microbiological methods.
+
+Metagenomics allows us to describe a significant number of new groups on all taxonomic levels, broadening the field of view of the world science. A characteristic example is the recently discovered group CPR (candidate phyla radiation). No CPR is isolated in a culture at the moment. According to genomic data, its representatives differ in the set of ribosomal proteins, the absence of certain key metabolic pathways and the presence of self-splicing introns in genes 16S rRNA [1]. Phylogenetic analysis indicates that this group is a sister to all other bacteria, and the level of divergence is not inferior to bacteria, not to mention the eukaryotes [2].
+
+There are two main types of metagenomic studies. The first one, which is simpler, is called analysis of the amplicons. In this case a specific taxonomic marker is amplified and sequenced. The marker is universal for the studied species. Usually, the sequence of the small subunit of ribosomal RNA is used as the marker, as this gene is widely used in phylogenetics. The gene is available in numerous reference sequences. For example, the release 128 of widely used in amplicon analysis SILVA database [3] contains 645 151 unique rRNA. The reads obtained from the DNA sequences extracted from the sample under investigation are compared to the sequences in databases, attributing them to a particular taxon of a taxonomic level, obtaining information about the diversity of the microbiome in the studied environment.
+
+The second approach is known as metogenomic shotgun method. It is based on sequencing the whole DNA sample instead of the specific locus. With sufficient coverage, this approach allows describing the taxonomic composition of the community, as well as the genes of functional or structural proteins presented in the representatives of the community, including viral ones [4]. On the basis of metagenomic data, metabolic interactions in individual microbiomes can be determined using the databases ePGDBs (environmental pathway/genome databases) [5]. In several works, full genomes of individual species were isolated from metagenomic dataset reads [6].
+In recent years the amplicon analysis was applied in microbiome studies for different environments of lake Baikal. The researchers of the Limnological Institute of SB RAS described the under-ice bacterial communities associated with blooms of diatoms [7] and bacteria in photic layer during spring [8]. Bacteria inhabiting the Baikal sponges were studied as well [9]. Finally, the bacterial communities of bottom sediments in the areas of hydrocarbon yields [10,11] were investigated.
+
+In order to carry out the metagenomic studies the significant computational resources and bioinformatics skills are required for data processing and interpretation. The software used for analysis of amplicons includes various library modules of sequence processing, for example, Mothur [12], USearch [13], statistical packages and development environments of data mining algorithms, e.g., R (https://www.r-project.org). In order to carry out the studies of metagenomic data, the specialists are required to be able scripting the command shell of an operating system (Linux, Windows), running programs in a distributed computing environment and cluster computing systems, and programming with general-purpose languages, usually R or Python.
+
+Another important problem is the organization of a centralized data storage and providing the efficient regulated access to the data for the users.  At the moment the staff of LIN SB RAS conducted numerous amplicon research of the different ecotopes of lake Baikal, the data were collected for several years. There are no strict rules of the storage policy of input, intermediate data and the obtained results. Comparison and integration of data from different studies is also complicated due to its heterogeneity, resulting from the use of various software. The implementation of a system for storing input data, metadata, and results of metagenomic studies in a unified form will simplify the integration of results from different studies and the comparative analysis.
+The goal of this study is a software environment development for supporting the processes of new-generation sequencing with organizational, informational and computational resources.
+
+\section{The domain analysis}
+\label{sec:doma}
+
+
+Domain analysis showed that the problems solved in the bioinformational part of metagenomic analysis, together with NGS itself, are well represented within the paradigm of Big Data. At the moment, the scientific community developed data formats for representation and storage of metagenomic information, algorithms and software modules including distributed and parallel implementations on cluster computing systems providing different stages of data analysis.
+
+The solution of the problems within the Big Data paradigm requires the biologist to have software development skills to be a professional programmer in bioinformatics. In order to carry on the analysis of each probe, biologist is to construct and execute a separate program script or perform stage-by-stage execution manually to control each step's results quality. This approach significantly slows down the process of obtaining the final result.
+
+The proposed organization of studies is based on the creation of an information-computational environment that allows one to design and execute scenarios, giving the input data in various formats from various sources, e.g., files, databases, servers of metagenomic information. The environment must also support a cloud storage for intermediate data and the obtained results. A collaborative project of LIN SB RAS and ISDCT SB RAS is devoted to the construction of the environment for the research support. The following problems are to be solved within the project.
+\begin{enumerate}
+\item The subject area and its functional modeling. The classes of
+  functions (problems) are being recognized and presented in the form
+  of software modules. Modules form scripts of problem solving,
+  network graphs of modules connected by data transmission.
+\item Metadata descriptions of the modules and structures of input and
+  output data. At this stage, it is necessary to deal with the problem
+  of integration with external information and computational
+  resources. In this case, the standards and standard means of data
+  modeling like ontologies are of critical usage.
+\item Decomposition of
+  the input/output data formats and implementation of subsystems of
+  their transformation, accumulation, storage and effective (according
+  to the criteria of time and computational complexity) regulated
+  access.
+\item Construction of virtual executional environments and
+  software interfaces for modules, whose source code is inaccessible
+  due to the lack of the source code or licensing restrictions.
+\item Development a customized user interface for high level control of
+  the scenario executions. At this stage, a visual programming with
+  the user interface for script development and execution is required
+  to provide flexibility for managing computational processes by
+  domain specialists.
+\item Development of subsystems of visualization
+  and interpretation of obtained results, including the modules for
+  interpretation of the process of metagenomic analysis.
+\item Dataflow
+  representation of the domain A popular approach to the
+  representation of the computational process is dataflow programming
+  [14]. The data flow programs are constructed as a combination of the
+  executable modules. The modules receive input data, process it, and
+  produce output. The approach is being developed since the 1970-ies.
+\end{enumerate}
+An example of usage of the script construction system under development is shown in Fig. 1. The figure shows an example of an initial stage of a computing process of analysis of the amplicons.
+
+\begin{figure}[t]\centering
+
+Fig. 1.  \caption{The initial stage of the metagenomic analysis represented as a data flow.}
+\end{figure}
+
+The presented script was constructed by means of the software package Rapidminer Studio (https://rapidminer.com/) supplemented by our extension module for description of the amplicon analysis stages. The scenario includes the following operations:
+\begin{itemize}
+\item definition of a research project as a set of input files
+  containing the sequencing data in a directory (module “Input”);
+\item trimming reads (module “Trim”);
+\item the module “Summary” is used for
+  visual quality analysis of the results of the previous steps;
+\item the
+  reduction of the volume of input by the removal of insignificant
+  information, for example, overlapping sequences (modules,
+  “Uniq. select …”);
+\item alignment of sequences to the reference
+  database (module “Alignment”);
+\item filtering sequences according to
+  specified criteria (module “Screening”);
+\item removing alignment
+  columns based on specified criteria, for example, empty columns
+  (module “Filter”);
+\item removal of sequences containing sequencing
+  error (the module “Scrap”);
+\item detection of chimeras (module ``Chim. detection''), \emph{etc}.
+  \end{itemize}
+  The diagram shows service modules of RapidMiner Studio, which are necessary to distribute the same type of information between modules (e.g., “Copy groups”). The necessity of introduction of such modules is a feature of Rapidminer Studio; it supposes that in a general case the modules make changes in the data under processing without copying it.
+
+Each module receives file names as input and creates new file set as the result. The operation of the module depends on the parameters specified by the user via user interface of each module. The results of the script are sent to output ports and displayed by the Rapidminer Studio visualization subsystem in a convenient form to the user. The system supports presentation of a scenario as a new block with its input and output ports, as well as a cloud storage and execution of scripts, creating distributed computing environment. Rich feature set of Rapidminer Studio and various services provided by its developers were the main reason for choosing this system as a development environment for informational-computation resources of the project.
+
+\section{The database supporting metagenomic analyses}
+\label{sec:dbsupp}
+
+Assessment of world experience of organization of scientific research in the field of Data Science showed that the use of cloud technologies is a necessary basis for the interaction organization of the researchers. A specialized data storage should be a unit of the environment to ensure effective user access and computing processes to the data of research.
+
+Database for microbiome-based metagenomic analysis data (Fig. 2.) provides the storage facility on all the stages of the microbiome studies from the probe sampling to the publication of the scientific meaningful results. The scheme in the Fig. 2 represents database structure as an ER-diagram. The scheme contains data about sampling, analysis of physicochemical and biological parameters of the probes, the sequencing results, the applied equipment and software, taxonomic databases, methods of the analysis of the collected material, publications of the obtained results and the participated researchers. It also allows us to store the processing scripts of analysis of metagenomic data, including software tools, commands, and configuration files. The latter function allows one to save the state of the computational process and restart it from the specified point.
+
+\begin{figure}[t]\centering
+Fig. 2. \caption{A general schema representation of the database for microbiome research based on metagenomic analysis}
+\end{figure}
+
+The model is implemented by means of Django framework (https://www.djangoproject.com). The framework supports automatic definition of rational table structures representing many-to-many relations, and generation a customizable interface for the administrative panel, allowing testing the developed model. These same tools are used for the implementation of the project web site.
+
+Cloud-based storage and dedicated storage of the metagenomic data will allow one to create online services for joint processing of sequencing data from different studies by specialized software and to publish information in the Internet. In order to achieve this goal, the following must be carried out:
+\begin{itemize}
+\item a software interface implementation for data access;
+\item filling in the database with information collected and processed as a result of studies of the microbiome of lake Baikal in 2009-2015;
+\item realization of the scenario design and execution to support the metagenomic data analysis in a distributed computing environment.
+\end{itemize}
 \subsection{Subsection Heading Here}
 Subsection text here.
 
@@ -545,8 +657,7 @@ Subsubsection text here.
 
 
 \section{Conclusion}
-The conclusion goes here.
-
+Modern problems of development of a distributed software environment for the implementation of organizational, informational and computational resources for scientific microbiological studies based on metagenome analysis are presented in the article. A generalized domain model of system-level is conducted, as well as the requirements are stated to the development environment and problems to be solved. A computational model of the process of analysis of the amplicons is being constructed and implemented. Aspect of informational supply of the computational process is represented by realization of the problem of cloud storage for computing processes (scenarios of metagenomic data processing), as well as by construction of a database for storing input and intermediate data, results of the scenarios execution. The database is used as a basis of an information portal construction for processing metagenomic data and presenting the results of scientific community.
 
 
 
@@ -556,12 +667,7 @@ The conclusion goes here.
 % use section* for acknowledgment
 \section*{Acknowledgment}
 
-
-The authors would like to thank...
-
-
-
-
+The results obtained with the support of the project of Irkutsk scientific center of SB RAS No 4.1.2 and with the use of the network infrastructure of Telecommunication center of collective use ``Integrated information-computational network of Irkutsk scientific-educational complex'' (\url{http://net.icc.ru}).
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page
@@ -592,18 +698,18 @@ H.~Kopka and P.~W. Daly, ``A Guide to \LaTeX,'' 3rd~ed.\hskip 1em plus
   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 \bibitem{Bizer} Ch. Bizer, T. Heath, T. Berners-Lee. ``Linked Data – The Story So Far,'' Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
 \bibitem{Cherk} E. Cherkashin, I. Orlova. Instrumental tools for construction of the digital archives of the documents based on Linked Data. Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, \texttt{URL:} \url{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}
-\bibitem{Kopay} N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p. 78--89 (in Russian) \texttt{URL:} \url{http://agora.guru.ru/scientific\_journal/files/Ontology\_Of\_Designing\_4\_2014\_opt1.pdf}
-\bibitem{MDA} D. Frankel. Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
- \bibitem{Clio} J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web. Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. \texttt{DOI:} \url{10.3233/SW-150191}
+% \bibitem{Kopay} N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p. 78--89 (in Russian) \texttt{URL:} \url{http://agora.guru.ru/scientific\_journal/files/Ontology\_Of\_Designing\_4\_2014\_opt1.pdf}
+% \bibitem{MDA} D. Frankel. Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
+%  \bibitem{Clio} J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web. Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. \texttt{DOI:} \url{10.3233/SW-150191}
 
-\bibitem{org} Org mode fantastic examples: \url{http://ehneilsen.net/notebook/orgExamples/org-examples.html}.
-\bibitem{odmprof} ODM UML profile for OWL: \url{http://www.omg.org/spec/ODM/1.0/PDF/}.
-\bibitem{odnex} OMG Ontology Domain Modeling example: \url{https://thematix.com/tools/vom/}.
-\bibitem{odmvis} OWL UML Visualizer: \url{http://owlgred.lumii.lv/}.
-\bibitem{uml2owd} UMLtoOWL: Converter from UML to OWL: \url{http://www.sfu.ca/~dgasevic/projects/UMLtoOWL/}. Uses XSLT to convert from XMI to OWL.
-\bibitem{atmo3} AToM3: A tool for multi-paradigm modeling. \url{http://atom3.cs.mcgill.ca/}.
-\bibitem{GT} Belghiat, Aissam \& Bourahla, Mustapha. (2012). UML Class Diagrams to OWL Ontologies: A Graph Transformation based Approach. International Journal of Computer Applications. 41. 41-46. 10.5120/5525-7566.
-\bibitem{SWEB} \textbf{Semantic WEB Software Engineering}: \url{http://www.webist.org/Documents/Previous\_Invited\_Speakers/2012/WEBIST2012\_Pan.pdf}. Book: \url{https://www.iospress.nl/book/semantic-web-enabled-software-engineering/}.
+% \bibitem{org} Org mode fantastic examples: \url{http://ehneilsen.net/notebook/orgExamples/org-examples.html}.
+% \bibitem{odmprof} ODM UML profile for OWL: \url{http://www.omg.org/spec/ODM/1.0/PDF/}.
+% \bibitem{odnex} OMG Ontology Domain Modeling example: \url{https://thematix.com/tools/vom/}.
+% \bibitem{odmvis} OWL UML Visualizer: \url{http://owlgred.lumii.lv/}.
+% \bibitem{uml2owd} UMLtoOWL: Converter from UML to OWL: \url{http://www.sfu.ca/~dgasevic/projects/UMLtoOWL/}. Uses XSLT to convert from XMI to OWL.
+% \bibitem{atmo3} AToM3: A tool for multi-paradigm modeling. \url{http://atom3.cs.mcgill.ca/}.
+% \bibitem{GT} Belghiat, Aissam \& Bourahla, Mustapha. (2012). UML Class Diagrams to OWL Ontologies: A Graph Transformation based Approach. International Journal of Computer Applications. 41. 41-46. 10.5120/5525-7566.
+% \bibitem{SWEB} \textbf{Semantic WEB Software Engineering}: \url{http://www.webist.org/Documents/Previous\_Invited\_Speakers/2012/WEBIST2012\_Pan.pdf}. Book: \url{https://www.iospress.nl/book/semantic-web-enabled-software-engineering/}.
 \end{thebibliography}
 
 
