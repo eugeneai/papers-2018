@@ -55,6 +55,9 @@
 
 
 \documentclass[conference,a4paper]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{currvita}
 % Some Computer Society conferences also require the compsoc mode option,
 % but others use the standard conference format.
 %
@@ -382,20 +385,23 @@
 % for over three affiliations, or if they all won't fit within the width
 % of the page, use this alternative format:
 %
-\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
-Homer Simpson\IEEEauthorrefmark{2},
-James Kirk\IEEEauthorrefmark{3},
-Montgomery Scott\IEEEauthorrefmark{3} and
-Eldon Tyrell\IEEEauthorrefmark{4}}
-\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
-Georgia Institute of Technology,
-Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
-\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
-Email: homer@thesimpsons.com}
-\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
-Telephone: (800) 555--1212, Fax: (888) 555--1212}
-\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
 
+\DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
+\author{Evgeny Cherkashin\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2,}\IEEEauthorrefmark{5,}\IEEEauthorrefmark{6},
+Alexey Kopaigorodsky\IEEEauthorrefmark{3,}\IEEEauthorrefmark{6},
+Ljubica Kazi\IEEEauthorrefmark{4},\\
+Alexey Shigarov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2},
+and
+Vyacheslav Paramonov\IEEEauthorrefmark{2,}\IEEEauthorrefmark{5}\\[0.3em]
+%
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Irkutsk Scientific Center of SB RAS, 134 Lermontov Street, Russia, 664033}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, Russia, 664033}
+\IEEEauthorblockA{\IEEEauthorrefmark{3}Melentiev Energy Systems Institute of Siberian Branch of the Russian Academy of Sciences,\\ 130 Lermontov Street, Russia, 664033}
+\IEEEauthorblockA{\IEEEauthorrefmark{4}University of Novi Sad, Technical faculty "Mihajlo Pupin", Đure Đakovića bb,
+ Zrenjanin, Serbia, 23101}
+\IEEEauthorblockA{\IEEEauthorrefmark{5}Irkutsk State University, 20 Gagarina Avenue, Russia, 664002}
+\IEEEauthorblockA{\IEEEauthorrefmark{6}National Research Irkutsk State Technical University, 83 Lermontov Street, Russia, 664074}
+E-mail:\texttt{eugeneai@icc.ru,digger@istu.edu,ljubica.kazi@gmail.com}}
 
 
 
