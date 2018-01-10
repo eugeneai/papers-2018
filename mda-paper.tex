@@ -458,23 +458,52 @@ The \verb~ClioPatria~ ontology server and the SWI Prolog language \cite{Clio} ar
 
 One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing stereotype aspects of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
 
-This demo file is intended to serve as a ``starter file''
-for IEEE conference papers produced under \LaTeX\ using
-IEEEtran.cls version 1.8a and later.
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
-I wish you the best of success.
+Linked Open Data (LOD) [1] technology has been suggested by W3C consortium to represent the semantic information in the published web content in a way that provides not only the possibility of its processing with software agents (Semantic Web), but also to link all available information into a single semantic graph using relations and global universal identifiers (URIs) of resources. The descriptive capabilities of semantic web technologies, HTML5 document publishing tools, and LOD technologies form an infrastructural basis of authoring and publishing documents. The document is constructed out of individual parts (text and images) that are loaded from other servers with links to relevant resources. The resources represent both the static content and text content as a result of a data conversion algorithm execution. The LOD provide a logical markup for the information presented in a document, informative basis for the different variants of visual representation and interpretation, logical connections with other documents, export information into other documents, procedural processing, etc. An important advantage of LOD usage in information environments is a weakening of the requirements to the information warehouses: the document itself is a formalized data warehouse. In some extent, this allows reallocation of the time spent on designing the database structure for storage of partially formalized documents to the process of solving a domain problem: the user (developer) markups the document text data with semantic meaning.
 
-\hfill mds
+The aim of the study is to design an approach to the development of software performing the functions of authoring and typesetting documents marked up according to LOD principles. To achieve the goal, a set of server functions and client (web-browser) JavaScript routines has been developed that allows user to create documents with web browser. The functions support uploading of text fragments from other documents and their generation with server and client scripts. The resulting document is stored in the data warehouse, printed or downloaded to the user workstation as an HTML file. JavaScript implements various document views, e.g., as an input form; text part conversions, e.g., leaning nouns and substituting pronouns.
 
-\hfill September 17, 2014
+The created editing tools are the basis of developed digital archives of documents intended for solving problems of creating documentation of university courses, representing research results of DNA/RNA sequencing. The use of LOD data formats, HTML processing tools of web browser and developed technologies allow one to solve a wide class of problems of formation of documentation, ranging from the formation of a meaningful part of the texts through the presentation of stylistic characteristics of the texts and the integration of logical markup into a global data access services.
 
-\subsection{Subsection Heading Here}
-Subsection text here.
+The development of the tools for document representation on the basis of LOD are aimed at the formation of the prototype of a global environment that supports automation of data transfer between documents of several companies, and creates, ideally, a distributed document processing environment with the principles of social networks. The task is relevant especially in some small business environments with no well-established information flows and relationships between documents. This is mainly due to the dynamism and diversity of the small business. Use of large-scale workflow automation software in the environments of such kind requires large financial expenses for the purchase and continuous improvement of the software product. Moreover, in companies with a deployed a document flow automation, there is almost always a wide class of documents, which are not integrated in the main document flow (e.g., memos, statements), documents with difficult-to-formalize information (e.g., job descriptions) and the documents received by the organizations from the outside having no logical markup (e.g., industry standards).
+This work continues the research outlined in [2] in implementing client services operating on the platform of the web browser.
 
 
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
+\section{Transformation software architecture}
+\label{sec:arch}
+
+The architecture of the system is presented in Fig. 1 (all relations shown in the figure are bidirectional). The document is downloaded from a server where it is composed from a content stored in a database or a file system, results of an algorithmic data conversion of other sources, and elements of a template that includes the user view interface elements and interpretation modules on the displayed page. In the formation of the final form of the document, interpretation modules request the required data and resources on the source server or other Internet servers.
+
+\begin{figure}[t]
+  \centering
+
+  \caption{The general architecture of the PIM transformation system}
+  \label{fig:arch}
+\end{figure}
+
+
+Interpretation modules of the semantic markup are implemented with client-side JavaScript. They are executed as soon as the main content is loaded by the browser. The modules scan the tree structure of the document, recognizing the conditions of their activation. If the scan was successful, the body of the module is executed, changing of the document content (tree structure). The document composition finalizes as soon as all conditions were met and all commands activated.
+
+A database of the system is a set of tools for storing and serving multi-format data. The body of the document loaded at the first stage is stored in XML (XHTML) files in the file system on the server. The file system is wrapped with a document versions tracking layer to monitor the document dynamics and create integrated backup copies. This level is quite easy to be implemented using modern version control systems like GIT or Subversion.
+
+In order to organize standard SPARQL data source access and full-text search, storage components for the logical layer and related data as a graph of triples have been developing. ClioPatria [4] and Jena are the component implementations. The first system is interesting because it is implemented entirely with the programming languages Prolog and C. It supports several formats of compact storage of data, and tight integration of triple data with the runtime and language environment of Prolog. A regulated access to the triples from JavaScript is supported using special Pengines protocol [5]. There are a number of implementation libraries for the protocols for popular programming languages, including client-side JavaScript, Java, Python. As an alternative, Java-based Jena library can be used for the service realization.
+
+A full-text index is provided by Elasticsearch indexing engine. The implementation of the index service is simple enough because any RDF graph is representable as JSON (JSON-LD) document, JSON is the main format of storage of indexed information in ElasticSearch. For the representation of the documents to the user as a search result on the page, some triples must be marked as representative of the result. Elasticsearch has the means of fuzzy comparison of terms that allows construction of relevant information search engines. The general technical aspects of the module functioning are discussed later in the application section.
+
+
+\section{Related research}
+\label{sec:rel}
+
+\section{Applications}
+\label{sec:app}
+
+
+
+% \subsection{Subsection Heading Here}
+% Subsection text here.
+
+
+% \subsubsection{Subsubsection Heading Here}
+% Subsubsection text here.
 
 
 % An example of a floating figure using the graphicx package.
@@ -575,7 +604,7 @@ Subsubsection text here.
 
 
 \section{Conclusion}
-The conclusion goes here.
+
 
 
 
@@ -586,11 +615,12 @@ The conclusion goes here.
 % use section* for acknowledgment
 \section*{Acknowledgment}
 
-
-The authors would like to thank...
-
-
-
+The results obtained with the partial support of the following projects:
+\begin{itemize}
+\item Irkutsk scientific center of SB RAS No 4.1.2;
+\item The Council for grants of the President of Russian Federation, state support of leading scientific schools of the Russian Federation (NSH-8081.2016.9).
+  \end{itemize}
+The results obtained with the use of the network infrastructure of Telecommunication center of collective use "Integrated information-computational network of Irkutsk scientific-educational complex" (\url{http://net.icc.ru}). The authors are grateful to the community of Linked Open Vocabularies (\url{http://lov.okfn.org/dataset/lov/}) resource for assistance in the search for formalizations of subject areas (ontologies).
 
 
 % trigger a \newpage just before the given reference
@@ -617,16 +647,15 @@ The authors would like to thank...
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{11}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, ``A Guide to \LaTeX,'' 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-\bibitem{Bizer} Ch. Bizer, T. Heath, T. Berners-Lee. ``Linked Data – The Story So Far,'' Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
-\bibitem{Cherk} E. Cherkashin, I. Orlova. Instrumental tools for construction of the digital archives of the documents based on Linked Data. Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, \texttt{URL:} \url{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}
-\bibitem{Kopay} N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p. 78--89 (in Russian) \texttt{URL:} \url{http://agora.guru.ru/scientific\_journal/files/Ontology\_Of\_Designing\_4\_2014\_opt1.pdf}
-\bibitem{MDA} D. Frankel. Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
- \bibitem{Clio} J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web. Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. \texttt{DOI:} \url{10.3233/SW-150191}
+%\bibitem{IEEEhowto:kopka} H.~Kopka and P.~W. Daly, ``A Guide to \LaTeX,'' 3rd~ed.\hskip 1em plus 0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 
-\bibitem{org} Org mode fantastic examples: \url{http://ehneilsen.net/notebook/orgExamples/org-examples.html}.
+\bibitem{Bizer} Ch. Bizer, T. Heath, T. Berners-Lee. ``Linked Data – The Story So Far,'' Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
+\bibitem{Cherk} E. Cherkashin, I. Orlova. ``Instrumental tools for construction of the digital archives of the documents based on Linked Data,'' Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, \texttt{URL:} \url{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}
+\bibitem{Kopay} N. Kopaigorodsky. ``Use of ontologies in semantic information systems,'' Ontology of Design, 4(14), 2014, p. 78--89 (in Russian) \texttt{URL:} \url{http://agora.guru.ru/scientific\_journal/files/Ontology\_Of\_Designing\_4\_2014\_opt1.pdf}
+\bibitem{MDA} D. Frankel. Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
+ \bibitem{Clio} J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ``ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web,'' Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. \texttt{DOI:} \url{10.3233/SW-150191}
+
+%\bibitem{org} Org mode fantastic examples: \url{http://ehneilsen.net/notebook/orgExamples/org-examples.html}.
 \bibitem{odmprof} ODM UML profile for OWL: \url{http://www.omg.org/spec/ODM/1.0/PDF/}.
 \bibitem{odnex} OMG Ontology Domain Modeling example: \url{https://thematix.com/tools/vom/}.
 \bibitem{odmvis} OWL UML Visualizer: \url{http://owlgred.lumii.lv/}.
@@ -634,6 +663,10 @@ H.~Kopka and P.~W. Daly, ``A Guide to \LaTeX,'' 3rd~ed.\hskip 1em plus
 \bibitem{atmo3} AToM3: A tool for multi-paradigm modeling. \url{http://atom3.cs.mcgill.ca/}.
 \bibitem{GT} Belghiat, Aissam \& Bourahla, Mustapha. (2012). UML Class Diagrams to OWL Ontologies: A Graph Transformation based Approach. International Journal of Computer Applications. 41. 41-46. 10.5120/5525-7566.
 \bibitem{SWEB} \textbf{Semantic WEB Software Engineering}: \url{http://www.webist.org/Documents/Previous\_Invited\_Speakers/2012/WEBIST2012\_Pan.pdf}. Book: \url{https://www.iospress.nl/book/semantic-web-enabled-software-engineering/}.
+
+\bibitem{Capadisli} Capadisli, S., Guy, A., Verborgh, R., Lange, C., Auer, S., Berners-Lee, T.: Decentralised Authoring, Annotations and Notifications for a Read-Write Web with dokieli, Procs of ICWE international conference, 5-8 June, 2017, Rome, Italy. (to appear) Preprint URL: http://csarven.ca/dokieli-rww
+
+\bibitem{cherk12}MDA is a complex system.
 \end{thebibliography}
 
 
