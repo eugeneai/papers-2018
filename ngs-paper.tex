@@ -383,23 +383,24 @@
 % of the page, use this alternative format:
 %
 
+\DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
 
-\author{\IEEEauthorblockN{Fedor Malkov\IEEEauthorrefmark{1},
-Evgeny Cherkashin\IEEEauthorrefmark{1,2,3,5},
-Sergey Gorsky\IEEEauthorrefmark{3},
-Alexey Shigarov\IEEEauthorrefmark{3},\\
-Yury Galachyants\IEEEauthorrefmark{4},
-Alexey Morozov\IEEEauthorrefmark{4},
-Yelens Likhoshway\IEEEauthorrefmark{4},
+\author{\IEEEauthorblockN{Fedor Malkov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2},
+Evgeny Cherkashin\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2,}\IEEEauthorrefmark{3,}\IEEEauthorrefmark{5},
+Sergey Gorsky\IEEEauthorrefmark{2,}\IEEEauthorrefmark{3},
+Alexey Shigarov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{3},\\
+Yury Galachyants\IEEEauthorrefmark{1,}\IEEEauthorrefmark{4},
+Alexey Morozov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{4},
+Yelena Likhoshway\IEEEauthorrefmark{1,}\IEEEauthorrefmark{4},
 and
-Ivan Mikhailov\IEEEauthorrefmark{4}}\\[-0.9em]
+Ivan Mikhailov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{4}}\\[-0.9em]
 %
 \IEEEauthorblockA{\IEEEauthorrefmark{1}Irkutsk Scientific Center of SB RAS, 134 Lermontov Street, Russia, 664033}
 \IEEEauthorblockA{\IEEEauthorrefmark{2}Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, Russia, 664033}
 \IEEEauthorblockA{\IEEEauthorrefmark{3}Irkutsk State University, 20 Gagarina Avenue, Russia, 664002}
-\IEEEauthorblockA{\IEEEauthorrefmark{4}Limnological Institute of SB RAS, 3 Ulan-Batorskaya Street, Russia, 664033}
+\IEEEauthorblockA{\IEEEauthorrefmark{4}Limnological Institute of SB RAS, 3 Ulan-Bator Street, Russia, 664033}
 \IEEEauthorblockA{\IEEEauthorrefmark{5}National Research Irkutsk State Technical University, 83 Lermontov Street, Russia, 664074}
-E-mail:\texttt{\{malkov,eugeneai,gorsky,shig\}@icc.ru,\{,,,,\}@lin.irk.ru}}
+E-mail:\texttt{\{malkov,eugeneai,gorsky,shig\}@icc.ru,\{morozov,mikhailov\}@lin.irk.ru}}
 
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
