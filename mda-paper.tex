@@ -475,13 +475,21 @@ The architecture of the system is presented in Fig. 1 (all relations shown in th
 
 \begin{figure}[t]
   \centering
-
+werwer 
+wer w
+erwe
+r we
+r weq
+r qwe
+r we
+rweq
+r 
   \caption{The general architecture of the PIM transformation system}
   \label{fig:arch}
 \end{figure}
 
 
-Interpretation modules of the semantic markup are implemented with client-side JavaScript. They are executed as soon as the main content is loaded by the browser. The modules scan the tree structure of the document, recognizing the conditions of their activation. If the scan was successful, the body of the module is executed, changing of the document content (tree structure). The document composition finalizes as soon as all conditions were met and all commands activated.
+Interpretation modules of the semantic markup are implemented with client-side JavaScript. They are executed as soon as the main content is loaded by the browser. The modules scan the tree structure of the document, recognizing the conditions of their activation. If the scan was successful, the body of the module is executed, changing of the document content (tree structure). The document composition finalizes as soon as all conditions were met and all commands activated. 
 
 A database of the system is a set of tools for storing and serving multi-format data. The body of the document loaded at the first stage is stored in XML (XHTML) files in the file system on the server. The file system is wrapped with a document versions tracking layer to monitor the document dynamics and create integrated backup copies. This level is quite easy to be implemented using modern version control systems like GIT or Subversion.
 
