@@ -383,20 +383,15 @@
 % of the page, use this alternative format:
 %
 
-\author{\IEEEauthorblockN{Michael Shell\IEEEauthorrefmark{1},
-Homer Simpson\IEEEauthorrefmark{2},
-James Kirk\IEEEauthorrefmark{3},
-Montgomery Scott\IEEEauthorrefmark{3} and
-Eldon Tyrell\IEEEauthorrefmark{4}}
+\author{\IEEEauthorblockN{Viacheslav Paramonov\IEEEauthorrefmark{1},
+Alexey Shigarov\IEEEauthorrefmark{1},
+Gennady Ruzhnikov\IEEEauthorrefmark{1},
+Evgeny Cherkashin\IEEEauthorrefmark{1}
+}
 %
-\IEEEauthorblockA{\IEEEauthorrefmark{1}School of Electrical and Computer Engineering\\
-Georgia Institute of Technology,
-Atlanta, Georgia 30332--0250\\ Email: see http://www.michaelshell.org/contact.html}
-\IEEEauthorblockA{\IEEEauthorrefmark{2}Twentieth Century Fox, Springfield, USA\\
-Email: homer@thesimpsons.com}
-\IEEEauthorblockA{\IEEEauthorrefmark{3}Starfleet Academy, San Francisco, California 96678-2391\\
-Telephone: (800) 555--1212, Fax: (888) 555--1212}
-\IEEEauthorblockA{\IEEEauthorrefmark{4}Tyrell Inc., 123 Replicant Street, Los Angeles, California 90210--4321}}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Matrosov Institute for System Dynamics and Control Theory, Irkutsk, Russia\\ \{slv, shigarov, rugnikov, eugeneai\}@icc.ru}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Institute of Mathematics, Economics and Informatics \\ Irkutsk State University, Irkutsk, Russia}
+}
 
 
 
@@ -413,7 +408,7 @@ Telephone: (800) 555--1212, Fax: (888) 555--1212}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-The usage of phonetic similarity for word comparison and elimination of misprints is a debatable issue in philology. Moreover, this is very actual for using in automatic text processing. Most of the currently used phonetic algorithms are designed for for automatic processing ofEnglish language. The accuracy of English-specific techniques descends for other natural languages with rich morphology and non-Latin alphabet symbols, e.g. Slavic languages with Cyrillic alphabets. The work is devoted to design of phonetic algorithm that does not use transliteration and considers particular qualities of Russian lan-guage. The method is based on detection letters and letter consequences that have similar sound. These symbols transform to some generic values which are coding by primes. The results of experi-mental comparison of proposed algorithm with other well-known phonetic algorithms show that the proposed algorithm can be used to improve an accuracy of word comparison for Cyrillic languages in tasks of data cleansing. An adaptation of the proposed algorithm for Mongolian language is also pre-sented. s
+The usage of phonetic similarity for word comparison and elimination of misprints is a debatable issue in philology. Moreover, this is very actual for using in automatic text processing. Most of the currently used phonetic algorithms are designed for for automatic processing of English language. The accuracy of English-specific techniques descends for other natural languages with rich morphology and non-Latin alphabet symbols, e.g. Slavic languages with Cyrillic alphabets. The work is devoted to design of phonetic algorithm that does not use transliteration and considers particular qualities of Russian language. The method is based on detection letters and letter consequences that have similar sound. These symbols transform to some generic values which are coding by primes. The results of experi-mental comparison of proposed algorithm with other well-known phonetic algorithms show that the proposed algorithm can be used to improve an accuracy of word comparison for Cyrillic languages in tasks of data cleansing. An adaptation of the proposed algorithm for Mongolian language is also presented.
 \end{abstract}
 
 %%%% KEYWORDS spreadsheet data transformation, table analysis, table interpretation, rule-based systems
@@ -437,7 +432,51 @@ The usage of phonetic similarity for word comparison and elimination of misprint
 
 \section{Introduction}
 % no \IEEEPARstart
-The usage of phonetic similarity for word comparison and elimination of misprints is a debatable issue in philology. Moreover, this is very actual for using in automatic text processing. Most of the currently used phonetic algorithms are designed for for automatic processing ofEnglish language. The accuracy of English-specific techniques descends for other natural languages with rich morphology and non-Latin alphabet symbols, e.g. Slavic languages with Cyrillic alphabets. The work is devoted to design of phonetic algorithm that does not use transliteration and considers particular qualities of Russian lan-guage. The method is based on detection letters and letter consequences that have similar sound. These symbols transform to some generic values which are coding by primes. The results of experi-mental comparison of proposed algorithm with other well-known phonetic algorithms show that the proposed algorithm can be used to improve an accuracy of word comparison for Cyrillic languages in tasks of data cleansing. An adaptation of the proposed algorithm for Mongolian language is also pre-sented. s
+Digital data integration is one of the popular areas of information society. It is the part of business intelligence. Integration of different documents which have different formats of data representation allow to accumulate large dataset of information and use it for different criteria of analysis. In common this is accord with ETL-processes.
+
+Initial data could be collect and forming from different sources. As a consequence of this integrable data are heterogeneous, represented in different formats and may have some errors. They arise as a result of misprints, spelling mistakes, invalid usage of date or currency delimiters, errors of text recognition etc. In this regard, data cleanse is required before the integration.
+
+Data cleansing is one of important steps in data integration processes. Data cleansing includes many aspects such as detection and automatic correction of spelling errors, incorrect values coding and logical inconsistencies, missing data. This paper consider one of messy data kinds -- detection and correction words with applying methods of phonetic comparison. 
+
+Some of integrable data are textual data which could be linked with dictionaries (classifiers) values. For example in data about types and location places of vegetation and spiders in region. Some dataset exists in Scientific Institution's data bases, some data collected by scientists individually.
+
+In different countries data may be represented on different, national languages. In this paper textual data on Russian language are reviewed. Russian language belongs to East-Slavic language group. It is used by more than 250 million speakers \cite{Cubberley-2002}.
+
+There are a lot of methods to word comparison with values of it represented in dictionaries. One of the methods of errors detection is based on words phonetic codes comparison. The paper introduces the method of detection and correction of Russian language spelling errors in data normalization processes. The algorithm is based on phonetic coded strings matching analysis.
+ 
+The idea of phonetic algorithms is seeking identify words according to their similar pronunciation \cite{Parmar-2014}. The common purpose of phonetic algorithms is detection of the words similarity according to their phonetic resemblance. The most typical application of phonetic algorithms is intended for the surnames \cite{Zahoransky-2015}. However it is possible to use phonetic algorithms for verification words that are other parts of speech. Possibility of it depend on language features and particularities. This paper devoted the usage of phonetic algorithm for data cleanse tasks in Russian language and adoption it for Mongolian language.
+
+\section{Data anomalies}
+Textual data that represented in official databases have very high level of correctness. These data are passed a lot of verification procedures. Another situation with data which were collected form persons for their own usage. These data may contains some errors – anomalies. Often they may arise in processes of data entry. The rate of these errors is depend on many criteria and it is about 5\% for educated adult person \cite{Orr-1998}. 
+
+In the \cite{Osipov-2002} allocate such anomalies as: coverage, semantic and syntactical. To improve the quality of data all kinds of errors is should be minimized. Coverage and semantic anomalies could not be eliminate with applying methods of phonetic comparison. However these methods may fix some of syntactical errors.   
+
+These type of anomalies include lexical errors, which relates with name discrepancies between the structure of the data items and the specified format –- integrable data do not correspond to the data from dictionaries.  Domain format of anomalies that associated with correct data do not conform to the anticipated domain format – the absence of separator in integrable data. The letters admission or their incorrect data also it is possible to carry to this type of mistakes.
+
+Irregularities are concerned with the non-uniform use of values, units and abbreviations.
+We suggest that phonetic algorithms may be helpful in eliminating of syntactical such as lexical errors. Some of these kind anomalies are result of various typos and words doubles in process of word typing. Some of typos occur due phonetic errors. 
+
+\section{Phonetic algorithms}
+The general idea of phonetic algorithms is words comparison according their pronunciation and does not depend on orthographical rules.
+
+Phonetic algorithms are based on words coding. However the well-known algorithms based on English-words coding. Some algorithms modification for Turkish, Spanish language described in \cite{Alotaibi-2013}. However this languages are based on Latin alphabet symbols. It is exists some of phonetic algorithms for other languages where alphabet characters differ than English. As rule this approach based symbols transliteration and on Soundex phonetic algorithm.
+\textbf{Text from home!}
+
+\section{Usage phonetic algorithms for Russian text cleansing tasks}
+\subsection{Phonetic spelling errors}
+Spelling errors of Russian language words may be subject to following principles [11]:
+\begin{itemize}
+\item \textbf{morphological} – a uniform graphic symbol of morphemes by the letter i.e. a person tries to write all audible sounds by letters [12];
+\item \textbf{phonologic} – preservation of writing of phonemes spelling regardless the word of change;
+\item \textbf{phonetic} – words written as they are heard;
+\item \textbf{traditional} (historic) – writing by “tradition” i.e. as it was written in old times or as in the language which it is borrowed from
+\end{itemize}
+
+Most of spelling errors in Russian are associated with phonetic norms. The type of mistakes generally depends on the level of one’s education \cite{Parubchenko-2005}. For example, elementary school students make mistakes because they write words as heard. High school students are more prone to hypercorrection errors. As the literacy level of a person does not improve after school graduation, adult persons also make hypercorrection errors. However, in general, many spelling mistakes are simply typos or associated with phonetic words representation.
+
+It is noted in [13] that phonetic spelling principle is the most natural and efficient. Therefore  phonetic algorithms would be useful for similar strings matching. Table I represents Russian language general spelling errors. It is a simplified table from [13]. Here and in other samples Russian language words would be presented in transliteration also according [14] and shown in [] characters. This designation will help to facilitate the understanding of text for persons who are not aware of Cyrillic characters.
+Thus, these kinds of spelling errors make nearly 90\% of all errors. Other spelling errors are represented by mixing of some vowels, concordant, letter sequences or dividing (special) letters “ь” ("soft sign") and “ъ” ("hard sign"). Forming rules that allow to find words matching with due regard to errors type help to find and eliminate errors in words.
+
 \subsection{Subsection Heading Here}
 Subsection text here.
 
@@ -586,9 +625,15 @@ The authors would like to thank...
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{11}
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, ``A Guide to \LaTeX,'' 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\bibitem{Cubberley-2002} P.~Cubberley Russian: A Linguistic Introduction. Cambridge press. --– 2002. 396 p.
+\bibitem{Parmar-2014}	V.P.~Parmar, C.K.~Kumbharana. Study Existing Various Phonetic Algorithms and Designing and Development of a working model for the New Developed Algorithm and Comparison by implementing it with Existing Algorithm(s) // International Journal of Computer Applications (0975 –-- 8887) Volume 98 -– No.19, July 2014. --– pp. 45--49.
+\bibitem{Zahoransky-2015} D.~Zahoransky, I.~Polasek. Text Search of Surnames in Some Slavic and Other Morphologically Rich Languages Using Rule Based Phonetic Algorithms // Audio, Speech, and Language Processing, IEEE/ACM Trans on (T--ASL). IEEE. --– 2015. pp.553--563
+\bibitem{Orr-1998} K.~Orr. Data Quality and Systems Theory. // Communications of the ACM, Vol. 41, No. 2, 1998, 66--71
+\bibitem{Osipov-2002}	B.I.~Osipov, L.G.~Galushinskaya, V.V.~Popkov. Phonetic and hyper-correction errors in written assignments of students of 3--11 classes of high school (Фонетические и гиперические ошибки в письменных работах учащихся 3–11-х классов средней школы). Russian Language journal. No 15, 2002 (in Russian) \texttt{URL:} \url{http://rus.1september.ru/article.php?ID=200201501}
+\bibitem{Parubchenko-2005} L.B.~Parubchenko. Hypercorrection errors (Ошибки гиперкоррекции)// Russian Literature. No 4, 2005.-- p.p. 23--27. (in Russian)
+\bibitem{Alotaibi-2013} Y.~Alotaibi, A.~Meftah. Review of distinctive phonetic features and the Arabic share in related modern research // Turkish Journal of Electrical Engineering \& Computer Sciences 2013, Vol. 21 Issue 5, pp.1426-1439
+
+
 \bibitem{Bizer} Ch. Bizer, T. Heath, T. Berners-Lee. ``Linked Data – The Story So Far,'' Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
 \bibitem{Cherk} E. Cherkashin, I. Orlova. Instrumental tools for construction of the digital archives of the documents based on Linked Data. Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, \texttt{URL:} \url{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}
 \bibitem{Kopay} N. Kopaigorodsky. Use of ontologies in semantic information systems. // Journal "Ontology of Design", 4(14), 2014, p. 78--89 (in Russian) \texttt{URL:} \url{http://agora.guru.ru/scientific\_journal/files/Ontology\_Of\_Designing\_4\_2014\_opt1.pdf}
