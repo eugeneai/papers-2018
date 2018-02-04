@@ -389,7 +389,7 @@
 \renewcommand\IEEEkeywordsname{Keywords}
 \DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
 \author{Evgeny Cherkashin\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2,}\IEEEauthorrefmark{5,}\IEEEauthorrefmark{6},
-Alexey Kopaigorodsky\IEEEauthorrefmark{3,}\IEEEauthorrefmark{6},
+Alexey Kopaygorodsky\IEEEauthorrefmark{3,}\IEEEauthorrefmark{6},
 Ljubica Kazi\IEEEauthorrefmark{4},\\
 Alexey Shigarov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2},
 and
@@ -452,9 +452,13 @@ The tools will allow us to join the MDA static means of code generation and conf
 % no \IEEEPARstart
 We consider tools for developing information systems with extensive use of Linked Open Data technologies (LOD) \cite{Bizer}.  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols \cite{Cherk}.  An application of semantic models at run time \cite{Kopay} allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.
 
-The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a \verb~namespace~ of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).
+The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a \verb~namespace~ of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM). The stage of building PIM is very important because it provides a possible future evolution  of the system following the future technology changing. This means that correct and fully described PIM has more value versus PSM.
+
+The task of generation a PSM according on PIM, taking into account the runtime feature and the platform specific, refers to the task of logical inference. Usually one of two approaches is used that are similar to compilation and interpretation of the intermediate code (alike PIM). Applying the library-based approach allows to build of the resulting code enough cheap. Functions from the library may be use for online transform some predicates or implementation of complex steps or subtasks. Also using such interpreted languages or languages with pre-compilations as Python, Perl, PHP, ASP.NET, JavaScript, HTML as a destination language for PSMs allows decrease development time and make it easy.
 
 The \verb~ClioPatria~ ontology server and the SWI Prolog language \cite{Clio} are used as tools of MDA model querying and processing.
+
+The ontological approach may be used not only to describe the model and data, but also to describe the interface elements, their behavior, the rights and limitations of users and others aspects of specific realisation.
 
 One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing stereotype aspects of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
 
@@ -631,7 +635,9 @@ An XML based specification is used in the WS-BPEL language \cite{wsbpel} for des
 The results obtained with the partial support of the following projects:
 \begin{itemize}
 \item Irkutsk scientific center of SB RAS No 4.1.2;
-\item The Council for grants of the President of Russian Federation, state support of leading scientific schools of the Russian Federation (NSH-8081.2016.9).
+\item The Council for grants of the President of Russian Federation, state support of leading scientific schools of the Russian Federation (NSH-8081.2016.9);
+\item Russian Foundation for Basic Research (RFBR) No 17-07-01341.
+
   \end{itemize}
 The results obtained with the use of the network infrastructure of Telecommunication center of collective use "Integrated information-computational network of Irkutsk scientific-educational complex" (\url{http://net.icc.ru}). The authors are grateful to the community of Linked Open Vocabularies (\url{http://lov.okfn.org/dataset/lov/}) resource for assistance in the search for formalizations of subject areas (ontologies).
 
@@ -664,7 +670,7 @@ The results obtained with the use of the network infrastructure of Telecommunica
 
 \bibitem{Bizer} Ch. Bizer, T. Heath, T. Berners-Lee. ``Linked Data – The Story So Far,'' Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
 \bibitem{Cherk} E. Cherkashin, I. Orlova. ``Instrumental tools for construction of the digital archives of the documents based on Linked Data,'' Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, \texttt{URL:} \url{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}
-\bibitem{Kopay} N. Kopaigorodsky. ``Use of ontologies in semantic information systems,'' Ontology of Design, 4(14), 2014, p. 78--89 (in Russian) \texttt{URL:} \href{http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf#page=79}{\ttfamily http://agora.guru.ru/scientific\_journal/files/On\-tology\_Of\_Designing\_4\_2014\_opt1.pdf}
+\bibitem{Kopay} A. Kopaygorodsky. ``Use of ontologies in semantic information systems,'' Ontology of Design, 4(14), 2014, p. 78--89 (in Russian) \texttt{URL:} \href{http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf#page=79}{\ttfamily http://agora.guru.ru/scientific\_journal/files/On\-tology\_Of\_Designing\_4\_2014\_opt1.pdf}
 \bibitem{MDA} D. Frankel. Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
 \bibitem{Clio} J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ``ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web,'' Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. \texttt{DOI:} \url{10.3233/SW-150191}
 
