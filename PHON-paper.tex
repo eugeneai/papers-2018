@@ -383,15 +383,20 @@
 % of the page, use this alternative format:
 %
 
-\author{\IEEEauthorblockN{Viacheslav Paramonov\IEEEauthorrefmark{1},
+\DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
+
+\author{\IEEEauthorblockN{Viacheslav Paramonov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2},
 Alexey Shigarov\IEEEauthorrefmark{1},
 Gennady Ruzhnikov\IEEEauthorrefmark{1},
-Evgeny Cherkashin\IEEEauthorrefmark{1}
-}
+Evgeny Cherkashin\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2,}\IEEEauthorrefmark{3}}\\[-0.9em]
 %
-\IEEEauthorblockA{\IEEEauthorrefmark{1}Matrosov Institute for System Dynamics and Control Theory, Irkutsk, Russia\\ \{slv, shigarov, rugnikov, eugeneai\}@icc.ru}
-\IEEEauthorblockA{\IEEEauthorrefmark{2}Institute of Mathematics, Economics and Informatics \\ Irkutsk State University, Irkutsk, Russia}
-}
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, Russia, 664033}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Institute of Mathematics, Economics and Informatics \\ Irkutsk State University, 20 Gagarina Avenue, Russia, 664002}
+\IEEEauthorblockA{\IEEEauthorrefmark{3}National Research Irkutsk State Technical University, 83 Lermontov Street, Russia, 664074}
+E-mail:\texttt{\{slv, shigarov, rugnikov, eugeneai\}@icc.ru}}
+
+
+
 
 
 
@@ -436,25 +441,25 @@ Digital data integration is one of the popular areas of information society. It 
 
 Initial data could be collect and forming from different sources. As a consequence of this integrable data are heterogeneous, represented in different formats and may have some errors. They arise as a result of misprints, spelling mistakes, invalid usage of date or currency delimiters, errors of text recognition etc. In this regard, data cleanse is required before the integration.
 
-Data cleansing is one of important steps in data integration processes. Data cleansing includes many aspects such as detection and automatic correction of spelling errors, incorrect values coding and logical inconsistencies, missing data. This paper consider one of messy data kinds -- detection and correction words with applying methods of phonetic comparison. 
+Data cleansing is one of important steps in data integration processes. Data cleansing includes many aspects such as detection and automatic correction of spelling errors, incorrect values coding and logical inconsistencies, missing data. This paper consider one of messy data kinds -- detection and correction words with applying methods of phonetic comparison.
 
 Some of integrable data are textual data which could be linked with dictionaries (classifiers) values. For example in data about types and location places of vegetation and spiders in region. Some dataset exists in Scientific Institution's data bases, some data collected by scientists individually.
 
 In different countries data may be represented on different, national languages. In this paper textual data on Russian language are reviewed. Russian language belongs to East-Slavic language group. It is used by more than 250 million speakers \cite{Cubberley-2002}.
 
 There are a lot of methods to word comparison with values of it represented in dictionaries. One of the methods of errors detection is based on words phonetic codes comparison. The paper introduces the method of detection and correction of Russian language spelling errors in data normalization processes. The algorithm is based on phonetic coded strings matching analysis.
- 
+
 The idea of phonetic algorithms is seeking identify words according to their similar pronunciation \cite{Parmar-2014}. The common purpose of phonetic algorithms is detection of the words similarity according to their phonetic resemblance. The most typical application of phonetic algorithms is intended for the surnames \cite{Zahoransky-2015}. However it is possible to use phonetic algorithms for verification words that are other parts of speech. Possibility of it depend on language features and particularities. This paper devoted the usage of phonetic algorithm for data cleanse tasks in Russian language and adoption it for Mongolian language.
 
 \section{Data anomalies}
-Textual data that represented in official databases have very high level of correctness. These data are passed a lot of verification procedures. Another situation with data which were collected form persons for their own usage. These data may contains some errors – anomalies. Often they may arise in processes of data entry. The rate of these errors is depend on many criteria and it is about 5\% for educated adult person \cite{Orr-1998}. 
+Textual data that represented in official databases have very high level of correctness. These data are passed a lot of verification procedures. Another situation with data which were collected form persons for their own usage. These data may contains some errors – anomalies. Often they may arise in processes of data entry. The rate of these errors is depend on many criteria and it is about 5\% for educated adult person \cite{Orr-1998}.
 
-In the \cite{Osipov-2002} allocate such anomalies as: coverage, semantic and syntactical. To improve the quality of data all kinds of errors is should be minimized. Coverage and semantic anomalies could not be eliminate with applying methods of phonetic comparison. However these methods may fix some of syntactical errors.   
+In the \cite{Osipov-2002} allocate such anomalies as: coverage, semantic and syntactical. To improve the quality of data all kinds of errors is should be minimized. Coverage and semantic anomalies could not be eliminate with applying methods of phonetic comparison. However these methods may fix some of syntactical errors.
 
 These type of anomalies include lexical errors, which relates with name discrepancies between the structure of the data items and the specified format –- integrable data do not correspond to the data from dictionaries.  Domain format of anomalies that associated with correct data do not conform to the anticipated domain format – the absence of separator in integrable data. The letters admission or their incorrect data also it is possible to carry to this type of mistakes.
 
 Irregularities are concerned with the non-uniform use of values, units and abbreviations.
-We suggest that phonetic algorithms may be helpful in eliminating of syntactical such as lexical errors. Some of these kind anomalies are result of various typos and words doubles in process of word typing. Some of typos occur due phonetic errors. 
+We suggest that phonetic algorithms may be helpful in eliminating of syntactical such as lexical errors. Some of these kind anomalies are result of various typos and words doubles in process of word typing. Some of typos occur due phonetic errors.
 
 \section{Phonetic algorithms}
 The general idea of phonetic algorithms is words comparison according their pronunciation and does not depend on orthographical rules.
