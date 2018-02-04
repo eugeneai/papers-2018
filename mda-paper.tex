@@ -421,7 +421,7 @@ We consider tools for developing information systems with extensive use of Linke
 
 The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a namespace of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).
 
-The ClioPatria ontology server and the SWI Prolog language  are used as tools of MDA model querying and processing.
+The ClioPatria ontology server and the SWI Prolog language are used as tools of MDA model querying and processing.
 
 One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing stereotype aspects of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
 
@@ -452,25 +452,18 @@ The tools will allow us to join the MDA static means of code generation and conf
 % no \IEEEPARstart
 We consider tools for developing information systems with extensive use of Linked Open Data technologies (LOD) \cite{Bizer}.  The LOD technologies allows software designers to develop program systems data integrated by means of common ontologies and web protocols \cite{Cherk}.  An application of semantic models at run time \cite{Kopay} allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.
 
-The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a \verb~namespace~ of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM). The stage of building PIM is very important because it provides a possible future evolution  of the system following the future technology changing. This means that correct and fully described PIM has more value versus PSM.
-
-The task of generation a PSM according on PIM, taking into account the runtime feature and the platform specific, refers to the task of logical inference. Usually one of two approaches is used that are similar to compilation and interpretation of the intermediate code (alike PIM). Applying the library-based approach allows to build of the resulting code enough cheap. Functions from the library may be use for online transform some predicates or implementation of complex steps or subtasks. Also using such interpreted languages or languages with pre-compilations as Python, Perl, PHP, ASP.NET, JavaScript, HTML as a destination language for PSMs allows decrease development time and make it easy.
-
+The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  The model form a \verb~namespace~ of a LOD graph.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM). The stage of designing PIM is very important as it in principle provides an evolution of the information system implementation within the development of the programming technologies in the future. %This means that correct and fully described PIM has more value versus PSM.
 The \verb~ClioPatria~ ontology server and the SWI Prolog language \cite{Clio} are used as tools of MDA model querying and processing.
 
-The ontological approach may be used not only to describe the model and data, but also to describe the interface elements, their behavior, the rights and limitations of users and others aspects of specific realisation.
+We distinct two popular approaches of implementing PIM to PSM transformation, taking into account the runtime features and other implementation platform features.  The first one is a library-based approach that allows us to build the resulting PSM and the source code easy enough.  Transformation functions from the library are applied to predicates or implementation of complex steps or subtasks. Usage of interpreted or ahead-of-time-compilation languages as Python, Perl, PHP, ASP.NET, JavaScript, HTML as a target language for PSMs decreases the development time and make it less complex.  Thus, application of the libraries is the direct interaction of PIM as a superposition of applied function.
+
+The second popular approach is the multistage transformation of the source PIM (\textbf{From previous paper}).  This research uses the Logtalk language, a macro package of the Prolog logical language.  The main advantage of the language usage is knowledge structuring thanks to the object-orientation.  Objects are used for representation of the source PIM model and the resulting PIM structures as well as source generators.  Moreover, the transformation objects is easily integrated with the libraries processing LOD and LOD warehouses.
+
+\textbf{The ontological approach may be used not only to describe the model and data, but also to describe the interface elements, their behavior, the rights and limitations of users and others aspects of specific realisation.}
 
 One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing stereotype aspects of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
 
 Linked Open Data (LOD) [1] technology has been suggested by W3C consortium to represent the semantic information in the published web content in a way that provides not only the possibility of its processing with software agents (Semantic Web), but also to link all available information into a single semantic graph using relations and global universal identifiers (URIs) of resources. The descriptive capabilities of semantic web technologies, HTML5 document publishing tools, and LOD technologies form an infrastructural basis of authoring and publishing documents. The document is constructed out of individual parts (text and images) that are loaded from other servers with links to relevant resources. The resources represent both the static content and text content as a result of a data conversion algorithm execution. The LOD provide a logical markup for the information presented in a document, informative basis for the different variants of visual representation and interpretation, logical connections with other documents, export information into other documents, procedural processing, etc. An important advantage of LOD usage in information environments is a weakening of the requirements to the information warehouses: the document itself is a formalized data warehouse. In some extent, this allows reallocation of the time spent on designing the database structure for storage of partially formalized documents to the process of solving a domain problem: the user (developer) markups the document text data with semantic meaning.
-
-The aim of the study is to design an approach to the development of software performing the functions of authoring and typesetting documents marked up according to LOD principles. To achieve the goal, a set of server functions and client (web-browser) JavaScript routines has been developed that allows user to create documents with web browser. The functions support uploading of text fragments from other documents and their generation with server and client scripts. The resulting document is stored in the data warehouse, printed or downloaded to the user workstation as an HTML file. JavaScript implements various document views, e.g., as an input form; text part conversions, e.g., leaning nouns and substituting pronouns.
-
-The created editing tools are the basis of developed digital archives of documents intended for solving problems of creating documentation of university courses, representing research results of DNA/RNA sequencing. The use of LOD data formats, HTML processing tools of web browser and developed technologies allow one to solve a wide class of problems of formation of documentation, ranging from the formation of a meaningful part of the texts through the presentation of stylistic characteristics of the texts and the integration of logical markup into a global data access services.
-
-The development of the tools for document representation on the basis of LOD are aimed at the formation of the prototype of a global environment that supports automation of data transfer between documents of several companies, and creates, ideally, a distributed document processing environment with the principles of social networks. The task is relevant especially in some small business environments with no well-established information flows and relationships between documents. This is mainly due to the dynamism and diversity of the small business. Use of large-scale workflow automation software in the environments of such kind requires large financial expenses for the purchase and continuous improvement of the software product. Moreover, in companies with a deployed a document flow automation, there is almost always a wide class of documents, which are not integrated in the main document flow (e.g., memos, statements), documents with difficult-to-formalize information (e.g., job descriptions) and the documents received by the organizations from the outside having no logical markup (e.g., industry standards).
-This work continues the research outlined in [2] in implementing client services operating on the platform of the web browser.
-
 
 \section{Transformation software architecture}
 \label{sec:arch}
@@ -479,7 +472,7 @@ The architecture of the system is presented in Fig. 1 (all relations shown in th
 
 \begin{figure}[t]
   \centering
-werwer 
+werwer
 wer w
 erwe
 r we
@@ -487,13 +480,13 @@ r weq
 r qwe
 r we
 rweq
-r 
+r
   \caption{The general architecture of the PIM transformation system}
   \label{fig:arch}
 \end{figure}
 
 
-Interpretation modules of the semantic markup are implemented with client-side JavaScript. They are executed as soon as the main content is loaded by the browser. The modules scan the tree structure of the document, recognizing the conditions of their activation. If the scan was successful, the body of the module is executed, changing of the document content (tree structure). The document composition finalizes as soon as all conditions were met and all commands activated. 
+Interpretation modules of the semantic markup are implemented with client-side JavaScript. They are executed as soon as the main content is loaded by the browser. The modules scan the tree structure of the document, recognizing the conditions of their activation. If the scan was successful, the body of the module is executed, changing of the document content (tree structure). The document composition finalizes as soon as all conditions were met and all commands activated.
 
 A database of the system is a set of tools for storing and serving multi-format data. The body of the document loaded at the first stage is stored in XML (XHTML) files in the file system on the server. The file system is wrapped with a document versions tracking layer to monitor the document dynamics and create integrated backup copies. This level is quite easy to be implemented using modern version control systems like GIT or Subversion.
 
