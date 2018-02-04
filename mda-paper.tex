@@ -472,15 +472,6 @@ The architecture of the system is presented in Fig. 1 (all relations shown in th
 
 \begin{figure}[t]
   \centering
-werwer
-wer w
-erwe
-r we
-r weq
-r qwe
-r we
-rweq
-r
   \caption{The general architecture of the PIM transformation system}
   \label{fig:arch}
 \end{figure}
@@ -493,6 +484,43 @@ A database of the system is a set of tools for storing and serving multi-format 
 In order to organize standard SPARQL data source access and full-text search, storage components for the logical layer and related data as a graph of triples have been developing. ClioPatria [4] and Jena are the component implementations. The first system is interesting because it is implemented entirely with the programming languages Prolog and C. It supports several formats of compact storage of data, and tight integration of triple data with the runtime and language environment of Prolog. A regulated access to the triples from JavaScript is supported using special Pengines protocol [5]. There are a number of implementation libraries for the protocols for popular programming languages, including client-side JavaScript, Java, Python. As an alternative, Java-based Jena library can be used for the service realization.
 
 A full-text index is provided by Elasticsearch indexing engine. The implementation of the index service is simple enough because any RDF graph is representable as JSON (JSON-LD) document, JSON is the main format of storage of indexed information in ElasticSearch. For the representation of the documents to the user as a search result on the page, some triples must be marked as representative of the result. Elasticsearch has the means of fuzzy comparison of terms that allows construction of relevant information search engines. The general technical aspects of the module functioning are discussed later in the application section.
+
+
+\section{Implementation}
+\label{sec:impl}
+
+The transformation is implemented as a Logtalk library integrated with a RDF storage.  All the data processing is under control of SWI-Prolog.  In our research we suppose that the input of the process is the PIM is a set of logically linked UML-diagrams, ontologies and data stored in the warehouse of ontologies as well as other databases.  These data sources are assembled in a PIM with a data description scenario represented as process of PSM generation out of the sources data.
+
+The output of the transformation is a set of configured interlinked Logtalk objects representing PIM.  The source codes of the subsystems and the initial states of databases are generated from these object complexes.
+
+At this stage of the research we implemented a processor of input XMI-2 XML files, which contain the UML-model of an information system, instances of Logtalk classes.  The XMI files exported by Modelio UML designer consist of a model of the system as a set of top packages, and two profile packages.  One profile package describes local definitions, and another represents the system and code generation definitions.  The import processor converts the DOM tree of input XMI into corresponding graphs of triples.  Each triple represents one relationship between two structural elements of an UML diagram.  The instances have public interface used to query their graphs for the structural element compositions.
+
+Platform model (PM) in a broad sense is the transformation procedure implemented as Logtalk components (instances) organized in an hierarchy of transformation modules in the image and likeness of our earlier work [].  Each component (module) queries the sources and constructs two classes of data: own state of private data and structures of external objects.  Own states in particular contain mappings of types between the source and target attributes, the implementation of designer decision on the general way of structure transformation.  The own states in fact represent the module configuration of its transformation state.
+
+External objects are structures constructing PSM, i.e., the set or a category of configured objects reflecting PIM structures and target sources and data.  Transformation modules generate the objects as a results of general decisions.  Their configurations are also inferred from the properties of structural elements of PIM and the profile configurations.  The leaf nodes of the hierarchy is the scenario of PSM generation.  The usage of pure logical approach instead of the mix of two languages allowed us to reduce significantly the size and diversity of the PM description.
+
+As soon as the scenario is fulfilled the PSM is converted into source codes and data.  The conversion in [] was made by means partial application of text templates.  In this case we do not use templates and generate the source code with simple procedures.  SWI-Prolong module index contains a simple template engine module \texttt{simple-template} intended for generation of static HTML pages.  The Prolog system also contain a dictionary-like structures and predicates for dictionary data manipulation, which can be used to represent data to be filled in the templates.  So open-source SWI-Prolog infrastructure is well equipped for developing MDA instruments.
+
+\subsection{Inference of the class structure}
+\label{sec:infstru}
+
+Target class hierarchies in nowadays information system is diversified.  In web-applications, a PIM class or structure is mapped to a table or a SQL-query, an input form, an JavaScript object at user's browser, it can be a part of data transfer protocol like a JSON or XML object.  Some frameworks allow one to define structures and their relations and map them to rational databases [Annenkov], \emph{e.g.}, Django or Entity frameworks.  Most of the CASE-subsystems in UML composition tools do not support export of Class Diagram into the class structures.
+
+The main difference of MDA with respect to CASE technologies is the possibility of adaptation of PD to the special way of software development used in a particular software development group.  To put it on another way, MDA implements the standard transformations and there is tools for modification of the standard procedures to implement own special techniques.  For example, if a programmer want to define a storage class for structures, the corresponding modification of standard transformation must be carried out.  Similarly a whole UML class hierarchy can be immersed into a Object-Relational Mapping (ORM) by means of a programmer-defined stereotype and its implementation.  Even an ORM itself may be implemented by means of special transformation, see [].
+
+
+\subsection{Inference of the properties}
+\label{sec:infprop}
+
+One of the interesting application of the Semantic WEB technologies, namely, Linked Open Data ones is the inference of the properties of the generated structural elements.  The properties of PSM elements, \emph{e.g.}, instance attributes, are derived from PIM UML structure elements, \emph{i.e.}, their standard UML definitions, analysis of relations being involved in, features of combinations of associated stereotypes and tag values, as well as knowledge and data obtained from local ontology warehouse and SPARQL queries to other servers (that are cached for a better performance), for example, to DBPedia.org [].
+
+For example, consider the user interface template generation for web or desktop application.  The model of the interface has a description of the structure and a specification of the properties of the constituent widgets.  If we refer from PIM with tag values \texttt{rdf:object} andd \texttt{rdf:type} of a special stereotype \texttt{<<dbpedia>>} to a corresponding DBPedia resource we can use the DBPedia subgraph for constructing \texttt{title} and \texttt{placeholder} attributes.  In principle, we can figure out a label of an input field for the user locale.
+
+\subsection{Inference of methods}
+\label{sec:infmeth}
+
+Some UML-structures and relations may be interpreted constructively as methods of objects: events, handlers, subscribers and selectors.
+
 
 
 \section{Related research}
