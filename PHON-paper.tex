@@ -62,8 +62,12 @@
 % manually specify the path to it like:
 % \documentclass[conference]{../sty/IEEEtran}
 
-
-
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,mongolian,english]{babel}
+\usepackage{tabularx,booktabs}
+\newcolumntype{C}{>{\centering\arraybackslash}X} % centered version of "X" type
+\setlength{\extrarowheight}{1pt}
 
 
 % Some very useful LaTeX packages include:
@@ -326,7 +330,6 @@
 
 
 
-
 % *** Do not adjust lengths that control margins, column widths, etc. ***
 % *** Do not use packages that alter fonts (such as pslatex).         ***
 % There should be no need to do such things with IEEEtran.cls V1.6 and later.
@@ -338,6 +341,9 @@
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 \providecommand\url[1]{\texttt{#1}}
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
 \begin{document}
 \urlstyle{tt}
@@ -386,12 +392,12 @@
 \DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
 
 \author{\IEEEauthorblockN{Viacheslav Paramonov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2},
-Alexey Shigarov\IEEEauthorrefmark{1},
+Alexey Shigarov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2},
 Gennady Ruzhnikov\IEEEauthorrefmark{1},
 Evgeny Cherkashin\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2,}\IEEEauthorrefmark{3}}\\[-0.9em]
 %
 \IEEEauthorblockA{\IEEEauthorrefmark{1}Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, Russia, 664033}
-\IEEEauthorblockA{\IEEEauthorrefmark{2}Institute of Mathematics, Economics and Informatics \\ Irkutsk State University, 20 Gagarina Avenue, Russia, 664002}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}Institute of Mathematics, Economics and Informatics \\ Irkutsk State University, 20 Gagarina Avenue, Russia, 664003}
 \IEEEauthorblockA{\IEEEauthorrefmark{3}National Research Irkutsk State Technical University, 83 Lermontov Street, Russia, 664074}
 E-mail:\texttt{\{slv, shigarov, rugnikov, eugeneai\}@icc.ru}}
 
@@ -461,17 +467,11 @@ These type of anomalies include lexical errors, which relates with name discrepa
 Irregularities are concerned with the non-uniform use of values, units and abbreviations.
 We suggest that phonetic algorithms may be helpful in eliminating of syntactical such as lexical errors. Some of these kind anomalies are result of various typos and words doubles in process of word typing. Some of typos occur due phonetic errors.
 
-\section{Phonetic algorithms}
-The general idea of phonetic algorithms is words comparison according their pronunciation and does not depend on orthographical rules.
-
-Phonetic algorithms are based on words coding. However the well-known algorithms based on English-words coding. Some algorithms modification for Turkish, Spanish language described in \cite{Alotaibi-2013}. However this languages are based on Latin alphabet symbols. It is exists some of phonetic algorithms for other languages where alphabet characters differ than English. As rule this approach based symbols transliteration and on Soundex phonetic algorithm.
-\textbf{Text from home!}
-
 \section{Usage phonetic algorithms for Russian text cleansing tasks}
 \subsection{Phonetic spelling errors}
-Spelling errors of Russian language words may be subject to following principles [11]:
+Types of spelling errors depend on language particularities. For example spelling errors of Russian language words may be subject to following principles \cite{Skripnik-2010}:
 \begin{itemize}
-\item \textbf{morphological} – a uniform graphic symbol of morphemes by the letter i.e. a person tries to write all audible sounds by letters [12];
+\item \textbf{morphological} – a uniform graphic symbol of morphemes by the letter i.e. a person tries to write all audible sounds by letters \cite{Valgina-2002};
 \item \textbf{phonologic} – preservation of writing of phonemes spelling regardless the word of change;
 \item \textbf{phonetic} – words written as they are heard;
 \item \textbf{traditional} (historic) – writing by “tradition” i.e. as it was written in old times or as in the language which it is borrowed from
@@ -479,8 +479,71 @@ Spelling errors of Russian language words may be subject to following principles
 
 Most of spelling errors in Russian are associated with phonetic norms. The type of mistakes generally depends on the level of one’s education \cite{Parubchenko-2005}. For example, elementary school students make mistakes because they write words as heard. High school students are more prone to hypercorrection errors. As the literacy level of a person does not improve after school graduation, adult persons also make hypercorrection errors. However, in general, many spelling mistakes are simply typos or associated with phonetic words representation.
 
-It is noted in [13] that phonetic spelling principle is the most natural and efficient. Therefore  phonetic algorithms would be useful for similar strings matching. Table I represents Russian language general spelling errors. It is a simplified table from [13]. Here and in other samples Russian language words would be presented in transliteration also according [14] and shown in [] characters. This designation will help to facilitate the understanding of text for persons who are not aware of Cyrillic characters.
-Thus, these kinds of spelling errors make nearly 90\% of all errors. Other spelling errors are represented by mixing of some vowels, concordant, letter sequences or dividing (special) letters “ь” ("soft sign") and “ъ” ("hard sign"). Forming rules that allow to find words matching with due regard to errors type help to find and eliminate errors in words.
+\begin{table}[t!]
+\renewcommand{\arraystretch}{1.3}
+\caption{Share of most various spelling patterns in total number of mistakes.}
+\label{lbl-mistakes}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline Place & Spelling pattern type & \specialcell{Share, \\ \%}\\
+\hline 1 & 	Mixing of "и"-"е" in unstressed  syllable	& 27.3 \\
+\hline 2 &	Mixing "а"-"о" in  unstressed syllable	& 25.3 \\
+\hline 3 &	Separate writing instead of solid word writing	& 9.4 \\
+\hline 4 &	Solid word writing instead of the separate &	8.8 \\
+\hline 5 &	Writing of one letter instead of the doubled &	6.6 \\
+\hline 6 &	Mixture deaf and ringing letters &	3.6 \\
+\hline 7 &	Vowels after hissing sounds and ц &	2.7 \\
+\hline 8 &	Excess doubling of letters &	2.6 \\
+\hline 9 &	Absence of "ь" &	1.3 \\
+\hline 10 &	Writing of the superfluous "ь" &	0.6 \\
+\hline
+\end{tabular}
+\end{table}
+
+It is noted in \cite{Osipov-2002} that phonetic spelling principle is the most natural and efficient. Therefore  phonetic algorithms would be useful for similar strings matching. Table \ref{lbl-mistakes} represents Russian language general spelling errors. It is a simplified table from \cite{Osipov-2002}. Here and in other samples Russian language words would be presented in transliteration also according \cite{GOST-2006} and shown in \textbf{[ ]} characters. This designation will help to facilitate the understanding of text for persons who are not aware of Cyrillic characters.
+
+Thus, these kinds of spelling errors make nearly 90\% of all errors. Other spelling errors are represented by mixing of some vowels, concordant, letter sequences or dividing (special) letters “\textbf{ь}” ("soft sign") and “\textbf{ъ}” ("hard sign"). Forming rules that allow to find words matching with due regard to errors type help to find and eliminate errors in words.
+
+\subsection{Phonetic algorithms}
+The general idea of phonetic algorithms is words comparison according their pronunciation (phonetic forms) and does not depend on orthographical rules. Words are phonetically similar if their codes are matching.
+
+This kind of algorithms allow to find typos related to changing places of two adjacent letters and typos based on sound similarities. We suggest that the following categories of errors are allocated to estimate overall performance of phonetic algorithms:
+\begin{itemize}
+\item \textbf{first category} – errors related with incorrect writing (morphological errors);
+\item \textbf{second category} – various typographical errors (misprints, typos);
+\item \textbf{third category} – errors related to incorrect rule usage (hypercorrection \cite{Parubchenko-2005} errors).
+\end{itemize}
+
+Well-known algorithms based on English-words coding. Some algorithms modification for Turkish, Spanish language described in \cite{Alotaibi-2013}. However this languages are based on Latin alphabet symbols. It is exists some of phonetic algorithms for other languages where alphabet characters differ than English. As rule this approach based symbols transliteration and on Soundex phonetic algorithm \cite{Soundex}.
+
+Applying of well-known phonetic algorithms for Russian text is a result of transliterated Cyrillic to Latin characters coding. However transliterated words do not always have a unique record. For example, such name as “Антон Чехов” [“Anton Chekhov”] has been variously transliterated as Tsjechof, Tsjechow, Tjekhow, Chekhov, Chekhow etc. 
+
+Usage of phonetic codes allows increasing the word comparison quality in the case of their incorrect writing. All phonetic algorithms use words coding. Changing of noun case and form, for example, leads to ineffective use of phonetic algorithms. However, such changes are not significant in our case. Therefore phonetic algorithms are most suitable for word comparison with reference books or dictionaries. Phonetic algorithms are used expediently for the solution of issues of comparison word with their meanings in reference books or dictionaries (classifiers).
+
+\section{Russian language phonetic string matching approach}
+Transliteration allows to get text in Cyrillic letters in Latin letters representation. It should be noted that there are no standard rules of transliteration that take into account peculiar properties of a language and it does not depend on language in East--Slavic language group. For example, Ukrainian word "вчора" (yesterday) we can transliterate as "vchera", "vchora", "fchora". In addition, misspellings in East – Slavic languages with Cyrillic letters generally differ from these in English or German texts. The reasons for it are different rules of pronunciation and writing in different languages. In transliteration it is unable to consider features of letter sequences for each language.
+
+The suggested in the paper algorithm Polyphon makes used word transformation with due regard to rules of Russian language and according to its phonetic particularities. It is allows get a more correct phonetic code for conformable strings. The stages of algorithm are:
+
+\begin{enumerate}
+\item substitution of Latin letters which are similar to Russian with Russian letters;
+\item removal of all non-Russian alphabet characters from the string;
+\item modification of letters before dividers (special letters as "ъ" and "ь");
+\item removal dividers from string;
+\item transformation of similar letters following each other into one;
+\item transformation of character sequences.
+\end{enumerate}
+
+Let us consider algorithm steps more detail. Some of letter in Russian alphabet have equivalent in writing with Latin. These are such letters as: a \textbf{[a]}$\sim$ а, e \textbf{[e]} $\sim$ е, о \textbf{[o]} $\sim$ о, c \textbf{[es]} $\sim$ с, x \textbf{[kha]} $\sim$ x. Some letters equal in capital letters only: B \textbf{[ve]} $\sim$ В, M \textbf{[em]} $\sim$ М, H \textbf{[en]} $\sim$ Н. Sometimes these letters are substituted (incidentally or purposely) when text typing. 
+
+There are some dividers – special letters “ь” (“soft” sign), “ъ” (“hard” sing) presented in Russian language. They are not pronounce and are used for giving softness or hardness for consonants respectively. For this reason there is no need to consider these characters.
+
+The offered phonetic algorithm Polyphon operates with Russian language letters only. The initial operation is to remove all characters, which do not use in Russian alphabet. 
+
+The following stage is transformation of letters repeated in a row. Doubled letters will transform to one e.g. “xx” to “x”. It is not always possible to define double letters in hearing. Therefore, we carry out these transformations for rule of generalization.
+
+It is taken into account that phonetic code depends on the sound that can come from some letters or their sequences. Some different letters or their combinations have different sounds. Thus, Polyphone uses coding letters by sounds, which are heard. Ways of the replacement are provided in table III. The aim of the proposed phonetic algorithm generalized letters and sounds combinations [18]. The reason of generalization is based on that some sounds from letter sequences depend on stress position.  Such deviations from norms are meet in social and territorial dialects in Russia \cite{Zhirmunsky-1936}.
+
 
 \subsection{Subsection Heading Here}
 Subsection text here.
@@ -489,6 +552,28 @@ Subsection text here.
 \subsubsection{Subsubsection Heading Here}
 Subsubsection text here.
 
+
+\begin{table*}
+ \caption{CIFAR-10 Confusion Matrix}
+\label{my-label}
+\begin{tabularx}{\textwidth}{@{}l*{10}{C}c@{}}
+\toprule
+labels     & airplane & automobile & bird & cat & deer & dog & frog & horse & ship & truck & accuracy \\ 
+\midrule
+airplane   & 915      & 4          & 17   & 19  & 3    & 1   & 0    & 2     & 27   & 12    & 91.50\%  \\ 
+automobile & 8        & 934        & 3    & 4   & 0    & 0   & 3    & 0     & 10   & 38    & 93.40\%  \\ 
+bird       & 60       & 1          & 813  & 37  & 19   & 23  & 30   & 10    & 7    & 0     & 81.30\%  \\ 
+cat        & 18       & 1          & 34   & 746 & 25   & 113 & 37   & 18    & 8    & 0     & 74.60\%  \\ 
+deer       & 24       & 1          & 38   & 33  & 809  & 19  & 44   & 29    & 2    & 1     & 80.90\%  \\ 
+\addlinespace
+dog        & 4        & 0          & 37   & 106 & 23   & 792 & 9    & 26    & 2    & 1     & 79.20\%  \\ 
+frog       & 2        & 5          & 19   & 35  & 1    & 20  & 912  & 2     & 3    & 1     & 91.20\%  \\ 
+horse      & 14       & 0          & 26   & 20  & 18   & 28  & 4    & 886   & 3    & 1     & 88.60\%  \\ 
+ship       & 35       & 10         & 3    & 2   & 0    & 2   & 1    & 0     & 936  & 11    & 93.60\%  \\ 
+truck      & 23       & 37         & 4    & 10  & 1    & 2   & 2    & 0     & 15   & 906   & 90.60\%  \\ 
+\bottomrule
+\end{tabularx}
+\end{table*}
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
@@ -598,9 +683,7 @@ The conclusion goes here.
 
 % use section* for acknowledgment
 \section*{Acknowledgment}
-
-
-The authors would like to thank...
+The reported study was supported in part by RFBR (grants 18-07-00758, 17-47-380007). Experiments were performed on the resources of the Shared Equipment Centre of Integrated information and computing network of Irkutsk Research and Educational Complex (http://net.icc.ru).
 
 
 
@@ -636,7 +719,15 @@ The authors would like to thank...
 \bibitem{Orr-1998} K.~Orr. Data Quality and Systems Theory. // Communications of the ACM, Vol. 41, No. 2, 1998, 66--71
 \bibitem{Osipov-2002}	B.I.~Osipov, L.G.~Galushinskaya, V.V.~Popkov. Phonetic and hyper-correction errors in written assignments of students of 3--11 classes of high school (Фонетические и гиперические ошибки в письменных работах учащихся 3–11-х классов средней школы). Russian Language journal. No 15, 2002 (in Russian) \texttt{URL:} \url{http://rus.1september.ru/article.php?ID=200201501}
 \bibitem{Parubchenko-2005} L.B.~Parubchenko. Hypercorrection errors (Ошибки гиперкоррекции)// Russian Literature. No 4, 2005.-- p.p. 23--27. (in Russian)
-\bibitem{Alotaibi-2013} Y.~Alotaibi, A.~Meftah. Review of distinctive phonetic features and the Arabic share in related modern research // Turkish Journal of Electrical Engineering \& Computer Sciences 2013, Vol. 21 Issue 5, pp.1426-1439
+\bibitem{Skripnik-2010} Ya.N.~Skripnik, T.M.~Smolenskaya. Phonetics of modern Russian Language (Фонетика современного русского языка: Учебное пособие) / Editor: Ya.N.~Skripnik. -–- Stavropol --- VoSIGI. --- 2010. --– 152~p. (in Russian)
+\bibitem{Valgina-2002} N.S.~Valgina, D.E.~Rozental', M.I.Fomina. Modern Russian Language: Textbook (Современный русский язык: Учебник) / Editor: N.S.~Valgina -- 6-th Edition. --- Moscow --- Logos --- 2002 --– 528~p. (in Russian)
+\bibitem{GOST-2006} GOST R 52535.1-2006. Identification cards. Machine readable travel documents. Part 1 Machine Readable Passports. National Standard of the Russian Federation (ГОСТ Р 52535.1-2006. Карты идентификационные. Машиносчитываемые дорожные документы. Часть 1. Машиносчитываемые паспорта. Национальный стандарт Российской Федерации). --- Moscow --- Russia. --- 2006 --- 18 p. (in Russian)
+\bibitem{Alotaibi-2013} Y.~Alotaibi, A.~Meftah. Review of distinctive phonetic features and the Arabic share in related modern research // Turkish Journal of Electrical Engineering \& Computer Sciences 2013, Vol. 21 Issue 5, pp.~1426-1439
+\bibitem{Soundex}	The Soundex Indexing System. National archives. \texttt{URL:} \url{http://www.archives.gov/research/census/soundex.html}
+\bibitem{Zhirmunsky-1936} V.~Zhirmunsky. National Language and social dialects (Национальный язык и социальные диалекты). --- Moscow: The state publisher of fiction. --- 1936. --- 300 p. (in Russian)
+
+
+
 
 
 \bibitem{Bizer} Ch. Bizer, T. Heath, T. Berners-Lee. ``Linked Data – The Story So Far,'' Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
