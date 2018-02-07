@@ -525,6 +525,14 @@ For example, consider the user interface template generation for web or desktop 
 Some UML-structures and relations may be interpreted constructively as methods of objects: events, handlers, subscribers and selectors.
 
 
+\section{Applications}
+\label{sec:app}
+
+The described MDA tools are used and will be used in a number of interesting projects.  The first one was a Python driver of a cash register.
+
+In the only Russian commercial planetary there appeared problem of connecting new cash register to a \emph{ad hoc} ticket and billing system.  The resource was limited to two weeks for general development and one programmer.  There was an old version of program for the previous cash machine, a documentation to the new one as well as test utility implementing the protocol obtained from vendor driver pack.  The description of the protocol in the manual was not precise: the sense of some fields were not understandable, the description of the automatons modeling the behavior in communications was too abstract, the documentation described two versions of the protocol, programmer has no previous experience with cash machines control.
+
+The decision of application of the MDA was made after the first investigation of the situation.  The protocol commands and the automatons were represented as UML Class and State diagrams.
 
 \section{Related research}
 \label{sec:rel}
@@ -532,11 +540,6 @@ Some UML-structures and relations may be interpreted constructively as methods o
 [[[[WSDL: Web Services Description Language]]]]
 
 An XML based specification is used in the WS-BPEL language \cite{wsbpel} for describing orchestration of web services within execution of an instance of a business process.  The idea of the language is to describe complex systems down to Web Services units, their internal and external structure and behavior, as well as services interaction in the script instance. Our project concentrates on \emph{programming in the small} aspect of IS development, \emph{i.e.} dealing with modeling and implementation software components composing the services.
-
-
-\section{Applications}
-\label{sec:app}
-
 
 
 % \subsection{Subsection Heading Here}
