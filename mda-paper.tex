@@ -143,7 +143,7 @@
 % *** GRAPHICS RELATED PACKAGES ***
 %
 \ifCLASSINFOpdf
-  % \usepackage[pdftex]{graphicx}
+  \usepackage[pdftex]{graphicx}
   % declare the path(s) where your graphic files are
   % \graphicspath{{../pdf/}{../jpeg/}}
   % and their extensions so you won't have to specify these with
@@ -153,7 +153,7 @@
   % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
   % will default to the driver specified in the system graphics.cfg if no
   % driver is specified.
-  % \usepackage[dvips]{graphicx}
+  \usepackage[dvips]{graphicx}
   % declare the path(s) where your graphic files are
   % \graphicspath{{../eps/}}
   % and their extensions so you won't have to specify these with
@@ -341,7 +341,7 @@
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 \providecommand\url[1]{\texttt{#1}}
-
+\graphicspath{{pics/}}
 \begin{document}
 \urlstyle{tt}
 
@@ -471,6 +471,7 @@ The architecture of the system is presented in Fig. 1 (all relations shown in th
 
 \begin{figure}[t]
   \centering
+  \includegraphics[width=1\linewidth]{architecture-ext.pdf}
   \caption{The general architecture of the PIM transformation system}
   \label{fig:arch}
 \end{figure}
@@ -498,7 +499,14 @@ The output of the transformation is a set of configured interlinked Logtalk obje
 
 At this stage of the research we implemented a processor of input XMI-2 XML files, which contain the UML-model of an information system, instances of Logtalk classes.  The XMI files exported by Modelio UML designer consist of a model of the system as a set of top packages, and two profile packages.  One profile package describes local definitions, and another represents the system and code generation definitions.  The import processor converts the DOM tree of input XMI into corresponding graphs of triples.  Each triple represents one relationship between two structural elements of an UML diagram.  The instances have public interface used to query their graphs for the structural element compositions.
 
-Platform model (PM) in a broad sense is the transformation procedure implemented as Logtalk components (instances) organized in an hierarchy of transformation modules in the image and likeness of our earlier work [].  Each component (module) queries the sources and constructs two classes of data: own state of private data and structures of external objects.  Own states in particular contain mappings of types between the source and target attributes, the implementation of designer decision on the general way of structure transformation.  The own states in fact represent the module configuration of its transformation state.
+Platform model (PM) in a broad sense is the transformation procedure implemented as Logtalk components (instances) organized in an hierarchy of transformation modules (Fig.~\ref{fig:modules}) in the image and likeness of our earlier work [].  Each component (module) queries the sources and constructs two classes of data: own state of private data and structures of external objects.  Own states in particular contain mappings of types between the source and target attributes, the implementation of designer decision on the general way of structure transformation.  The own states in fact represent the module configuration of its transformation state.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=1\linewidth]{architect_tree_pres-en-wo-OCL.pdf}
+  \caption{A hierarchy of transformation modules representing PM}
+  \label{fig:modules}
+\end{figure}
 
 External objects are structures constructing PSM, i.e., the set or a category of configured objects reflecting PIM structures and target sources and data.  Transformation modules generate the objects as a results of general decisions.  Their configurations are also inferred from the properties of structural elements of PIM and the profile configurations.  The leaf nodes of the hierarchy is the scenario of PSM generation.  The usage of pure logical approach instead of the mix of two languages allowed us to reduce significantly the size and diversity of the PM description.
 
@@ -519,10 +527,10 @@ One of the interesting application of the Semantic WEB technologies, namely, Lin
 
 For example, consider the user interface template generation for web or desktop application.  The model of the interface has a description of the structure and a specification of the properties of the constituent widgets.  If we refer from PIM with tag values \texttt{rdf:object} andd \texttt{rdf:type} of a special stereotype \texttt{<<dbpedia>>} to a corresponding DBPedia resource we can use the DBPedia subgraph for constructing \texttt{title} and \texttt{placeholder} attributes.  In principle, we can figure out a label of an input field for the user locale.
 
-\subsection{Inference of methods}
-\label{sec:infmeth}
+%\subsection{Inference of methods}
+%\label{sec:infmeth}
 
-Some UML-structures and relations may be interpreted constructively as methods of objects: events, handlers, subscribers and selectors.
+Some UML-structures and relations may be interpreted constructively as methods of objects: events, handlers, subscribers, database triggers and selectors (lookups).
 
 
 \section{Applications}
@@ -536,7 +544,7 @@ The decision of application of the MDA was made after the first investigation of
 
 The low- and middle-level interaction were tested on dumped data of the test tool.  The tests showed the protocol documentation mistakes and version variant.  It also helped in PD and PIM refinement.  The first two levels of interaction started functioning in two weeks.  Another reserved two weeks was devoted to refinement of the fiscal operation, ticked printing design and deployment.
 
-\textbf{The second active project is support of New Generation Sequencing computation infrastructure for investigation of lake Baikal microbiome}.
+The second active project is a technological support of the development of New Generation Sequencing computation infrastructure for investigation of lake Baikal microbiome.  In this project, the generative tools are used to describe bioinfomatic operations from which an investigation consists.  The investigation is a composition of elementary operation implemented with \texttt{Mothur}, \texttt{R} and other programs.  The composition is represented as a dataflow graph [].  Each operator communicates other ones with connections of ports.  The structures of operator ports and operator parameters are represented with classes of UML Class Diagram.  The PM adopted to generate set of stub Java classes reflecting \texttt{Mothur} operations as \texttt{Rapidminer Studio}.  LOD is used to supply user descriptions for the operators.
 
 \subsection{Future target projects}
 \label{sec:futuretargets}
