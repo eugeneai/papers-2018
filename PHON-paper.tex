@@ -65,6 +65,11 @@
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[russian,mongolian,english]{babel}
+% \usepackage{times}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage{lualatex-math}
+\usepackage{fontspec}
 \usepackage{tabularx,booktabs}
 \newcolumntype{C}{>{\centering\arraybackslash}X} % centered version of "X" type
 \setlength{\extrarowheight}{1pt}
@@ -346,6 +351,7 @@
   \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
 
 \begin{document}
+\setmainfont{Times New Roman}
 \urlstyle{tt}
 
 %
@@ -516,7 +522,7 @@ This kind of algorithms allow to find typos related to changing places of two ad
 
 Well-known algorithms based on English-words coding. Some algorithms modification for Turkish, Spanish language described in \cite{Alotaibi-2013}. However this languages are based on Latin alphabet symbols. It is exists some of phonetic algorithms for other languages where alphabet characters differ than English. As rule this approach based symbols transliteration and on Soundex phonetic algorithm \cite{Soundex}.
 
-Applying of well-known phonetic algorithms for Russian text is a result of transliterated Cyrillic to Latin characters coding. However transliterated words do not always have a unique record. For example, such name as “Антон Чехов” [“Anton Chekhov”] has been variously transliterated as Tsjechof, Tsjechow, Tjekhow, Chekhov, Chekhow etc. 
+Applying of well-known phonetic algorithms for Russian text is a result of transliterated Cyrillic to Latin characters coding. However transliterated words do not always have a unique record. For example, such name as “Антон Чехов” [“Anton Chekhov”] has been variously transliterated as Tsjechof, Tsjechow, Tjekhow, Chekhov, Chekhow etc.
 
 Usage of phonetic codes allows increasing the word comparison quality in the case of their incorrect writing. All phonetic algorithms use words coding. Changing of noun case and form, for example, leads to ineffective use of phonetic algorithms. However, such changes are not significant in our case. Therefore phonetic algorithms are most suitable for word comparison with reference books or dictionaries. Phonetic algorithms are used expediently for the solution of issues of comparison word with their meanings in reference books or dictionaries (classifiers).
 
@@ -534,11 +540,11 @@ The suggested in the paper algorithm Polyphon makes used word transformation wit
 \item transformation of character sequences.
 \end{enumerate}
 
-Let us consider algorithm steps more detail. Some of letter in Russian alphabet have equivalent in writing with Latin. These are such letters as: a \textbf{[a]}$\sim$ а, e \textbf{[e]} $\sim$ е, о \textbf{[o]} $\sim$ о, c \textbf{[es]} $\sim$ с, x \textbf{[kha]} $\sim$ x. Some letters equal in capital letters only: B \textbf{[ve]} $\sim$ В, M \textbf{[em]} $\sim$ М, H \textbf{[en]} $\sim$ Н. Sometimes these letters are substituted (incidentally or purposely) when text typing. 
+Let us consider algorithm steps more detail. Some of letter in Russian alphabet have equivalent in writing with Latin. These are such letters as: a \textbf{[a]}$\sim$ а, e \textbf{[e]} $\sim$ е, о \textbf{[o]} $\sim$ о, c \textbf{[es]} $\sim$ с, x \textbf{[kha]} $\sim$ x. Some letters equal in capital letters only: B \textbf{[ve]} $\sim$ В, M \textbf{[em]} $\sim$ М, H \textbf{[en]} $\sim$ Н. Sometimes these letters are substituted (incidentally or purposely) when text typing.
 
 There are some dividers – special letters “ь” (“soft” sign), “ъ” (“hard” sing) presented in Russian language. They are not pronounce and are used for giving softness or hardness for consonants respectively. For this reason there is no need to consider these characters.
 
-The offered phonetic algorithm Polyphon operates with Russian language letters only. The initial operation is to remove all characters, which do not use in Russian alphabet. 
+The offered phonetic algorithm Polyphon operates with Russian language letters only. The initial operation is to remove all characters, which do not use in Russian alphabet.
 
 The following stage is transformation of letters repeated in a row. Doubled letters will transform to one e.g. “xx” to “x”. It is not always possible to define double letters in hearing. Therefore, we carry out these transformations for rule of generalization.
 
@@ -558,19 +564,19 @@ Subsubsection text here.
 \label{my-label}
 \begin{tabularx}{\textwidth}{@{}l*{10}{C}c@{}}
 \toprule
-labels     & airplane & automobile & bird & cat & deer & dog & frog & horse & ship & truck & accuracy \\ 
+labels     & airplane & automobile & bird & cat & deer & dog & frog & horse & ship & truck & accuracy \\
 \midrule
-airplane   & 915      & 4          & 17   & 19  & 3    & 1   & 0    & 2     & 27   & 12    & 91.50\%  \\ 
-automobile & 8        & 934        & 3    & 4   & 0    & 0   & 3    & 0     & 10   & 38    & 93.40\%  \\ 
-bird       & 60       & 1          & 813  & 37  & 19   & 23  & 30   & 10    & 7    & 0     & 81.30\%  \\ 
-cat        & 18       & 1          & 34   & 746 & 25   & 113 & 37   & 18    & 8    & 0     & 74.60\%  \\ 
-deer       & 24       & 1          & 38   & 33  & 809  & 19  & 44   & 29    & 2    & 1     & 80.90\%  \\ 
+airplane   & 915      & 4          & 17   & 19  & 3    & 1   & 0    & 2     & 27   & 12    & 91.50\%  \\
+automobile & 8        & 934        & 3    & 4   & 0    & 0   & 3    & 0     & 10   & 38    & 93.40\%  \\
+bird       & 60       & 1          & 813  & 37  & 19   & 23  & 30   & 10    & 7    & 0     & 81.30\%  \\
+cat        & 18       & 1          & 34   & 746 & 25   & 113 & 37   & 18    & 8    & 0     & 74.60\%  \\
+deer       & 24       & 1          & 38   & 33  & 809  & 19  & 44   & 29    & 2    & 1     & 80.90\%  \\
 \addlinespace
-dog        & 4        & 0          & 37   & 106 & 23   & 792 & 9    & 26    & 2    & 1     & 79.20\%  \\ 
-frog       & 2        & 5          & 19   & 35  & 1    & 20  & 912  & 2     & 3    & 1     & 91.20\%  \\ 
-horse      & 14       & 0          & 26   & 20  & 18   & 28  & 4    & 886   & 3    & 1     & 88.60\%  \\ 
-ship       & 35       & 10         & 3    & 2   & 0    & 2   & 1    & 0     & 936  & 11    & 93.60\%  \\ 
-truck      & 23       & 37         & 4    & 10  & 1    & 2   & 2    & 0     & 15   & 906   & 90.60\%  \\ 
+dog        & 4        & 0          & 37   & 106 & 23   & 792 & 9    & 26    & 2    & 1     & 79.20\%  \\
+frog       & 2        & 5          & 19   & 35  & 1    & 20  & 912  & 2     & 3    & 1     & 91.20\%  \\
+horse      & 14       & 0          & 26   & 20  & 18   & 28  & 4    & 886   & 3    & 1     & 88.60\%  \\
+ship       & 35       & 10         & 3    & 2   & 0    & 2   & 1    & 0     & 936  & 11    & 93.60\%  \\
+truck      & 23       & 37         & 4    & 10  & 1    & 2   & 2    & 0     & 15   & 906   & 90.60\%  \\
 \bottomrule
 \end{tabularx}
 \end{table*}
@@ -753,4 +759,5 @@ The reported study was supported in part by RFBR (grants 18-07-00758, 17-47-3800
 \end{document}
 
 %%% Local Variables:
+%%% TeX-master: t
 %%% End:
