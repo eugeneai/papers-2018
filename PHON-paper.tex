@@ -76,6 +76,7 @@
 \usepackage{lualatex-math}
 \usepackage{fontspec}
 \usepackage{tabularx,booktabs}
+\usepackage{multirow}
 \newcolumntype{C}{>{\centering\arraybackslash}X} % centered version of "X" type
 \setlength{\extrarowheight}{1pt}
 
@@ -553,38 +554,109 @@ The offered phonetic algorithm Polyphon operates with Russian language letters o
 
 The following stage is transformation of letters repeated in a row. Doubled letters will transform to one e.g. “xx” to “x”. It is not always possible to define double letters in hearing. Therefore, we carry out these transformations for rule of generalization.
 
-It is taken into account that phonetic code depends on the sound that can come from some letters or their sequences. Some different letters or their combinations have different sounds. Thus, Polyphone uses coding letters by sounds, which are heard. Ways of the replacement are provided in table III. The aim of the proposed phonetic algorithm generalized letters and sounds combinations [18]. The reason of generalization is based on that some sounds from letter sequences depend on stress position.  Such deviations from norms are meet in social and territorial dialects in Russia \cite{Zhirmunsky-1936}.
+It is taken into account that phonetic code depends on the sound that can come from some letters or their sequences. Some different letters or their combinations have different sounds. Thus, Polyphone uses coding letters by sounds, which are heard. Ways of the replacement are provided in table \ref{lbl-simphon}. The aim of the proposed phonetic algorithm generalized letters and sounds combinations [18]. The reason of generalization is based on that some sounds from letter sequences depend on stress position.  Such deviations from norms are meet in social and territorial dialects in Russia \cite{Zhirmunsky-1936}.
 
+\begin{table}[t!]
+\renewcommand{\arraystretch}{1.3}
+\caption{Ways of different pronunciation}
+\label{lbl-simphon}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Correct writing form & Ways of pronouncing\\
+\hline
+\multirow{4}{*}{интерпретация [interpretatsiya]} & интерпритация [interpritatsiya] \\
+\cline{2-2}
+	& инт\textbf{э}рпр\textbf{и}тация [int\textbf{e}rpr\textbf{i}tatsiya] \\ 
+\cline{2-2}
+	& инт\textbf{э}рпретация [int\textbf{e}rpretatsiya] \\
+\cline{2-2}
+	& интерпретац\textbf{ы}я [interpretats\textbf{i}ya] \\    
+\cline{2-2}
+	& инт\textbf{э}рпр\textbf{и}та\textbf{тсы}я [interpr\textbf{i}ta\textbf{tsy}ya] \\        
+\hline
+\end{tabular}
+\end{table}
 
-\subsection{Subsection Heading Here}
-Subsection text here.
+There is a reduction of vowels occurring in Russian when word has 3 and more syllables. Vowels at the beginning and the end of the word are remaining. Thus in the word allegedly containing 3 and more syllables we remove all vowels in the middle of the word. The basis of splitting into syllables is the number of vowels in the word. However, some vowels may be put in the word with error. We assume that if there are more than 4 consonants they form 2 syllables.
 
+The next stage is the substitution of the sequences of letters taking into account the changes made in \textbf{Table 4}. Examples of letters sequence substitution are presented in \textbf{Table 5.} Often a combination of letters leads to different sound. The data from  [18] was used as a basis for these combinations.
 
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
-
+\begin{table*}[t!]
+ \caption{Replacement of letters}
+ \label{lbl-raplacement}
+ \centering
+ \begin{tabular}{|c*{11}{|c}|}
+ \hline
+ \textbf{Letters} &	А, Е, Ё, И, О, Ы, Э, Я	& Б & В & Г &	Д &	З &	Щ &	Ж &	М &	Ю \\
+ \hline
+ \textbf{Modification result} &	А &	П &	Ф &	К &	Т &	С &	Ш &	Ш &	Н &	У \\
+\hline
+ \end{tabular}
+\end{table*}
 
 \begin{table*}
- \caption{CIFAR-10 Confusion Matrix}
-\label{my-label}
-\begin{tabularx}{\textwidth}{@{}l*{10}{C}c@{}}
-\toprule
-labels     & airplane & automobile & bird & cat & deer & dog & frog & horse & ship & truck & accuracy \\
-\midrule
-airplane   & 915      & 4          & 17   & 19  & 3    & 1   & 0    & 2     & 27   & 12    & 91.50\%  \\
-automobile & 8        & 934        & 3    & 4   & 0    & 0   & 3    & 0     & 10   & 38    & 93.40\%  \\
-bird       & 60       & 1          & 813  & 37  & 19   & 23  & 30   & 10    & 7    & 0     & 81.30\%  \\
-cat        & 18       & 1          & 34   & 746 & 25   & 113 & 37   & 18    & 8    & 0     & 74.60\%  \\
-deer       & 24       & 1          & 38   & 33  & 809  & 19  & 44   & 29    & 2    & 1     & 80.90\%  \\
-\addlinespace
-dog        & 4        & 0          & 37   & 106 & 23   & 792 & 9    & 26    & 2    & 1     & 79.20\%  \\
-frog       & 2        & 5          & 19   & 35  & 1    & 20  & 912  & 2     & 3    & 1     & 91.20\%  \\
-horse      & 14       & 0          & 26   & 20  & 18   & 28  & 4    & 886   & 3    & 1     & 88.60\%  \\
-ship       & 35       & 10         & 3    & 2   & 0    & 2   & 1    & 0     & 936  & 11    & 93.60\%  \\
-truck      & 23       & 37         & 4    & 10  & 1    & 2   & 2    & 0     & 15   & 906   & 90.60\%  \\
-\bottomrule
-\end{tabularx}
+	\caption{Letters sequence conversion}
+    \label{lbl-seqconv}
+    \centering
+    \begin{tabular}{|c*{17}{|c}|}
+    \hline
+    \textbf{Sequence} &	АКА & АН &	ЗЧ &	ЛНЦ &	ЛФСТФ &	НАТ &	НТЦ &	НТ & НТА &	НТК &	НТС &	НТСК &	НТШ &	ОКО &	ПАЛ &	РТЧ \\
+    \hline
+	\textbf{Result} &	АФА &	Н &	Ш &	НЦ &	ЛСТФ &	Н &	НЦ & Н & НА &	НК  &	НС &	НСК &	НШ &	ОФО &	ПЛ &	РЧ \\
+    \hline
+	\addlinespace
+    \hline
+    \textbf{Sequence} &	РТЦ &	СП &	ТСЯ &	СТЛ &	СТН &	СЧ &	СШ &	ТАТ & ТСА &	ТАФ &	ТС &	ТЦ &	ТЧ &	ФАК &	ФСТФ &	ШЧ \\
+    \hline
+	\textbf{Result} &	РЦ &	СФ &	Ц &	СЛ &	СН &	Ш &	Ш &	Т & Ц &	ТФ &	ТЦ &	Ц &	Ч &	ФК &	СТФ &	Ш \\
+    \hline
+    \end{tabular}
 \end{table*}
+
+The result of word transformation is a phonetic code. One replaces consecutive same letters, for example: “телегаммааппарат” \textbf{[telegrammaapparat]} – “тэлэгамаапарат” \textbf{[telegramaaparat]}.
+
+It is possible to extend area of Polyphon application using coding resulting phonetic code as primes. All repeating letters are deleted from the string. Thus one letter presented in the string one time only. Each letter has a prime numerical code according to table VI. the resulting code is the sum of primes. Usage of the sum of primes guarantees that strings with different letters will have different codes. It is necessary to note that this algorithm extension uses fuzzy phonetic comparison. 
+
+\subsection{Fuzzy phonetic comparison}
+
+The word represented in phonetic code word can be shown as a sum of primes. In this way, it is possible to use fuzzy phonetic comparison to extend the area algorithm applicability. The algorithm facilities process phrase treatment when the word order can be broken. The example of such phrases is given in table VI. It is possible to eliminate typos related to shift of letters also. Example of this typos is “компьютер” \textbf{[comp’yuter]} –“ компьюетр” \textbf{[comp’yuetr]}.
+It is necessary to remove all duplicating letters from phrase except one code word by primes. The resulting code of the word will be the sum of letter coding. If the resulting code of two words is identical to the meaning, so the words are phonetically similar.
+The essence of the algorithm is modification of words, processing a certain number of letters and summation of their codes.
+Thus, the algorithm for phonetic words coding is offered that considers phonetic particularities of Russian language. 
+
+\section{Experimental testing of the algorithm}
+We perform the following experiment as to efficiency of the proposed algorithm:
+The experiment consists of several stages:
+•	data preparation: to generate a data set of words with mistakes;
+•	testing of phonetic algorithms;
+•	comparison with existing algorithms
+The basis for testing are words from Ozhegov’ explanatory dictionary [20]. The words without their description were used for the experiment. Some words are identical because a word could have more than one meaning. The initial amount of words for error introduction is 38955.
+The method for errors generation was developed. The errors, which expressed in words, reflect the phonetic phenomena and processes of Russian language. First category errors consider such processes as:
+•	position changes – the phonetic rule at the end of the word (devocalization of a paired consonant on the end of the word) and reduction (a qualitative reduction is letters substitution e.g. "о" [o] and "и" [i], "е" [e] to "и" [i], etc. in a weak position);
+•	assimilation and dissimilation processes - devocalization and vocalization of concordats in the word. The phenomenon of assimilation is the similarity of sounds, i.e. (ножка {шк} [nozhka {shk}], отдать {дд} [otdat’ {dd}], сдоба {зд} [sdoba {zd}], косьба {зьб} [kos’ba {z’b}]).
+We used a positional stunning and voicing of consonants. Voiced pair stunned at the end of words and before voiceless consonants. (мозг {ск}[mozg {sk}] , параход {т} [parahod {t}]). Voiceless consonants converts to voiced consonants every time, in the case when their location before voiced (сдать {здать} [sdat’ {zdat’}]). The exception is the unpaired voiced consonants and “в” character. In the diaeresis process one sound is removed out and a different sound appears (сердце {с'эрцъ} [serdtse {s’ertc’}], солнце {сонцэ} [solntse {solntce}] ). The fusion process is merging of consonants (жарится моется [zharitsya – moetsya] – жарит(ц)а [zharit(c)ya], мыться [myt’sya] – мы(ц)а [my(tc)a]).
+The basis for the third category errors is Russian language orthography errors in unstressed vowels and “ь”, “ъ”.
+Wrong writing of “ь” for assimilation softness of consonants in combinations зд(*) [zd], -ст(*) [st],-зн(*) [zn],-тн(*) [tn],-сн(*) [ch],-ст(*) [st],-нн(*) [nn], -нч(*) [nch], -нщ(*) [nsh], - нт(*) [nt], -дн(*) [dn], where (*) is vowel е [e], ё [jo], ю [yu], я [ya], и [i]. (гвозьди [gvozdi], есьть [es’t’], жизьнь [zhizh’n’], защитьник [zash’itnik], лисьтья [list’ya], раньнего [ran’ego], сеньтябрь [sentyabr’], утреньнюю [utren’yuyu],  шерсьть [shers’t’], коньчились [konchilis’], опусьтели [opus’teli], отьнес [otnes], песьня [pes’nya], полдьню [pold’nyu]). The submission of “ь” instead of “ъ” in words with “ь” before vowels “е”, “ё”, “ю”, “я”, “и”. (бьют [b’yut] – бъют [byut]) and (сьезд [s’ezd]) on the contrary was considered as well.
+Errors of incorrect «не» [ne] and «ни» [ni] writing were not considered. Errors of letters mixing and their shift aren't generated.
+The software use all words and tries entering errors of each type into the word if it is possible. The number of generated words, which contain errors, is 261977.
+The resulting document has two columns – original “correct” word and the same word with phonetic error(s). Examples of words with mistakes are shown in table VII.
+
+\subsection{Algorithm testing and comparison}
+The proposed algorithm was applied to a prepared set of test data. As a result we had an accurate verification of 100\% words.
+We compare such phonetic algorithms as Soundex, Metaphone, Caverphone, Daitch-Mokotoff Soundex (implemented in Java language package org.apache.commons.codec.language). These algorithms use an English alphabet characters only The Russian standard of transliteration GOST R 52535.1-2006 was used [14].
+
+The results of testing obtained by the proposed algorithm, Double Mataphone, Caverphone and Daitch-Mokotoff Soundex  are shown in table VIII. It should be noted that string which were shown as different in Double Mataphone, Caverphone and Daitch-Mokotoff Soundex are  displayed as equals in proposed algorithm. 
+
+It should also be noted that the algorithm has been tested on single words.
+
+\subsection{Test result description}
+The results of testing demonstrate that application of prime coding is the most effective for comparison. However, most of information about word might be lost during approach such as Daitch-Mokotoff Soundex  algorithm. It can lead to wrong comparisons. Word transformation with the suggested approach allows to compare word according to their possible phonetic transformation. The suggested approach allows to compare words more accurately. Unrecognized words represent words with several types of mistakes, including reduction.
+
+\section{Extending the algorithm}
+
+
+
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
