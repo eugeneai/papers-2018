@@ -459,6 +459,8 @@ We distinct two popular approaches of implementing PIM to PSM transformation, ta
 
 The second approach is the multistage transformation of the source PIM \cite{tereh1}.  This research uses the Logtalk language, a macro package of the Prolog logical language.  The main advantage of the language usage is knowledge structuring thanks to the object-orientation.  Objects are used for representation of the source PIM model and the resulting PIM structures as well as source generators.  Moreover, the transformation objects is easily integrated with the libraries processing LOD and LOD warehouses.
 
+
+
 \textbf{The ontological approach may be used not only to describe the model and data, but also to describe the interface elements, their behavior, the rights and limitations of users and others aspects of specific realisation.}
 
 
@@ -555,128 +557,25 @@ The attributes, features and their relation constructed on the base of an domain
 \section{Related research}
 \label{sec:rel}
 
-[[[[WSDL: Web Services Description Language]]]]
+The most widely used approach for model transformation is ATL (ATLAS Transformation Language) \ref{atl} and its predecessor QVT, a OMG standard \cite{QVT}.  The language and its engine supports conversion from one XMI model to another one in the same format.  The language structures describe recognition of properties of compositions of the source model and direct construction of new structures in the target model accounting the property values.  The ATL is supported with visual tools for rule construction.  The tools are integrated in Eclipse IDE.  Similar to ATL, Transformation Model Representation Language (TMRL) is developed in \cite{nikita} but oriented on knowledge visual representation with following conversion them in various production rule languages (CLIPS, OWL).  In a recent paper \cite{azis}, ATL is used to transform Computational Independent Model (CIM) represented as BPMN diagram into set of UML diagrams, defining PIM.
 
-An XML based specification is used in the WS-BPEL language \cite{wsbpel} for describing orchestration of web services within execution of an instance of a business process.  The idea of the language is to describe complex systems down to Web Services units, their internal and external structure and behavior, as well as services interaction in the script instance. Our project concentrates on \emph{programming in the small} aspect of IS development, \emph{i.e.} dealing with modeling and implementation software components composing the services.
+In our approach we use the structurally simplest language, Prolog, and its infrastructure, which is capable to load various model sources, including XMI, semantic graphs, \emph{etc.} with corresponding import module, as well as processing them \emph{em masse}, organizing multi-stage modular transformations.
 
-
-% \subsection{Subsection Heading Here}
-% Subsection text here.
-
-
-% \subsubsection{Subsubsection Heading Here}
-% Subsubsection text here.
-
-
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-% Note that IEEEtran v1.7 and later has special internal code that
-% is designed to preserve the operation of \label within \caption
-% even when the captionsoff option is in effect. However, because
-% of issues like this, it may be the safest practice to put all your
-% \label just after \caption rather than within \caption{}.
-%
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
-% option should be used if it is desired that the figures are to be
-% displayed while in draft mode.
-%
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex,
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-%\caption{Simulation results for the network.}
-%\label{fig_sim}
-%\end{figure}
-
-% Note that IEEE typically puts floats only at the top, even when this
-% results in a large percentage of a column being occupied by floats.
-
-
-% An example of a double column floating figure using two subfigures.
-% (The subfig.sty package must be loaded for this to work.)
-% The subfigure \label commands are set within each subfloat command,
-% and the \label for the overall figure must come after \caption.
-% \hfil is used as a separator to get equal spacing.
-% Watch out that the combined width of all the subfigures on a
-% line do not exceed the text width or a line break will occur.
-%
-%\begin{figure*}[!t]
-%\centering
-%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
-%\label{fig_first_case}}
-%\hfil
-%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
-%\label{fig_second_case}}
-%\caption{Simulation results for the network.}
-%\label{fig_sim}
-%\end{figure*}
-%
-% Note that often IEEE papers with subfigures do not employ subfigure
-% captions (using the optional argument to \subfloat[]), but instead will
-% reference/describe all of them (a), (b), etc., within the main caption.
-% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
-% labels, the optional argument to \subfloat must be present. If a
-% subcaption is not desired, just leave its contents blank,
-% e.g., \subfloat[].
-
-
-% An example of a floating table. Note that, for IEEE style tables, the
-% \caption command should come BEFORE the table and, given that table
-% captions serve much like titles, are usually capitalized except for words
-% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
-% and up, which are usually not capitalized unless they are the first or
-% last word of the caption. Table text will default to \footnotesize as
-% IEEE normally uses this smaller font for tables.
-% The \label must come after \caption as always.
-%
-%\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-%\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-% \extrarowheight as needed to properly center the text within the cells
-%\caption{An Example of a Table}
-%\label{table_example}
-%\centering
-%% Some packages, such as MDW tools, offer better commands for making tables
-%% than the plain LaTeX2e tabular which is used here.
-%\begin{tabular}{|c||c|}
-%\hline
-%One & Two\\
-%\hline
-%Three & Four\\
-%\hline
-%\end{tabular}
-%\end{table}
-
-
-% Note that the IEEE does not put floats in the very first column
-% - or typically anywhere on the first page for that matter. Also,
-% in-text middle ("here") positioning is typically not used, but it
-% is allowed and encouraged for Computer Society conferences (but
-% not Computer Society journals). Most IEEE journals/conferences use
-% top floats exclusively.
-% Note that, LaTeX2e, unlike IEEE journals/conferences, places
-% footnotes above bottom floats. This can be corrected via the
-% \fnbelowfloat command of the stfloats package.
-
-
-
+An XML based specification is used in the WS-BPEL language \cite{wsbpel} for describing orchestration of web services within execution of an instance of a business process.  The idea of the language is to describe complex systems down to Web Services units, their internal and external structure and behavior, as well as services interaction in the script instance.  Our project concentrates on \emph{programming in the small} aspect of IS development, \emph{i.e.} dealing with modeling and implementation software components composing the services.
 
 \section{Conclusion}
 
+Considered the idea of usage Model Driven Architecture within Semantic Web technologies ....
+
+We implement the transformation process as a set of LogTalk modules....
+
+The approach is successfully used in various application and information systems development ... carcass ...
+
 One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing stereotype aspects of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
 
+Further development is oriented on further extending the library of LogTalk modules ....
 
 
-
-
-% conference papers do not normally have an appendix
-
-
-% use section* for acknowledgment
 \section*{Acknowledgement}
 
 The results obtained with the partial support of the following projects:
@@ -687,32 +586,7 @@ The results obtained with the partial support of the following projects:
 \end{itemize}
 The results obtained with the use of the network infrastructure of Telecommunication center of collective use "Integrated information-computational network of Irkutsk scientific-educational complex" (\url{http://net.icc.ru}). The authors are grateful to the community of Linked Open Vocabularies (\url{http://lov.okfn.org/dataset/lov/}) resource for assistance in the search for formalizations of subject areas (ontologies).
 
-
-% trigger a \newpage just before the given reference
-% number - used to balance the columns on the last page
-% adjust value as needed - may need to be readjusted if
-% the document is modified later
-%\IEEEtriggeratref{8}
-% The "triggered" command can be changed if desired:
-%\IEEEtriggercmd{\enlargethispage{-5in}}
-
-% references section
-
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
-%\bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
-%\bibliography{IEEEabrv,../bib/paper}
-%
-% <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
-% (used to reserve space for the reference number labels box)
 \begin{thebibliography}{11}
-
-%\bibitem{IEEEhowto:kopka} H.~Kopka and P.~W. Daly, ``A Guide to \LaTeX,'' 3rd~ed.\hskip 1em plus 0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
 
 \bibitem{Bizer} Ch. Bizer, T. Heath, T. Berners-Lee. ``Linked Data – The Story So Far,'' Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
 \bibitem{Cherk} E. Cherkashin, I. Orlova. ``Instrumental tools for construction of the digital archives of the documents based on Linked Data,'' Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, \texttt{URL:} \url{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}
@@ -720,7 +594,6 @@ The results obtained with the use of the network infrastructure of Telecommunica
 \bibitem{MDA} D. Frankel. Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
 \bibitem{Clio} J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ``ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web,'' Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. \texttt{DOI:} \url{10.3233/SW-150191}
 
-%\bibitem{org} Org mode fantastic examples: \url{http://ehneilsen.net/notebook/orgExamples/org-examples.html}.
 \bibitem{odmprof} ODM UML profile for OWL: \url{http://www.omg.org/spec/ODM/1.0/PDF/}.
 \bibitem{odnex} OMG Ontology Domain Modeling example: \url{https://thematix.com/tools/vom/}.
 \bibitem{odmvis} OWL UML Visualizer: \url{http://owlgred.lumii.lv/}.
@@ -738,6 +611,10 @@ The results obtained with the use of the network infrastructure of Telecommunica
 \bibitem{wsbpel} \url{https://en.wikipedia.org/wiki/Business_Process_Execution_Language}
 \bibitem{wsdl} \url{https://en.wikipedia.org/wiki/Web_Services_Description_Language}
 \bibitem{uml25} \url{http://www.omg.org/spec/UML/2.5/PDF}
+\bibitem{atl} Jouault, F., Allilaire, F., Bezivin, J., Kurtev, I.: Atl: A model transformation tool. Sci. Comput. Program. 72(1-2), 31–39 (2008)
+\bibitem{QVT} The MOF Query/View/Transformation Specification Version 1.1. URL:\url{http://www.omg.org/spec/QVT/1.1}
+\bibitem{nikita} Berman A.~F., Grishchenko M.~A., Dorodnykh N.~O., Nikolaychuk O.~A., Yurin A.~Y.~A model-driven approach and a tool to support creation of rule-based expert systems for industrial safety expertise. Proc. of the 12 th International Forum on Knowledge Asset Dynamics (IFKAD-2017) – Russia, St. Petersburg : Graduate School of 16 Management of St. Petersburg University.  2017.  P.~2034 – 2050.
+\bibitem{}Y. Rhazali, Y. Hadi, A. Mouloudi. Model Transformation with ATL into MDA from CIM to PIM Structured through MVC. Procedia Computer Science 83 ( 2016 ) 1096 – 1101. \url{https://doi.org/10.1016/j.procs.2016.04.229}
 \end{thebibliography}
 
 
