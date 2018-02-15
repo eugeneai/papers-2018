@@ -431,7 +431,7 @@ E-mail:\texttt{\{slv, shigarov, rugnikov, eugeneai\}@icc.ru}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-The usage of phonetic similarity for word comparison and elimination of misprints is a debatable issue in philology. Moreover, this is very actual for using in automatic text processing. Most of the currently used phonetic algorithms are designed for for automatic processing of English language. The accuracy of English-specific techniques descends for other natural languages with rich morphology and non-Latin alphabet symbols, e.g. Slavic languages with Cyrillic alphabets. The work is devoted to design of phonetic algorithm that does not use transliteration and considers particular qualities of Russian language. The method is based on detection letters and letter consequences that have similar sound. These symbols transform to some generic values which are coding by primes. The results of experimental comparison of proposed algorithm with other well-known phonetic algorithms show that the proposed algorithm can be used to improve an accuracy of word comparison for Cyrillic languages in tasks of data cleansing. An adaptation of the proposed algorithm for Mongolian language is also presented.
+The usage of phonetic similarity for word comparison and elimination of misprints is a debatable issue in philology. Moreover, this is very actual for using in automatic text processing. Most of the currently used phonetic algorithms are designed for for automatic processing of English language. The accuracy of English--specific techniques descends for other natural languages with rich morphology and non--Latin alphabet symbols, e.g. Slavic languages with Cyrillic alphabets. The work is devoted to design of phonetic algorithm that does not use transliteration and considers particular qualities of Russian language. The method is based on detection letters and letter consequences that have similar sound. These symbols transform to some generic values which are coding by primes. The results of experimental comparison of proposed algorithm with other well-known phonetic algorithms show that the proposed algorithm can be used to improve an accuracy of word comparison for Cyrillic languages in tasks of data cleansing. An adaptation of the proposed algorithm for Mongolian language is also presented.
 \end{abstract}
 
 %%%% KEYWORDS spreadsheet data transformation, table analysis, table interpretation, rule-based systems
@@ -455,7 +455,7 @@ The usage of phonetic similarity for word comparison and elimination of misprint
 
 \section{Introduction}
 % no \IEEEPARstart
-Digital data integration is one of the popular areas of information society. It is the part of business intelligence. Integration of different documents which have different formats of data representation allow to accumulate large dataset of information and use it for different criteria of analysis. In common this is accord with ETL-processes.
+Digital data integration is one of the popular areas of information society. It is the part of business intelligence. Integration of different documents which have different formats of data representation allow to accumulate large dataset of information and use it for different criteria of analysis. In common this is accord with ETL--processes \cite{Storeya-2017}.
 
 Initial data could be collect and forming from different sources. As a consequence of this integrable data are heterogeneous, represented in different formats and may have some errors. They arise as a result of misprints, spelling mistakes, invalid usage of date or currency delimiters, errors of text recognition etc. In this regard, data cleanse is required before the integration.
 
@@ -463,7 +463,7 @@ Data cleansing is one of important steps in data integration processes. Data cle
 
 Some of integrable data are textual data which could be linked with dictionaries (classifiers) values. For example in data about types and location places of vegetation and spiders in region. Some dataset exists in Scientific Institution's data bases, some data collected by scientists individually.
 
-In different countries data may be represented on different, national languages. In this paper textual data on Russian language are reviewed. Russian language belongs to East-Slavic language group. It is used by more than 250 million speakers \cite{Cubberley-2002}.
+In different countries data may be represented on different, national languages. In this paper textual data on Russian language are reviewed. Russian language belongs to East-Slavic language group. It is used by more than 250 million speakers~\cite{Cubberley-2002}. Russian language alphabet contains 33 Cyrillic letters. It has 10 vowels, 21 consonant, semivowel letter й and two special letters ъ, ь.
 
 There are a lot of methods to word comparison with values of it represented in dictionaries. One of the methods of errors detection is based on words phonetic codes comparison. The paper introduces the method of detection and correction of Russian language spelling errors in data normalization processes. The algorithm is based on phonetic coded strings matching analysis.
 
@@ -644,7 +644,7 @@ The resulting document has two columns – original “correct” word and the s
 
 \subsection{Algorithm testing and comparison}
 The proposed algorithm was applied to a prepared set of test data. As a result we had an accurate verification of 100\% words.
-We compare such phonetic algorithms as Soundex, Metaphone, Caverphone, Daitch-Mokotoff Soundex (implemented in Java language package org.apache.commons.codec.language). These algorithms use an English alphabet characters only The Russian standard of transliteration GOST R 52535.1-2006 was used [14].
+We compare such phonetic algorithms as Soundex, Metaphone, Caverphone, Daitch-Mokotoff Soundex (implemented in Java language package org.apache.commons.codec.language). These algorithms use an English alphabet characters only The Russian standard of transliteration GOST R 52535.1-2006 was used \cite{GOST-2006}.
 
 The results of testing obtained by the proposed algorithm, Double Mataphone, Caverphone and Daitch-Mokotoff Soundex  are shown in table VIII. It should be noted that string which were shown as different in Double Mataphone, Caverphone and Daitch-Mokotoff Soundex are  displayed as equals in proposed algorithm. 
 
@@ -654,7 +654,9 @@ It should also be noted that the algorithm has been tested on single words.
 The results of testing demonstrate that application of prime coding is the most effective for comparison. However, most of information about word might be lost during approach such as Daitch-Mokotoff Soundex  algorithm. It can lead to wrong comparisons. Word transformation with the suggested approach allows to compare word according to their possible phonetic transformation. The suggested approach allows to compare words more accurately. Unrecognized words represent words with several types of mistakes, including reduction.
 
 \section{Extending the algorithm}
+Developed phonetic coding algorithm was adopted to Mongolian language. Mongolian is a language of Mongolic language family. This language is greatly differ from languages of East-Slavic group. However modern Mongolian alphabet is based on Russian alphabet. It consists of 35 letters. 20 letters among them are vowels and 12 are consonants, letter й and 2 special letters ъ, ь.
 
+This case is possible to use of Mongolian language phonetic rules for transformation of words letters. The shortness of the vowels in the letter is made up by writing a single letters: о, а, э etc.
 
 
 
@@ -796,6 +798,7 @@ The reported study was supported in part by RFBR (grants 18-07-00758, 17-47-3800
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{11}
 
+\bibitem{Storeya-2017} V.C.~Storeya, Il-Y.~Songb. Big data technologies and Management: What conceptual modelling can do. // Data \& Knowledge Engineering. --- Vol.~108. --- 2017. pp.~50--67.
 \bibitem{Cubberley-2002} P.~Cubberley Russian: A Linguistic Introduction. Cambridge press. --– 2002. 396 p.
 \bibitem{Parmar-2014}	V.P.~Parmar, C.K.~Kumbharana. Study Existing Various Phonetic Algorithms and Designing and Development of a working model for the New Developed Algorithm and Comparison by implementing it with Existing Algorithm(s) // International Journal of Computer Applications (0975 –-- 8887) Volume 98 -– No.19, July 2014. --– pp. 45--49.
 \bibitem{Zahoransky-2015} D.~Zahoransky, I.~Polasek. Text Search of Surnames in Some Slavic and Other Morphologically Rich Languages Using Rule Based Phonetic Algorithms // Audio, Speech, and Language Processing, IEEE/ACM Trans on (T--ASL). IEEE. --– 2015. pp.553--563
