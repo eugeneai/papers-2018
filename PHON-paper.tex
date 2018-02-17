@@ -431,7 +431,7 @@ E-mail:\texttt{\{slv, shigarov, rugnikov, eugeneai\}@icc.ru}}
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-The usage of phonetic similarity for word comparison and elimination of misprints is a debatable issue in philology. Moreover, this is very actual for using in automatic text processing. Most of the currently used phonetic algorithms are designed for for automatic processing of English language. The accuracy of English--specific techniques descends for other natural languages with rich morphology and non--Latin alphabet symbols, e.g. Slavic languages with Cyrillic alphabets. The work is devoted to design of phonetic algorithm that does not use transliteration and considers particular qualities of Russian language. The method is based on detection letters and letter consequences that have similar sound. These symbols transform to some generic values which are coding by primes. The results of experimental comparison of proposed algorithm with other well-known phonetic algorithms show that the proposed algorithm can be used to improve an accuracy of word comparison for Cyrillic languages in tasks of data cleansing. An adaptation of the proposed algorithm for Mongolian language is also presented.
+The usage of phonetic similarity for word comparison and elimination of misprints is a debatable issue in philology. Moreover, this is very actual for using in automatic text processing. Most of the currently used phonetic algorithms are designed for for automatic processing of English language. The accuracy of English--specific techniques descends for other natural languages with rich morphology and non--Latin alphabet symbols, e.g. Slavic languages with Cyrillic alphabets. The work is devoted to design of phonetic algorithm that does not use transliteration and considers particular qualities of Russian language. The method is based on detection letters and letter consequences that have similar sound. These symbols transform to some generic values which are coding by primes. The results of experimental comparison of proposed algorithm with other well--known phonetic algorithms show that the proposed algorithm can be used to improve an accuracy of word comparison for Cyrillic languages in tasks of data cleansing. An adaptation of the proposed algorithm for Mongolian language is also presented.
 \end{abstract}
 
 %%%% KEYWORDS spreadsheet data transformation, table analysis, table interpretation, rule-based systems
@@ -463,13 +463,13 @@ Data cleansing is one of important steps in data integration processes. Data cle
 
 Some of integrable data are textual data which could be linked with dictionaries (classifiers) values. For example in data about types and location places of vegetation and spiders in region. Some dataset exists in Scientific Institution's data bases, some data collected by scientists individually.
 
-In different countries data may be represented on different, national languages. In this paper textual data on Russian language are reviewed. Russian language belongs to East-Slavic language group. It is used by more than 250 million speakers~\cite{Cubberley-2002}. Russian language alphabet contains 33 Cyrillic letters. It has 10 vowels, 21 consonant, semivowel letter й and two special letters ъ, ь.
-
 There are a lot of methods to word comparison with values of it represented in dictionaries. One of the methods of errors detection is based on words phonetic codes comparison. The paper introduces the method of detection and correction of Russian language spelling errors in data normalization processes. The algorithm is based on phonetic coded strings matching analysis.
 
 The idea of phonetic algorithms is seeking identify words according to their similar pronunciation \cite{Parmar-2014}. The common purpose of phonetic algorithms is detection of the words similarity according to their phonetic resemblance. The most typical application of phonetic algorithms is intended for the surnames \cite{Zahoransky-2015}. However it is possible to use phonetic algorithms for verification words that are other parts of speech. Possibility of it depend on language features and particularities. This paper devoted the usage of phonetic algorithm for data cleanse tasks in Russian language and adoption it for Mongolian language.
 
 \section{Data anomalies}
+In different countries data may be represented on different, national languages. Each language  In this paper textual data on Russian language are reviewed. Russian language belongs to East-Slavic language group. It is used by more than 250 million speakers~\cite{Cubberley-2002}. Russian language alphabet contains 33 Cyrillic letters. It has 10 vowels, 22 consonant and two special letters ъ ("hard sign"), ь ("soft sign").
+
 Textual data that represented in official databases have very high level of correctness. These data are passed a lot of verification procedures. Another situation with data which were collected form persons for their own usage. These data may contains some errors – anomalies. Often they may arise in processes of data entry. The rate of these errors is depend on many criteria and it is about 5\% for educated adult person \cite{Orr-1998}.
 
 In the \cite{Osipov-2002} allocate such anomalies as: coverage, semantic and syntactical. To improve the quality of data all kinds of errors is should be minimized. Coverage and semantic anomalies could not be eliminate with applying methods of phonetic comparison. However these methods may fix some of syntactical errors.
@@ -548,7 +548,7 @@ The suggested in the paper algorithm Polyphon makes used word transformation wit
 
 Let us consider algorithm steps more detail. Some of letter in Russian alphabet have equivalent in writing with Latin. These are such letters as: a \textbf{[a]}$\sim$ а, e \textbf{[e]} $\sim$ е, о \textbf{[o]} $\sim$ о, c \textbf{[es]} $\sim$ с, x \textbf{[kha]} $\sim$ x. Some letters equal in capital letters only: B \textbf{[ve]} $\sim$ В, M \textbf{[em]} $\sim$ М, H \textbf{[en]} $\sim$ Н. Sometimes these letters are substituted (incidentally or purposely) when text typing.
 
-There are some dividers – special letters “ь” (“soft” sign), “ъ” (“hard” sing) presented in Russian language. They are not pronounce and are used for giving softness or hardness for consonants respectively. For this reason there is no need to consider these characters.
+Special letters “ь” and “ъ” do not not pronounce. They use for giving softness or hardness for consonants respectively. For this reason there is no need to consider these characters.
 
 The offered phonetic algorithm Polyphon operates with Russian language letters only. The initial operation is to remove all characters, which do not use in Russian alphabet.
 
@@ -758,7 +758,11 @@ This case is possible to use of Mongolian language phonetic rules for transforma
 
 
 \section{Conclusion}
-The conclusion goes here.
+In this paper, we presented the algorithm for phonetic word comparison including fuzzy phonetic comparison option. This algorithm can be used not only for surnames but for establishing corresponding of the word meaning to the qualifier entry. The described approach might be useful for data integration process. The proposed methods can be applied into data clean up tools for Russian text processing. Accurate data clean up is of help for integrating data from different sources.
+The proposed approach is based on Russian language phonetic rules. Phonetic coding is more exact in comparison with the algorithms using transliteration. We suggest using of this kind algorithm not for surnames only but for establishing compliance word meaning to qualifiers. Letters transformation rules allow to be used for languages similar to the Russian language, such as Belarusian, Ukrainian. 
+
+Proposals for algorithm adoption to Mongolian language were given. In this way the suggested approach allows to phonetically code words which written on Cyrillic letters. It is need to replace rules of words transformation according language phonetic standards.
+
 
 
 
