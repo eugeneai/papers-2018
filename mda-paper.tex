@@ -58,6 +58,9 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{currvita}
+\usepackage{minted}
+\usemintedstyle{bw}
+\setminted{fontsize=\small}
 % Some Computer Society conferences also require the compsoc mode option,
 % but others use the standard conference format.
 %
@@ -522,8 +525,42 @@ For example, consider the user interface template generation for web or desktop 
 
 Some UML-structures (OCL) and relations may be interpreted constructively as methods of objects: events, handlers, subscribers, database triggers and selectors (lookups).
 
-
 CODE
+
+At the import stage, the source XMI converted into a graph.  We show its small part in the turtle format.
+\begin{minted}{turtle}
+@base <File://.../samples.xmi#> .
+<#BN_EeijsfqEI5>
+  a uml:Operation ;
+  <#ownedComment>   <#RN_EeijsfqEI5> ;
+  <#ownedParameter> <#hN_EeijsfqEI5> ,
+                    <#hN_EeijsfqEI5> ;
+  <#visibility> "public" ;
+  rdfs:label "Pay" .
+<#__k9i9BN_EeijsfqEI5>
+  a uml:Class ;
+  <#ownedAttribute> <#RN_EeijsfqEI5> ,
+      <#hN_EeijsfqEI5>, <#9xN_EeijsfqEI5> ;
+  <#ownedOperation> <#BN_EeijsfqEI5> ;
+  rdfs:label "Person" .
+<#__k9i9RN_EeijsfqEI5>
+  a uml:Property ;
+  <#type> <http://...#String> ;
+  <#visibility> "public" ;
+  rdfs:label "Name" .
+\end{minted}
+
+As a result we obtain the following Python code.
+\begin{minted}{python}
+# ?- person::render_to(write).
+class Person:
+    def __init__(self, Name, Family, BirthDay):
+        self.Name=Name
+        self.Family=Family
+        self.BirthDay=BirthDay
+    def Pay(self, Amount) -> bool:
+        pass
+\end{minted}
 
 \section{Applications}
 \label{sec:app}
