@@ -1,59 +1,3 @@
-%% bare_conf.tex
-%% V1.4a
-%% 2014/09/17
-%% by Michael Shell
-%% See:
-%% http://www.michaelshell.org/
-%% for current contact information.
-%%
-%% This is a skeleton file demonstrating the use of IEEEtran.cls
-%% (requires IEEEtran.cls version 1.8a or later) with an IEEE
-%% conference paper.
-%%
-%% Support sites:
-%% http://www.michaelshell.org/tex/ieeetran/
-%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
-%% and
-%% http://www.ieee.org/
-
-%%*************************************************************************
-%% Legal Notice:
-%% This code is offered as-is without any warranty either expressed or
-%% implied; without even the implied warranty of MERCHANTABILITY or
-%% FITNESS FOR A PARTICULAR PURPOSE!
-%% User assumes all risk.
-%% In no event shall IEEE or any contributor to this code be liable for
-%% any damages or losses, including, but not limited to, incidental,
-%% consequential, or any other damages, resulting from the use or misuse
-%% of any information contained here.
-%%
-%% All comments are the opinions of their respective authors and are not
-%% necessarily endorsed by the IEEE.
-%%
-%% This work is distributed under the LaTeX Project Public License (LPPL)
-%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
-%% distributed and modified. A copy of the LPPL, version 1.3, is included
-%% in the base LaTeX documentation of all distributions of LaTeX released
-%% 2003/12/01 or later.
-%% Retain all contribution notices and credits.
-%% ** Modified files should be clearly indicated as such, including  **
-%% ** renaming them and changing author support contact information. **
-%%
-%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
-%%                    bare_conf.tex, bare_jrnl.tex, bare_conf_compsoc.tex,
-%%                    bare_jrnl_compsoc.tex, bare_jrnl_transmag.tex
-%%*************************************************************************
-
-
-% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
-% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
-% *** with production work. IEEE's font choices and paper sizes can       ***
-% *** trigger bugs that do not appear when using other class files.       ***                          ***
-% The testflow support page is at:
-% http://www.michaelshell.org/tex/testflow/
-
-
-
 \documentclass[conference,a4paper]{IEEEtran}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -61,39 +5,6 @@
 \usepackage{minted}
 \usemintedstyle{bw}
 \setminted{fontsize=\small}
-% Some Computer Society conferences also require the compsoc mode option,
-% but others use the standard conference format.
-%
-% If IEEEtran.cls has not been installed into the LaTeX system files,
-% manually specify the path to it like:
-% \documentclass[conference]{../sty/IEEEtran}
-
-
-
-
-
-% Some very useful LaTeX packages include:
-% (uncomment the ones you want to load)
-
-
-% *** MISC UTILITY PACKAGES ***
-%
-%\usepackage{ifpdf}
-% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
-% compilation based on whether the output is pdf or dvi.
-% usage:
-% \ifpdf
-%   % pdf code
-% \else
-%   % dvi code
-% \fi
-% The latest version of ifpdf.sty can be obtained from:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
-% Also, note that IEEEtran.cls V1.7 and later provides a builtin
-% \ifCLASSINFOpdf conditional that works the same way.
-% When switching from latex to pdflatex and vice-versa, the compiler may
-% have to be run twice to clear warning/error messages.
-
 
 
 
@@ -102,20 +13,7 @@
 % *** CITATION PACKAGES ***
 %
 \usepackage{cite}
-% cite.sty was written by Donald Arseneau
-% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
-% \cite{} output to follow that of IEEE. Loading the cite package will
-% result in citation numbers being automatically sorted and properly
-% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
-% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
-% \cite will automatically add leading space, if needed. Use cite.sty's
-% noadjust option (cite.sty V3.8 and later) if you want to turn this off
-% such as if a citation ever needs to be enclosed in parenthesis.
-% cite.sty is already installed on most LaTeX systems. Be sure and use
-% version 5.0 (2009-03-20) and later if using hyperref.sty.
-% The latest version can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
-% The documentation is contained in the cite.sty file itself.
+%\renewcommand\cite[1]{[[#1]]}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -147,41 +45,10 @@
 %
 \ifCLASSINFOpdf
   \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
 \else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
   \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
+
 \fi
-% graphicx was written by David Carlisle and Sebastian Rahtz. It is
-% required if you want graphics, photos, etc. graphicx.sty is already
-% installed on most LaTeX systems. The latest version and documentation
-% can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
-% Another good source of documentation is "Using Imported Graphics in
-% LaTeX2e" by Keith Reckdahl which can be found at:
-% http://www.ctan.org/tex-archive/info/epslatex/
-%
-% latex, and pdflatex in dvi mode, support graphics in encapsulated
-% postscript (.eps) format. pdflatex in pdf mode supports graphics
-% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
-% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
-% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
-% which can result in "jaggedy"/blurry rendering of lines and letters as
-% well as large increases in file sizes.
-%
-% You can find documentation about the pdfTeX application at:
-% http://www.tug.org/applications/pdftex
 
 
 
@@ -190,67 +57,12 @@
 % *** MATH PACKAGES ***
 %
 %\usepackage[cmex10]{amsmath}
-% A popular package from the American Mathematical Society that provides
-% many useful and powerful commands for dealing with mathematics. If using
-% it, be sure to load this package with the cmex10 option to ensure that
-% only type 1 fonts will utilized at all point sizes. Without this option,
-% it is possible that some math symbols, particularly those within
-% footnotes, will be rendered in bitmap form which will result in a
-% document that can not be IEEE Xplore compliant!
-%
-% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
-% thus preventing page breaks from occurring within multiline equations. Use:
-%\interdisplaylinepenalty=2500
-% after loading amsmath to restore such page breaks as IEEEtran.cls normally
-% does. amsmath.sty is already installed on most LaTeX systems. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
-
-
-
-
-
-% *** SPECIALIZED LIST PACKAGES ***
-%
-%\usepackage{algorithmic}
-% algorithmic.sty was written by Peter Williams and Rogerio Brito.
-% This package provides an algorithmic environment fo describing algorithms.
-% You can use the algorithmic environment in-text or within a figure
-% environment to provide for a floating algorithm. Do NOT use the algorithm
-% floating environment provided by algorithm.sty (by the same authors) or
-% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
-% algorithm float types and packages that provide these will not provide
-% correct IEEE style captions. The latest version and documentation of
-% algorithmic.sty can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
-% There is also a support site at:
-% http://algorithms.berlios.de/index.html
-% Also of interest may be the (relatively newer and more customizable)
-% algorithmicx.sty package by Szasz Janos:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
-
 
 
 
 % *** ALIGNMENT PACKAGES ***
 %
 %\usepackage{array}
-% Frank Mittelbach's and David Carlisle's array.sty patches and improves
-% the standard LaTeX2e array and tabular environments to provide better
-% appearance and additional user controls. As the default LaTeX2e table
-% generation code is lacking to the point of almost being broken with
-% respect to the quality of the end results, all users are strongly
-% advised to use an enhanced (at the very least that provided by array.sty)
-% set of table tools. array.sty is already installed on most systems. The
-% latest version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/required/tools/
-
-
-% IEEEtran contains the IEEEeqnarray family of commands that can be used to
-% generate multiline equations as well as matrices, tables, etc., of high
-% quality.
-
-
 
 
 % *** SUBFIGURE PACKAGES ***
@@ -259,85 +71,6 @@
 %\else
 %  \usepackage[caption=false,font=footnotesize]{subfig}
 %\fi
-% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
-% for subfigure.sty, the latter of which is no longer maintained and is
-% incompatible with some LaTeX packages including fixltx2e. However,
-% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
-% which will override IEEEtran.cls' handling of captions and this will result
-% in non-IEEE style figure/table captions. To prevent this problem, be sure
-% and invoke subfig.sty's "caption=false" package option (available since
-% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
-% handling of captions.
-% Note that the Computer Society format requires a larger sans serif font
-% than the serif footnote size font used in traditional IEEE formatting
-% and thus the need to invoke different subfig.sty package options depending
-% on whether compsoc mode has been enabled.
-%
-% The latest version and documentation of subfig.sty can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
-
-
-
-
-% *** FLOAT PACKAGES ***
-%
-%\usepackage{fixltx2e}
-% fixltx2e, the successor to the earlier fix2col.sty, was written by
-% Frank Mittelbach and David Carlisle. This package corrects a few problems
-% in the LaTeX2e kernel, the most notable of which is that in current
-% LaTeX2e releases, the ordering of single and double column floats is not
-% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
-% single column figure to be placed prior to an earlier double column
-% figure. The latest version and documentation can be found at:
-% http://www.ctan.org/tex-archive/macros/latex/base/
-
-
-%\usepackage{stfloats}
-% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
-% the ability to do double column floats at the bottom of the page as well
-% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
-% LaTeX2e). It also provides a command:
-%\fnbelowfloat
-% to enable the placement of footnotes below bottom floats (the standard
-% LaTeX2e kernel puts them above bottom floats). This is an invasive package
-% which rewrites many portions of the LaTeX2e float routines. It may not work
-% with other packages that modify the LaTeX2e float routines. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
-% Do not use the stfloats baselinefloat ability as IEEE does not allow
-% \baselineskip to stretch. Authors submitting work to the IEEE should note
-% that IEEE rarely uses double column equations and that authors should try
-% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
-% packages (also by Sigitas Tolusis) as IEEE does not format its papers in
-% such ways.
-% Do not attempt to use stfloats with fixltx2e as they are incompatible.
-% Instead, use Morten Hogholm'a dblfloatfix which combines the features
-% of both fixltx2e and stfloats:
-%
-% \usepackage{dblfloatfix}
-% The latest version can be found at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
-
-
-
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
-%
-%\usepackage{url}
-% url.sty was written by Donald Arseneau. It provides better support for
-% handling and breaking URLs. url.sty is already installed on most LaTeX
-% systems. The latest version and documentation can be obtained at:
-% http://www.ctan.org/tex-archive/macros/latex/contrib/url/
-% Basically, \url{my_url_here}.
-
-
-
-
-% *** Do not adjust lengths that control margins, column widths, etc. ***
-% *** Do not use packages that alter fonts (such as pslatex).         ***
-% There should be no need to do such things with IEEEtran.cls V1.6 and later.
-% (Unless specifically asked to do so by the journal or conference you plan
-% to submit to, of course. )
 
 
 % correct bad hyphenation here
@@ -348,46 +81,9 @@
 \begin{document}
 \urlstyle{tt}
 
-%
-% paper title
-% Titles are generally capitalized except for words such as a, an, and, as,
-% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
-% not capitalized unless they are the first or last word of the title.
-% Linebreaks \\ can be used within to get better formatting as desired.
-% Do not put math or special symbols in the title.
+
 \date{}
 \title{Model Driven Architecture Based on Linked Data}
-
-%\author{Evgeny Cherkashin, Alexey Kopaigorodsky, Ljubica Kazi.}
-
-% author names and affiliations
-% use a multiple column layout for up to three different
-% affiliations
-% \author{\IEEEauthorblockN{Michael Shell}
-% \IEEEauthorblockA{School of Electrical and\\Computer Engineering\\
-% Georgia Institute of Technology\\
-% Atlanta, Georgia 30332--0250\\
-% Email: http://www.michaelshell.org/contact.html}
-% \and
-% \IEEEauthorblockN{Homer Simpson}
-% \IEEEauthorblockA{Twentieth Century Fox\\
-% Springfield, USA\\
-% Email: homer@thesimpsons.com}
-% \and
-% \IEEEauthorblockN{James Kirk\\ and Montgomery Scott}
-% \IEEEauthorblockA{Starfleet Academy\\
-% San Francisco, California 96678--2391\\
-% Telephone: (800) 555--1212\\
-% Fax: (888) 555--1212}}
-
-% conference papers do not typically use \thanks and this command
-% is locked out in conference mode. If really needed, such as for
-% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
-% after \documentclass
-
-% for over three affiliations, or if they all won't fit within the width
-% of the page, use this alternative format:
-%
 
 \renewcommand\IEEEkeywordsname{Keywords}
 \DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
@@ -418,16 +114,14 @@ E-mail:\texttt{eugeneai@icc.ru,digger@istu.edu,ljubica.kazi@gmail.com}}
 % make the title area
 \maketitle
 
-% As a general rule, do not put math, special symbols or citations
-% in the abstract
 \begin{abstract}
 We consider tools for developing information systems with use of Model Driven Architecture (MDA) and Linked Open Data technologies (LOD).  The original idea of LOD is to allow the software designers to develop program systems integrated by means of common ontologies and web protocols.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  PIM forms a LOD graph and its namespace.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to a set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).  The ClioPatria ontology server and the SWI Prolog language are used as tools of PIM and PSM storage, querying and processing.
 
-The tools will allow us to mediate the MDA static means of code generation and configuration at development stage with the techniques of flexible data structure processing at run time, thus, producing even more productive information system development and maintenance techniques.  This research corresponds to nowadays direction of Semantic Web Software Engineering approach (J.Z. Pan, Y. Zhao, 2014) with aim of construction LOD based information systems as a particular case of Semantic Web technologies.
+The tools will allow us to mediate the MDA static means of code generation and configuration at development stage with the techniques of flexible data structure processing at run time, thus, producing even more productive information system development and maintenance techniques.  This research corresponds to nowadays direction of Semantic Web Software Engineering approach (J.Z. Pan, Y. Zhao, 2014).
 
 \end{abstract}
 \vspace{1em}
-\begin{IEEEkeywords} model driven architecture; linked open data; semantic web enabled software engineering; logic programming; knowledge--based systems
+\begin{IEEEkeywords} model driven architecture; linked open data; logic programming; knowledge--based systems
 \end{IEEEkeywords}
 
 % no keywords
@@ -452,18 +146,18 @@ The tools will allow us to mediate the MDA static means of code generation and c
 
 Model Driven Architecture (MDA) is a software development methodology based on transformations of models of the software under development.  The input models are to be more abstract than generated output ones, as well as main aim of MDA is technological support of special cases of software development techniques.
 
-Linked Open Data (LOD) \cite{Bizer} technology has been suggested by W3C consortium to represent the semantic information in the published web content in a way that provides not only the possibility of its processing with software agents (Semantic Web), but also to link all available information into a single semantic graph using relations and global universal identifiers (URIs) of resources. The descriptive capabilities of semantic web technologies, HTML5 document publishing tools, and LOD technologies form an infrastructural basis for, \emph{e.g.}, authoring and publishing documents. The LOD provide a logical markup for the information presented in a document, informative basis for the different variants of visual representation and interpretation, logical connections with other documents, export information into other documents, procedural processing, \emph{etc.} An important advantage of LOD usage in information environments is a weakening of the requirements to the information warehouses: the document itself is a formalized data warehouse. In some extent, this allows reallocation of the time spent on designing the database structure for storage of partially formalized documents to the process of solving a domain problem: the user (developer) markups the document text data with semantic meaning.
+Linked Open Data (LOD) \cite{Bizer} technology has been suggested by W3C consortium to represent the semantic information in the published web content in a way that provides not only the possibility of its processing with software agents (Semantic Web), but also to link all available information into a single semantic graph using relations and global universal identifiers (URIs) of resources. The descriptive capabilities of semantic web technologies, HTML5 document publishing tools, and LOD technologies form an infrastructural basis for, \emph{e.g.}, authoring and publishing documents. The LOD provide a logical markup for the information presented in a document, informative basis for the different variants of visual representation and interpretation, logical connections with other documents, export information into other documents, procedural processing, \emph{etc.} An important advantage of LOD usage in information environments is a weakening of the requirements to the information warehouses \cite{Capadisli}: the document itself is a formalized data warehouse \cite{Cherk}. In some extent, this allows reallocation of the time spent on designing the database structure for storage of partially formalized documents to the process of solving a domain problem: the user (developer) markups the document text data with semantic meaning.
 
-From the software designer point of view, LOD technologies allow development of program systems represent common and frequently used structures and data via common ontologies and web protocols \cite{Cherk}.  An application of semantic models at run time \cite{Kopay} allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.  LOD data can be used for description of various contexts and aspects (see, Aspect-Oriented Programming, AOP \cite{AOP}) interface elements, their behavior, data security, transactions, and so on.
+From the software designer point of view, LOD technologies allow development of program systems represent common and frequently used structures and data via common ontologies and web protocols \cite{Cherk}.  An application of semantic models at run time \cite{Kopay} allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.  LOD data can be used for description of various contexts and aspects (see, Aspect-Oriented Programming) interface elements, their behavior, data security, transactions, and so on.
 
 The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  PIM forms a graph and a \verb~namespace~ of LOD space.  All the PIM elements are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM). The stage of PIM design is very important as it in principle provides an evolution of the information system implementation within the development of the programming technologies in the future. %This means that correct and fully described PIM has more value versus PSM.
-The \verb~ClioPatria~ ontology server and the SWI Prolog language \cite{Clio} are used as tools of PIM and PSM storage, querying and processing.
+The ClioPatria ontology server and the SWI Prolog language \cite{Clio} are used as tools of PIM and PSM storage, querying and processing.
 
 We distinct four popular approaches of implementing PIM to PSM transformation, taking into account the runtime and other implementation platform features.  The first approach is model-to-model transformation with a model transformation language, such as QVT-X, ATL, \emph{etc.}  In this case PIM and resulting PSM are represented as XMI files.  Model transformation language rules recognizes structures in PIM and construct structures of PSM, having account various Boolean conditions calculated with helper rules. The second variant of transformation is realized with Domain Specific Language (DSL) infrastructure \cite{stratego}.  The transformation procedure is presented as translation of one DSL instance, \emph{i.e.} PIM, to an instance in another language.
 
-The third approach is a library-based one, it allows deigning the resulting PSM and the source code easy enough.  Transformation functions from a library are applied to predicates or complex structures as subtasks. Usage of interpreted or ahead-of-time-compilation languages as Python, Perl, PHP, ASP.NET, JavaScript, HTML as a target language for PSMs decreases the development time and make it less complex.  Thus, application of the libraries is the direct interaction of PIM as a superposition of applied function.  The fourth approach is the multistage transformation of the source PIM \cite{tereh1} on the base of logical inference.  The transformation is declared as a logical theory and a scenario of subgoals to be achieved.  The simplest way of implementation is to use Prolog or a functional language.
+The third approach is a library-based one, it allows deigning the resulting PSM and the source code easy enough.  Transformation functions from a library are applied to predicates or complex structures as subtasks. Usage of interpreted or ahead-of-time-compilation languages as Python, Perl, PHP, ASP.NET, JavaScript, HTML as a target language for PSMs decreases the development time and make it less complex.  Thus, application of the libraries is the direct interaction of PIM as a superposition of applied function.  The fourth approach is the multistage transformation of the source PIM \cite{tereh1} on the base of logical inference.  The transformation is declared as a logical theory and a scenario of subgoals to be achieved.
 
-Implementing the fourth variant, we use the Logtalk language, a macro package of the Prolog logical language.  The main advantage of the language usage is knowledge structuring thanks to the object-orientation.  Objects are used for representation of the source PIM model and the resulting PIM structures as well as source generators.  Moreover, the transformation objects is easily integrated with the libraries processing LOD and LOD warehouses.
+The simplest way of implementation is to use Prolog or a functional language, and we use the Logtalk language, a macro package of the Prolog logical language.  The main advantage of the language usage is knowledge structuring thanks to the object-orientation.  Objects are used for representation of the source PIM model and the resulting PIM structures as well as source generators.  Moreover, the transformation objects is easily integrated with the libraries processing LOD and LOD warehouses.
 
 The aim of this research is to construct tools for developing information systems with joint of MDA and LOD technologies in indivisible cooperation.
 
@@ -525,18 +219,26 @@ For example, consider the user interface template generation for web or desktop 
 
 Some UML-structures (OCL) and relations may be interpreted constructively as methods of objects: events, handlers, subscribers, database triggers and selectors (lookups).
 
-CODE
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.6\linewidth]{pics/samples-Class-diagram.png}
+  \caption{A very simple Modelio PIM}
+  \label{fig:pim}
+\end{figure}
 
+\subsection{An example of simple transformation}
+\label{sec:simpletr}
+
+Consider a transformation of a very simple example of PIM presented in Fig.~\ref{fig:pim}.  In order to import PIM we need to create holding instance and initialize it.
+\begin{minted}{logtalk}
+:- object(sample,instantiates(packageclass)).
+:- initialization((::load_file('sample.xmi'),
+                ::register_prefixes,::process)).
+:- end_object.
+\end{minted}
 At the import stage, the source XMI converted into a graph.  We show its small part in the turtle format.
 \begin{minted}{turtle}
 @base <File://.../samples.xmi#> .
-<#BN_EeijsfqEI5>
-  a uml:Operation ;
-  <#ownedComment>   <#RN_EeijsfqEI5> ;
-  <#ownedParameter> <#hN_EeijsfqEI5> ,
-                    <#hN_EeijsfqEI5> ;
-  <#visibility> "public" ;
-  rdfs:label "Pay" .
 <#__k9i9BN_EeijsfqEI5>
   a uml:Class ;
   <#ownedAttribute> <#RN_EeijsfqEI5> ,
@@ -548,9 +250,78 @@ At the import stage, the source XMI converted into a graph.  We show its small p
   <#type> <http://...#String> ;
   <#visibility> "public" ;
   rdfs:label "Name" .
+<#BN_EeijsfqEI5>
+  a uml:Operation ;
+  <#ownedParameter> <#hN_EeijsfqEI5> ,
+                    <#hN_EeijsfqEI5> ;
+  <#visibility> "public" ;
+  rdfs:label "Pay" .
 \end{minted}
 
-As a result we obtain the following Python code.
+Construction of the target class is realized by querying the graph with a parametric object, whose parameter is the graph.
+\begin{minted}{logtalk}
+% ?- direct(sample,lp,cp)::tr(class,person,ID).
+:- object(direct(_Package, _Local, _Code)).
+tr(class, Class, ClassID):-
+    ::package(Package), % get XMI
+    query(Package)::class(Name, ClassID),
+    ::new(Class, [instantiates(class)]),
+    ::new(Attributes,[instantiates(params)]),
+    ::new(Methods, [instantiates(methodlist)]),
+    Class::name(Name), % Get class name.
+    forall( % Process all attributes
+        ::tr(attribute, Attribute, ClassID, _),
+        Attributes::append(Attribute)),
+    forall( % Process all methods.
+        ::tr(method, Method, ClassID,_),
+        Methods::append(Method)),
+    Class::attributes(Attributes), % construct
+    Class::methods(Methods). % construct
+:- end_object.
+:- object(query(_XMI)).
+class(Name, ID):- ::xmi(XMI), % parameter
+  XMI::rdf(ID, rdf:type, uml:'Class'),
+  XMI::rdf(ID, rdfs:label, literal(Name)).
+:- end_object.
+\end{minted}
+
+Target structures constructed by blocks of elements and other blocks like in Python \texttt{llvmlite} library.  New \texttt{item}s are appended or prepended in a block.  Rendering the sources is realized with methods of construction classes.
+
+\begin{minted}{logtalk}
+:- object(class, specializes(code_block)).
+renderitem(Item, Result):- % . for each item.
+ ^^renderitem(Item, Result). % call parent.
+render(Result):-
+ ^^render(Name),
+ % .....
+ root::indent, % Python block tabulation
+ (  ::item(attributes(Attributes))->
+    Attributes::render(DefAttrs),
+    root::iswritef(ConstructorDef,
+      'def __init__(self, %w):',[DefAttrs]),
+    root::indent,
+    Attributes::items(InstAttrs),
+    findall(S, (lists::member(Attr, InstAttrs),
+                Attr::item(name(AttrName)),
+                root::iswritef(S, "self.%w=%w",
+                        [AttrName, AttrName])),
+            AttrAssigns),
+    root::unindent,
+    AttrList=[ConstructorDef|AttrAssigns];
+    root::iswritef(ConstructorDef,
+     'def __init__(self):', []),
+    root::indent,
+    root::iswritef(Pass,'pass', []),
+    root::unindent,
+    AttrList=[ConstructorDef, Pass]),
+  % .....
+  lists::append(AttrList, Methods, StringList),
+  root::unindent,
+  Result=[Signature | StringList].
+:- end_object.
+\end{minted}
+
+As a result we obtain the following Python code that ignores the types of the entities.
 \begin{minted}{python}
 # ?- person::render_to(write).
 class Person:
@@ -558,7 +329,7 @@ class Person:
         self.Name=Name
         self.Family=Family
         self.BirthDay=BirthDay
-    def Pay(self, Amount) -> bool:
+    def Pay(self, Amount):
         pass
 \end{minted}
 
@@ -580,32 +351,34 @@ The second active project is a technological support of the development of New G
 
 The LOD technologies will be used widely in development of an extension module for Electronic Medical Record (EMR) subsystem in Irkutsk Regional Oncological Dispancery.  The aim of development is to incorporate into the diagnosis texts a markup that can be used in expert decision-making procedures, \emph{e.g.} for quality control.
 
-A patient must be specially prepared for surgery: a set of tests must be taken, the tests must be checked according to criteria, the patient must be properly hospitalized, special preparatory procedures must be carried out, \emph{etc.}  All results are filled in check lists.   If patient's check list satisfies the conditions the patient is allowed to be surgically operated.  After the surgery a set of new manipulations and tests are to be carried out.
+A patient must be specially prepared for surgery: a set of tests must be taken, the tests must correspond to criteria, the patient must be properly hospitalized, special preparatory procedures must be carried out, \emph{etc.}  All results are filled in check lists.   If patient's check list satisfies the conditions the patient is allowed to be surgically operated.  After the surgery a set of new manipulations are to be carried out.
 
 The stated development is the very place for our MDA tools and LOD technologies application.  The EMR text field of the test results and diagnoses is used to store semiformalized representation of the input data for check lists.  The EMRs are divided into classes (types), and we can associate the type and its text LOD markup template.  The set of the attributes for each type is defined as classes of UML Class Diagram.  Check lists and set of after-surgery operation are represented as classes as well.  The input, check list, and new operations are joined in a special relation forming templates describing one quality control and planing module.
 
 Thus, the usage of MDA in this task will allow incremental improvement of the quality control by means of visual construction of the templates.  Using LOD allows us to develop the main EMR and the quality control and planning subsystems absolutely independently, effectively hiding complex behavior of EMR texts from main middle-ware and database structures.  It simplifies also the structure of the main database.
 
-Another interesting project is a development an recommender system for the Irkutsk region real estate market.  The aim of the research is to implement user means for assisting in decision making and choice refinement.  The real estate objects (flats, houses, offices) have various attributes, which used to describe the objects' characteristics.  Each type of the objects are to be represented as classes in PIM, as well as the features of the user.
+Another interesting project is a development an recommender system for the Irkutsk region real estate market.  The aim is to implement user means for assisting in decision making and choice refinement.  The real estate objects (flats, houses, offices) have various attributes, which used to describe the objects.  Each type of the objects are to be represented as classes in PIM, as well as the features of the user.
 
 The attributes, features, and their relation constructed on the base of a domain ontology are the basis of logical processing of the database data and measuring the user interest to the object.  In this case the transformation modules convert the input XMI-data into a subgraph of A-box of Irkutsk region real estate domain ontology and into interface classes describing entities of BrightstarDB object-RDF mapping database.  The LOD is added as resource references to the external ontologies and individual resources.  Thus, in this case the MDA tools are used as ontology modeling software.
 
-\section{Related research}
+\section{Related technologies and standards}
 \label{sec:rel}
 
-The most widely used approach for model transformation is ATL (ATLAS Transformation Language) \ref{atl} and its predecessor QVT, a OMG standard \cite{QVT}.  The language and its engine supports conversion from one XMI model to another one in the same format.  The language structures describe recognition of properties of compositions of the source model and direct construction of new structures in the target model accounting the property values.  The ATL is supported with visual tools for rule construction.  The tools are integrated in Eclipse IDE.  Similar to ATL, Transformation Model Representation Language (TMRL) is developed in \cite{nikita} but oriented on knowledge visual representation with following conversion them in various production rule languages (CLIPS, OWL).  In a recent paper \cite{azis}, ATL is used to transform Computational Independent Model (CIM) represented as BPMN diagram into set of UML diagrams, defining PIM.
+The most widely used technology of model transformation is ATL (ATLAS Transformation Language) \cite{atl} and its predecessor QVT, a OMG standard \cite{QVT}.  The language and its engine supports conversion from one XMI model to another one in the same format.  The language structures describe recognition of properties of compositions of the source model and direct construction of new structures in the target model accounting the property values.  The ATL is supported with visual tools for rule construction.  The tools are integrated in Eclipse IDE.  Similar to ATL, Transformation Model Representation Language (TMRL) is developed in \cite{nikita} but oriented on knowledge visual representation with following conversion them in various production rule languages (CLIPS, OWL).  The visual presentation of transforming rules are used also in \cite{GT}, where a general approach is adopted for the purpose.  In a recent paper \cite{azis}, ATL is used to transform Computational Independent Model (CIM) represented as BPMN diagram into set of UML diagrams, defining PIM.  In \cite{uml2owl}, a converter of UML package structures represented in XMI was developed as a XSLT transformation.
+
+OMG proposed ODM standard \cite{odmprof} for knowledge modeling.  A Visual Ontology Modeler \cite{odnext} is being developed for  building and verifying OWL ontologies for ODM~1.0, as well as in the reverse direction, ontologies are represented as UML Class Diagrams \cite{odmvis}.
 
 In our approach we use the structurally simplest language, Prolog, and its infrastructure, which is capable to load various model sources, including XMI, semantic graphs, \emph{etc.} with corresponding import module, as well as processing them \emph{em masse}, organizing multi-stage modular transformations.
 
-An XML based specification is used in the WS-BPEL language \cite{wsbpel} for describing orchestration of web services within execution of an instance of a business process.  The idea of the language is to describe complex systems down to Web Services units, their internal and external structure and behavior, as well as services interaction in the script instance.  Our project concentrates on \emph{programming in the small} aspect of IS development, \emph{i.e.} dealing with modeling and implementation software components composing the services.
+An XML based specifications are used in representing metadata about web services, WSDL \cite{wsdl}, and the WS-BPEL language \cite{wsbpel} for describing orchestration of web services within execution of an instance of a business process.  The idea of the language is to describe complex systems down to Web Services units, their internal and external structure and behavior, as well as services interaction in the script instance.  Our project concentrates on programming in the small Aspect of IS development, \emph{i.e.} dealing with modeling and implementation software components composing the services.
 
 \section{Conclusion}
 
-We considered an implementation and applications of indivisible usage of Model Driven Architecture and Linked Linked Open, a Semantic Web, technologies in developing software on the base of model transformation.  The transformation is realized as a hierarchy of objects represented in the Logtalk programming language.  Procedure of analysis of the source model and synthesis of the target one is a result of logical inference.
+We considered an implementation and applications of indivisible usage of Model Driven Architecture and Linked Linked Open, a Semantic Web, technologies in developing software on the base of model transformation.  The transformation is realized as a hierarchy of objects represented in Logtalk.  Results of analysis of the source model and synthesis of the target one are obtained with logical inference.
 
 Usage of logical programming language simplifies the transformation procedure programming, the programmer is allowed to express semantics of recognized structures as properties of objects, manipulate object properties further. It also allows us to integrate the transformations with other Prolog libraries and services without usage of special language structures.
 
-The approach is being approved in software development processes for synthesis of business-objects of information systems carcasses, interface modules for a protocol, as an ontology development tool, \emph{etc.} Further development of the software is aimed at extending transformation modules, creating libraries of platform descriptions for open-source frameworks, develop techniques of change propagation, and developing open-sources UML editors to support UML 2.5 profile specification and XMI export.
+The approach is being approved in software development processes for synthesis of business-objects of information systems carcasses, interface modules for a protocol, as an ontology development tool, \emph{etc.} Further development of the software is aimed at extending transformation modules, creating libraries of platform descriptions for open-source frameworks, develop techniques of change propagation, and developing open-sources UML editors to support UML~2.5 profile specification \cite{uml25} and XMI export.
 
 % One of the problem of tools construction of such kind is the absence of visual editors of UML supporting ontology models.  The UML 2.4 standard implicitly suggests coupling stereotypes and tag values forming a data format representing stereotype aspects of the UML entities.  Thus, one of the research direction is to construct new or adapt existing UML modeling tool to support LOD in UML diagrams.
 % At the time moment of the paper submission the \texttt{Modelio} tool did not support export stereotype structures described in so called profiles of the PIM.  We emulate their export manually.  Other open-source tools like \texttt{ArgoUML}, BoUML, Papyrus, Umlet, \emph{etc.} either too far from the stereotype support or too complex in user interface or do not export the PIM as XMI-file.
@@ -616,37 +389,36 @@ The results are obtained with the partial support of the following projects:
 \begin{itemize}
 \item Irkutsk scientific center of SB RAS No 4.1.2;
 \item The Council for grants of the President of Russian Federation, state support of leading scientific schools of the Russian Federation (NSH-8081.2016.9);
-\item Russian Foundation for Basic Research (RFBR) No 17-07-01341.
+\item Russian Foundation for Basic Research No 17-07-01341.
 \end{itemize}
-The results obtained with the use of the network infrastructure of Telecommunication center of collective use "Integrated information-computational network of Irkutsk scientific-educational complex" (\url{http://net.icc.ru}). The authors are grateful to the community of Linked Open Vocabularies (\url{http://lov.okfn.org/dataset/lov/}) resource for assistance in the search for formalizations of subject areas (ontologies).
+The results obtained with the use of the network infrastructure of Telecommunication center of collective use "Integrated information-computational network of Irkutsk scientific-educational complex" (\url{http://net.icc.ru}). The authors are grateful to the community of Linked Open Vocabularies (\url{http://lov.okfn.org/dataset/lov/}) resource for assistance in the search for domain ontologies and Github.com for hosting sources at \url{https://github.com/isu-enterprise/icc.xmitransform}.
 
 
 \begin{thebibliography}{11}
+\bibitem{SWEB} Semantic WEB Software Engineering: \url{http://www.webist.org/Documents/Previous\_Invited\_Speakers/2012/WEBIST2012\_Pan.pdf}. Book: \url{https://www.iospress.nl/book/semantic-web-enabled-software-engineering/}.
 \bibitem{Bizer} Ch. Bizer, T. Heath, T. Berners-Lee. ``Linked Data – The Story So Far,'' Semantic Web and Information Systems. 2009. Vol. 5 (3). pp. 1–22.
+\bibitem{Capadisli}  S.  Capadisli, S., Guy, A., Verborgh, R., Lange, C., Auer, S., Berners-Lee, T. ``Decentralised Authoring, Annotations and Notifications for a Read-Write Web with dokieli,'' In: Cabot J., De Virgilio R., Torlone R. (eds) Web Engineering. ICWE 2017. Lecture Notes in Computer Science, vol 10360. Springer, Cham. Preprint URL:\url{http://csarven.ca/dokieli-rww}, DOI:\url{10.1007/978-3-319-60131-1_33}.
 \bibitem{Cherk} E. Cherkashin, I. Orlova. ``Instrumental tools for construction of the digital archives of the documents based on Linked Data,'' Modern technologies, System analysis, Modeling. 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, \texttt{URL:} \url{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}
 \bibitem{Kopay} A. Kopaygorodsky. ``Use of ontologies in semantic information systems,'' Ontology of Design, 4(14), 2014, p. 78--89 (in Russian) \texttt{URL:} \href{http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf#page=79}{\ttfamily http://agora.guru.ru/scientific\_journal/files/On\-tology\_Of\_Designing\_4\_2014\_opt1.pdf}
 \bibitem{MDA} D. Frankel. Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
 \bibitem{Clio} J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen. ``ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web,'' Semantic Web, vol. 7, no. 5, 2016, pp. 529-541. \texttt{DOI:} \url{10.3233/SW-150191}
-\bibitem{odmprof} ODM UML profile for OWL: \url{http://www.omg.org/spec/ODM/1.0/PDF/}.
-\bibitem{odnex} OMG Ontology Domain Modeling example: \url{https://thematix.com/tools/vom/}.
-\bibitem{odmvis} OWL UML Visualizer: \url{http://owlgred.lumii.lv/}.
-\bibitem{uml2owd} UMLtoOWL: Converter from UML to OWL: \url{http://www.sfu.ca/~dgasevic/projects/UMLtoOWL/}. Uses XSLT to convert from XMI to OWL.
-\bibitem{atmo3} AToM3: A tool for multi-paradigm modeling. \url{http://atom3.cs.mcgill.ca/}.
-\bibitem{GT} Belghiat, Aissam \& Bourahla, Mustapha. (2012). UML Class Diagrams to OWL Ontologies: A Graph Transformation based Approach. International Journal of Computer Applications. 41. 41-46. 10.5120/5525-7566.
-\bibitem{SWEB} \textbf{Semantic WEB Software Engineering}: \url{http://www.webist.org/Documents/Previous\_Invited\_Speakers/2012/WEBIST2012\_Pan.pdf}. Book: \url{https://www.iospress.nl/book/semantic-web-enabled-software-engineering/}.
-\bibitem{Capadisli}  S.  Capadisli, S., Guy, A., Verborgh, R., Lange, C., Auer, S., Berners-Lee, T. ``Decentralised Authoring, Annotations and Notifications for a Read-Write Web with dokieli,'' In: Cabot J., De Virgilio R., Torlone R. (eds) Web Engineering. ICWE 2017. Lecture Notes in Computer Science, vol 10360. Springer, Cham. Preprint URL:\url{http://csarven.ca/dokieli-rww}, DOI:\url{10.1007/978-3-319-60131-1_33}.
+\bibitem{stratego} D. Annenkov, E. Cherkashin, Generation Technique for Django MVC Web Framework Using the Stratego Transformation Language. Proc. of 36th International Convention on Information and Communication Technology, Electronics and Microelectronics (MIPRO), May 20-24, 2013, Opatija, Croatia, 2013, p.~1084--1087.
 \bibitem{tereh1} E. Cherkashin, A. Larionov et al. Logical programming and data mining as engine for MDA model transformation implementation, 36th International Convention on Information and Communication Technology, Electronics and Microelectronics (MIPRO), May 20-24, 2013, Opatija, Croatia, p.~1029--1036.
-\bibitem{cherk12}MDA is a complex system.
-\bibitem{wsbpel} Business Process Execution Language -- Wikipedia, the free encyclopedia. \url{https://en.wikipedia.org/wiki/Business_Process_Execution_Language}
-\bibitem{wsdl} Web Services Description Language -- Wikipedia, the free encyclopedia. . URL:\url{https://en.wikipedia.org/wiki/Web_Services_Description_Language}
-\bibitem{uml25} Unified Modeling Language, ver.~2.5 standard description. URL:\url{http://www.omg.org/spec/UML/2.5/PDF}
+\bibitem{modelio} Modelio Open Source - UML and BPMN free modeling tool. URL:\url{https://www.modelio.org/}.
+\bibitem{dataflow} Johnston W.M., Hanna J.R.P., Millar R.J. Advances in Dataflow Programming Languages // ACM Computing Surveys. --
 \bibitem{atl} Jouault, F., Allilaire, F., Bezivin, J., Kurtev, I.: Atl: A model transformation tool. Sci. Comput. Program. 72(1-2), 31–39 (2008)
 \bibitem{QVT} The MOF Query/View/Transformation Specification Version 1.1. URL:\url{http://www.omg.org/spec/QVT/1.1}
 \bibitem{nikita} Berman A.~F., Grishchenko M.~A., Dorodnykh N.~O., Nikolaychuk O.~A., Yurin A.~Y.~A model-driven approach and a tool to support creation of rule-based expert systems for industrial safety expertise. Proc. of the 12 th International Forum on Knowledge Asset Dynamics (IFKAD-2017) – Russia, St. Petersburg : Graduate School of 16 Management of St. Petersburg University.  2017.  P.~2034 – 2050.
-\bibitem{}Y. Rhazali, Y. Hadi, A. Mouloudi. Model Transformation with ATL into MDA from CIM to PIM Structured through MVC. Procedia Computer Science 83 (2016) 1096–1101. \url{https://doi.org/10.1016/j.procs.2016.04.229}
-\bibitem{stratego} D. Annenkov, E. Cherkashin, Generation Technique for Django MVC Web Framework Using the Stratego Transformation Language. Proc. of 36th International Convention on Information and Communication Technology, Electronics and Microelectronics (MIPRO), May 20-24, 2013, Opatija, Croatia, 2013, p.~1084--1087.
-\bibitem{modelio} .... Modelio
-\bibitem{dataflow} .... Dataflow
+\bibitem{GT} Belghiat, Aissam \& Bourahla, Mustapha. (2012). UML Class Diagrams to OWL Ontologies: A Graph Transformation based Approach. International Journal of Computer Applications. 41. 41-46. 10.5120/5525-7566.
+\bibitem{azis}Y. Rhazali, Y. Hadi, A. Mouloudi. Model Transformation with ATL into MDA from CIM to PIM Structured through MVC. Procedia Computer Science 83 (2016) 1096–1101. \url{https://doi.org/10.1016/j.procs.2016.04.229}
+\bibitem{uml2owl} UMLtoOWL: Converter from UML to OWL: \url{http://www.sfu.ca/~dgasevic/projects/UMLtoOWL/}. Uses XSLT to convert from XMI to OWL.
+\bibitem{odmprof} ODM UML profile for OWL: \url{http://www.omg.org/spec/ODM/1.0/PDF/}.
+\bibitem{odnext} OMG Ontology Domain Modeling example: \url{https://thematix.com/tools/vom/}.
+\bibitem{odmvis} OWL UML Visualizer: \url{http://owlgred.lumii.lv/}.
+\bibitem{wsbpel} Business Process Execution Language -- Wikipedia, the free encyclopedia. \url{https://en.wikipedia.org/wiki/Business_Process_Execution_Language}
+\bibitem{wsdl} Web Services Description Language -- Wikipedia, the free encyclopedia.  URL:\url{https://en.wikipedia.org/wiki/Web_Services_Description_Language}
+\bibitem{uml25} Unified Modeling Language, ver.~2.5 standard description. URL:\url{http://www.omg.org/spec/UML/2.5/PDF}
+  2004.~--~Vol.~36.~--~P.~1--34.
 \end{thebibliography}
 
 
