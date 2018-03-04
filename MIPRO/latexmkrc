@@ -1,0 +1,1 @@
+$ENV{'TEXINPUTS'}='./MIPRO/tex//:' . $ENV{'TEXINPUTS'};
