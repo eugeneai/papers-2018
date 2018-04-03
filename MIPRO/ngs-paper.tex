@@ -474,13 +474,13 @@ Another important problem is the organization of a centralized data storage and 
 \section{The domain analysis}
 \label{sec:doma}
 
-Domain analysis showed that bioinformatic part of metagenomic analysis, together with NGS itself, are well represented within the paradigm of Big Data \ref{BD}.  At the moment, the scientific community developed data formats for representation and storage of metagenomic information, algorithms and software modules including distributed and parallel implementations on cluster computing systems providing different stages of data analysis.
+Domain analysis showed that bioinformatic part of metagenomic analysis, together with NGS itself, are well represented within the paradigm of Big Data \cite{BD}.  At the moment, the scientific community developed data formats for representation and storage of metagenomic information, algorithms and software modules including distributed and parallel implementations on cluster computing systems providing different stages of data analysis.
 
 The solution of the problems within the Big Data paradigm requires the biologist to have software development skills to be a professional programmer in bioinformatics.  In order to carry on the analysis of each probe, biologist is to construct and execute a separate program script or perform stage-by-stage execution manually to control each step's results quality.  This approach significantly slows down the process of obtaining the final result.
 
 The proposed organization of studies is based on the construction of an information-computational environment that allows one to design and execute scenarios, giving the input data in various formats from various sources, \emph{e.g.}, files, databases, servers of metagenomic information. The environment must also support a cloud storage for intermediate data and the obtained results.  A collaborative project of LIN SB RAS and ISDCT SB RAS (Institute of System Dynamics and Control theory SB RAS) is devoted to the construction of the environment for the research support.  The following problems are to be solved within the project.
 \begin{enumerate}
-\item Modeling the subject area as dataflow: the classes of
+\item Modeling the subject area as a computational process: the classes of
   functions (problems) are being recognized and presented in the form
   of software modules; modules form scripts of problem solving,
   network graphs of modules connected by data transfer.
@@ -490,27 +490,27 @@ The proposed organization of studies is based on the construction of an informat
   resources is being dealt with. The standards and standard means of data  modeling like ontologies are of critical usage.
 \item Decomposition of
   the input/output data formats and implementation of subsystems of
-  their transformation, accumulation, storage and effective (according
-  to the criteria of time and computational complexity) regulated
-  access.
-\item Construction of virtual executional environments and
+  their transformation, accumulation, storage and access regulation.
+\item Construction of virtual execution environments and
   software interfaces for modules, whose source code is inaccessible
   due to the lack of the source code or licensing restrictions.
 \item Development a customized user interface for high level control of
-  the scenario executions. At this stage, a visual programming with
+  the scenario executions.  At this stage, a visual programming with
   the user interface for script development and execution is required
   to provide flexibility for managing computational processes by
   domain specialists.
 \item Development of subsystems of visualization
   and interpretation of obtained results, including the modules for
   interpretation of the process of metagenomic analysis.
-\item Dataflow
-  representation of the domain A popular approach to the
+\item A dataflow representation of the domain A popular approach to the
   representation of the computational process is dataflow programming
-  [14]. The data flow programs are constructed as a combination of the
+  [14].  The data flow programs are constructed as a combination of the
   executable modules. The modules receive input data, process it, and
   produce output. The approach is being developed since the 1970-ies.
 \end{enumerate}
+
+\ldots (FIXME: About general idea of the problem solving.)
+
 An example of usage of the script construction system under development is shown in Fig. 1. The figure shows an example of an initial stage of a computing process of analysis of the amplicons.
 
 \begin{figure}[t]\centering
@@ -522,12 +522,10 @@ The presented script was constructed by means of the software package Rapidminer
 \begin{itemize}
 \item definition of a research project as a set of input files
   containing the sequencing data in a directory (module “Input”);
-\item trimming reads (module “Trim”);
+\item trimming RNA/DNA reads (module “Trim”);
 \item the module “Summary” is used for
   visual quality analysis of the results of the previous steps;
-\item the
-  reduction of the volume of input by the removal of insignificant
-  information, for example, overlapping sequences (modules,
+\item the reduction of input data amount by means of the removal of insignificant information, for example, overlapping sequences (modules,
   “Uniq. select …”);
 \item alignment of sequences to the reference
   database (module “Alignment”);
@@ -536,28 +534,28 @@ The presented script was constructed by means of the software package Rapidminer
 \item removing alignment
   columns based on specified criteria, for example, empty columns
   (module “Filter”);
-\item removal of sequences containing sequencing
+\item removal of reads containing sequencing
   error (the module “Scrap”);
 \item detection of chimeras (module ``Chim. detection''), \emph{etc}.
   \end{itemize}
-  The diagram shows service modules of RapidMiner Studio, which are necessary to distribute the same type of information between modules (e.g., “Copy groups”). The necessity of introduction of such modules is a feature of Rapidminer Studio; it supposes that in a general case the modules make changes in the data under processing without copying it.
+  The diagram contains service modules of RapidMiner Studio, which are necessary to distribute the same type of information between modules (e.g., “Copy groups”). The distribution modules is a feature of Rapidminer Studio: it supposes that in a general case the modules make changes in the data under processing without copying it.
 
-Each module receives file names as input and creates new file set as the result. The operation of the module depends on the parameters specified by the user via user interface of each module. The results of the script are sent to output ports and displayed by the Rapidminer Studio visualization subsystem in a convenient form to the user. The system supports presentation of a scenario as a new block with its input and output ports, as well as a cloud storage and execution of scripts, creating distributed computing environment. Rich feature set of Rapidminer Studio and various services provided by its developers were the main reason for choosing this system as a development environment for informational-computation resources of the project.
+Each module receives file names as input and creates new file set as the result. The operation of the module depends on the parameters specified by the user via user interface of each module. The results of the script are sent to output ports and displayed by the Rapidminer Studio visualization subsystem in a convenient form to the user.  The system supports presentation of a scenario as a new block with its input and output ports, as well as a cloud storage and execution of scripts, creating distributed computing environment.  Rich feature set of Rapidminer Studio and various services provided by its developers were the main reason for choosing this system as a development environment for informational-computation resources of the project.
 
 \section{The database supporting metagenomic analyses}
 \label{sec:dbsupp}
 
 Assessment of world experience of organization of scientific research in the field of Data Science showed that the use of cloud technologies is a necessary basis for the interaction organization of the researchers. A specialized data storage should be a unit of the environment to ensure effective user access and computing processes to the data of research.
 
-Database for microbiome-based metagenomic analysis data (Fig. 2.) provides the storage facility on all the stages of the microbiome studies from the probe sampling to the publication of the scientific meaningful results. The scheme in the Fig. 2 represents database structure as an ER-diagram. The scheme contains data about sampling, analysis of physicochemical and biological parameters of the probes, the sequencing results, the applied equipment and software, taxonomic databases, methods of the analysis of the collected material, publications of the obtained results and the participated researchers. It also allows us to store the processing scripts of analysis of metagenomic data, including software tools, commands, and configuration files. The latter function allows one to save the state of the computational process and restart it from the specified point.
+Database for microbiome-based metagenomic analysis data (Fig. 2.) provides the storage facility on all the stages of the microbiome studies from the probe sampling to the publication of the scientific meaningful results.  Its general structure is presented in Fig. 2 as an ER-diagram.  The scheme contains data about sampling, analysis of physicochemical and biological parameters of the probes, the sequencing results, the applied equipment and software, taxonomic database references, methods of the analysis of the collected material, publications of the obtained results and the participated researchers.  It also allows us to store the processing scripts of analysis, including software tools, commands, and configuration files.  The latter function set aimed at saving the state of the computational process and restart it from the specified point.
 
 \begin{figure}[t]\centering
 Fig. 2. \caption{A general schema representation of the database for microbiome research based on metagenomic analysis}
 \end{figure}
 
-The model is implemented by means of Django framework (https://www.djangoproject.com). The framework supports automatic definition of rational table structures representing many-to-many relations, and generation a customizable interface for the administrative panel, allowing testing the developed model. These same tools are used for the implementation of the project web site.
+The model is implemented by means of Django framework (\url{https://www.djangoproject.com}).  The framework supports automatic definition of rational table structures representing many-to-many relations, and generation a customizable interface for the administrative panel, allowing testing the developed model.  These same tools are used for the implementation of the project web site providing both information service to popularize our research activity and the ground of semantic database access within Linked Open Data technologies \cite{LOD}.
 
-Cloud-based storage and dedicated storage of the metagenomic data will allow one to create online services for joint processing of sequencing data from different studies by specialized software and to publish information in the Internet. In order to achieve this goal, the following must be carried out:
+Cloud-based storage and dedicated storage of the metagenomic data will allow us to create online services for joint processing of sequencing data from different studies by specialized software and to publish information in the Internet. In order to achieve this goal, the following must be carried out:
 \begin{itemize}
 \item a software interface implementation for data access;
 \item filling in the database with information collected and processed as a result of studies of the microbiome of lake Baikal in 2009-2015;
