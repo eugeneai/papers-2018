@@ -335,9 +335,16 @@
 
 
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
+%\hyphenation{op-tical net-works semi-conduc-tor}
 
 \providecommand\url[1]{\texttt{#1}}
+
+\usepackage{iftex}
+\ifLuaTeX
+\usepackage{luatextra}
+\usepackage{unicode-math}
+\setmainfont{Times New Roman}
+\fi
 
 \begin{document}
 \urlstyle{tt}
@@ -385,22 +392,25 @@
 
 \DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
 
-\author{\IEEEauthorblockN{Fedor Malkov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2},
-Evgeny Cherkashin\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2,}\IEEEauthorrefmark{3,}\IEEEauthorrefmark{5},
-Sergey Gorsky\IEEEauthorrefmark{2,}\IEEEauthorrefmark{3},
-Alexey Shigarov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2,}\IEEEauthorrefmark{3},\\
-Yury Galachyants\IEEEauthorrefmark{1,}\IEEEauthorrefmark{4},
-Alexey Morozov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{4},
-Ivan Mikhailov\IEEEauthorrefmark{4},
-and
-Yelena Likhoshway\IEEEauthorrefmark{1,}\IEEEauthorrefmark{4}}\\[-0.9em]
+\author{%
+  \IEEEauthorblockN{%
+    Evgeny Cherkashin\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2,}\IEEEauthorrefmark{3,}\IEEEauthorrefmark{5},
+    Alexey Shigarov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2,}\IEEEauthorrefmark{3},
+    Fedor Malkov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2},
+    Sergey Gorsky\IEEEauthorrefmark{2,}\IEEEauthorrefmark{3},\\
+    Yury Galachyants\IEEEauthorrefmark{1,}\IEEEauthorrefmark{4},
+    Alexey Morozov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{4},
+    Ivan Mikhailov\IEEEauthorrefmark{4}
+    %and
+    %Yelena Likhoshway\IEEEauthorrefmark{1,}\IEEEauthorrefmark{4}
+  }\\[-0.9em]
 %
 \IEEEauthorblockA{\IEEEauthorrefmark{1}Irkutsk Scientific Center of SB RAS, 134 Lermontov Street, Russia, 664033}
 \IEEEauthorblockA{\IEEEauthorrefmark{2}Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, Russia, 664033}
 \IEEEauthorblockA{\IEEEauthorrefmark{3}Irkutsk State University, 20 Gagarina Avenue, Russia, 664002}
 \IEEEauthorblockA{\IEEEauthorrefmark{4}Limnological Institute of SB RAS, 3 Ulan-Bator Street, Russia, 664033}
 \IEEEauthorblockA{\IEEEauthorrefmark{5}National Research Irkutsk State Technical University, 83 Lermontov Street, Russia, 664074}
-E-mail:\texttt{\{malkov,eugeneai,gorsky,shig\}@icc.ru,\{morozov,mikhailov\}@lin.irk.ru}}
+E-mail:\texttt{\{eugeneai,shig,malkov,gorsky\}@icc.ru,\{morozov,mikhailov\}@lin.irk.ru}}
 
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
@@ -414,7 +424,9 @@ E-mail:\texttt{\{malkov,eugeneai,gorsky,shig\}@icc.ru,\{morozov,mikhailov\}@lin.
 % As a general rule, do not put math, special symbols or citations
 % in the abstract
 \begin{abstract}
-  The Baikal microbiome study is being conducted in Limnological Institute of SB RAS, the study is based on the next-generation sequencing data analysis. As a result, the study generates a big volume of metagenomic data. A seasonal monitoring of Baikal microbiome requires the study of thousands of samples. The process of metagenomic data analysis is multi-stage, e.g. for amplicons up to 50 consecutive steps can be included. This requires microbiologist to be able to construct and execute a pipeline of the processing, which consists of command-line utilities like MOTHUR or QIIME, scripts of the Python programming language, statistical processing with R modules. Additionally, the execution of the pipeline requires interaction with a storage and management software of metagenomic data. At the current state of the automation of the analysis, microbiologist is not always able to cope with the complex task independently. In this work, we present an environment that supports visual planning and parallel execution of pipelines of the metagenomic data analysis. The visual planning is implemented as a plug-in module of RAPID MINER system, and the parallel execution is provided by the instrumental system ORLANDO. The big data storage facility is based on Hadoop infrastructure. The environment under construction simplifies the research activity of microbiologist, making the metagenomic analysis to be more accessible for researcher without in-depth programming and data science skills.
+  The Baikal microbiome study is being conducted in Limnological Institute of Siberian Branch of Russian Academy of Sciences (SB RAS), the study is based on the next-generation sequencing data analysis. As a result, the study generates a big amount of metagenomic data. A seasonal monitoring of Baikal microbiome requires the study of thousands of samples. The process of metagenomic data analysis is multi-stage, e.g. for amplicons up to 50 consecutive steps are involved. This requires microbiologist to be able to construct and execute pipelines of the processing routines out of command-line utilities, scripts of the Python programming language, statistical processing modules. Moreoover, the execution of the pipelines requires interaction with a storage and management software of metagenomic data.
+
+  At the current state of the automation of the analysis, microbiologist is not always able to cope with the complex task independently. In this work, we present an environment that supports visual planning and parallel execution of pipelines of the metagenomic data analysis. Visual planning is implemented as a plug-in module of Rapid Miner system, and the parallel execution is to be provided by the instrumental system Orlando.  Big data storage facility is based on Hadoop infrastructure.  The environment under construction will simplify the research activity of microbiologists, making the metagenomic analysis to be more accessible for researcher without in-depth programming and data science skills.
 \end{abstract}
 
 %%%% KEYWORDS spreadsheet data transformation, table analysis, table interpretation, rule-based systems
@@ -727,4 +739,6 @@ H.~Kopka and P.~W. Daly, ``A Guide to \LaTeX,'' 3rd~ed.\hskip 1em plus
 \end{document}
 
 %%% Local Variables:
+%%% TeX-master: t
+%%% TeX-engine: luatex
 %%% End:
