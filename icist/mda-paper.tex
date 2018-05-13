@@ -1,4 +1,4 @@
-\documentclass[conference,a4paper]{IEEEtran}
+\documentclass[runningheads]{llncs}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{currvita}
@@ -6,13 +6,11 @@
 \usemintedstyle{bw}
 \setminted{fontsize=\small}
 
-
-
-
+\usepackage{graphicx}
 
 % *** CITATION PACKAGES ***
 %
-\usepackage{cite}
+% \usepackage{cite}
 %\renewcommand\cite[1]{[[#1]]}
 
 \usepackage{hyperref}
@@ -43,12 +41,11 @@
 
 % *** GRAPHICS RELATED PACKAGES ***
 %
-\ifCLASSINFOpdf
-  \usepackage[pdftex]{graphicx}
-\else
-  \usepackage[dvips]{graphicx}
-
-\fi
+% \ifCLASSINFOpdf
+%   \usepackage[pdftex]{graphicx}
+% \else
+%   \usepackage[dvips]{graphicx}
+% \fi
 
 
 
@@ -76,8 +73,9 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-\providecommand\url[1]{\texttt{#1}}
+%\providecommand\url[1]{\texttt{#1}}
 \graphicspath{{pics/}}
+
 \begin{document}
 \urlstyle{tt}
 
@@ -85,31 +83,25 @@
 \date{}
 \title{Model Driven Architecture Based on Linked Data}
 
-\renewcommand\IEEEkeywordsname{Keywords}
-\DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
-\author{Evgeny Cherkashin\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2,}\IEEEauthorrefmark{5,}\IEEEauthorrefmark{6},
-Alexey Kopaygorodsky\IEEEauthorrefmark{3,}\IEEEauthorrefmark{6},
-Ljubica Kazi\IEEEauthorrefmark{4},
-Alexey Shigarov\IEEEauthorrefmark{1,}\IEEEauthorrefmark{2},\\
-Vyacheslav Paramonov\IEEEauthorrefmark{2,}\IEEEauthorrefmark{5}
+%\renewcommand\IEEEkeywordsname{Keywords}
+%\DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
+\author{Evgeny Cherkashin\inst{1,2,5,6},
+Alexey Kopaygorodsky\inst{3,6},
+Ljubica Kazi\inst{4},
+Alexey Shigarov\inst{1,2},
+Vyacheslav Paramonov\inst{2,5}
 and
-Boris Shevchenko\IEEEauthorrefmark{6}\\[0.3em]
-%
-\IEEEauthorblockA{\IEEEauthorrefmark{1}Irkutsk Scientific Center of SB RAS, 134 Lermontov Street, Russia, 664033}
-\IEEEauthorblockA{\IEEEauthorrefmark{2}Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, Russia, 664033}
-\IEEEauthorblockA{\IEEEauthorrefmark{3}Melentiev Energy Systems Institute of SB RAS, 130 Lermontov Street, Russia, 664033}
-\IEEEauthorblockA{\IEEEauthorrefmark{4}University of Novi Sad, Technical faculty "Mihajlo Pupin", \DJ{}ure \DJ{}akovi\'ca bb,
- Zrenjanin, Serbia, 23000}
-\IEEEauthorblockA{\IEEEauthorrefmark{5}Irkutsk State University, 20 Gagarina Avenue, Russia, 664002}
-\IEEEauthorblockA{\IEEEauthorrefmark{6}National Research Irkutsk State Technical University, 83 Lermontov Street, Russia, 664074}
-E-mail:\texttt{eugeneai@icc.ru,digger@istu.edu,ljubica.kazi@gmail.com}}
-
-
-% use for special paper notices
-%\IEEEspecialpapernotice{(Invited Paper)}
-
-
-
+Boris Shevchenko\inst{6}}
+\authorrunning{E.~Cherkashin, A.~Kopaygorodsky, L.~Kazi et al.}
+\institute{
+Irkutsk Scientific Center of SB RAS, 134 Lermontov Street, Russia, 664033 \and
+Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, Russia, 664033 \and
+Melentiev Energy Systems Institute of SB RAS, 130 Lermontov Street, Russia, 664033 \and
+University of Novi Sad, Technical faculty "Mihajlo Pupin", \DJ{}ure \DJ{}akovi\'ca bb,
+ Zrenjanin, Serbia, 23000 \and
+Irkutsk State University, 20 Gagarina Avenue, Russia, 664002 \and
+National Research Irkutsk State Technical University, 83 Lermontov Street, Russia, 664074\\
+\email{eugeneai@icc.ru,digger@istu.edu,ljubica.kazi@gmail.com}}
 
 % make the title area
 \maketitle
@@ -118,27 +110,8 @@ E-mail:\texttt{eugeneai@icc.ru,digger@istu.edu,ljubica.kazi@gmail.com}}
 We consider tools for developing information systems with use of Model Driven Architecture (MDA) and Linked Open Data technologies (LOD).  The original idea of LOD is to allow the software designers to develop program systems integrated by means of common ontologies and web protocols.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  PIM forms a LOD graph and its namespace.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to a set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).  The ClioPatria ontology server and the SWI Prolog language are used as tools of PIM and PSM storage, querying and processing.
 
 The tools will allow us to mediate the MDA static means of code generation and configuration at development stage with the techniques of flexible data structure processing at run time, thus, producing even more productive information system development and maintenance techniques.  This research corresponds to nowadays direction of Semantic Web Software Engineering \cite{SWEB}.
-
+\keywords{model driven architecture; linked open data; logic programming; knowledge--based systems}
 \end{abstract}
-\vspace{1em}
-\begin{IEEEkeywords} model driven architecture; linked open data; logic programming; knowledge--based systems
-\end{IEEEkeywords}
-
-% no keywords
-
-
-
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
-
 
 
 \section{Introduction}
