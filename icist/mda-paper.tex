@@ -81,7 +81,7 @@
 
 
 \date{}
-\title{Model Driven Architecture Based on Linked Data}
+\title{Model Driven Architecture Implementation using Linked Data}
 
 %\renewcommand\IEEEkeywordsname{Keywords}
 %\DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
@@ -94,23 +94,22 @@ and
 Boris Shevchenko\inst{6}}
 \authorrunning{E.~Cherkashin, A.~Kopaygorodsky, L.~Kazi et al.}
 \institute{
-Irkutsk Scientific Center of SB RAS, 134 Lermontov Street, Russia, 664033 \and
-Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, Russia, 664033 \and
-Melentiev Energy Systems Institute of SB RAS, 130 Lermontov Street, Russia, 664033 \and
+Irkutsk Scientific Center of SB RAS, 134 Lermontov Street, 664033, Russia \and
+Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, 664033, Russia \and
+Melentiev Energy Systems Institute of SB RAS, 130 Lermontov Street, 664033, Russia \and
 University of Novi Sad, Technical faculty "Mihajlo Pupin", \DJ{}ure \DJ{}akovi\'ca bb,
- Zrenjanin, Serbia, 23000 \and
-Irkutsk State University, 20 Gagarina Avenue, Russia, 664002 \and
-National Research Irkutsk State Technical University, 83 Lermontov Street, Russia, 664074\\
+ Zrenjanin, 23000, Serbia  \and
+Irkutsk State University, 20 Gagarina Avenue, 664002, Russia \and
+National Research Irkutsk State Technical University, 83 Lermontov Street, 664074, Russia\\
 \email{eugeneai@icc.ru,digger@istu.edu,ljubica.kazi@gmail.com}}
 
 % make the title area
 \maketitle
 
 \begin{abstract}
-We consider tools for developing information systems with use of Model Driven Architecture (MDA) and Linked Open Data technologies (LOD).  The original idea of LOD is to allow the software designers to develop program systems integrated by means of common ontologies and web protocols.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  PIM forms a LOD graph and its namespace.  All the PIM entities (MOF structures) are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to a set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).  The ClioPatria ontology server and the SWI Prolog language are used as tools of PIM and PSM storage, querying and processing.
-
+We consider tools for developing information systems with use of Model Driven Architecture (MDA) and Linked Open Data technologies (LOD).  The original idea of LOD is to allow the software designers to develop program systems integrated by means of common ontologies and web protocols.  MDA Platform Independent Model (PIM) is expressed as set of UML diagrams.  PIM forms a LOD graph and its namespace.  All the PIM entities are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to a set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM).  The ClioPatria ontology server and the SWI Prolog language are used as tools of PIM and PSM storage, querying and processing.
 The tools will allow us to mediate the MDA static means of code generation and configuration at development stage with the techniques of flexible data structure processing at run time, thus, producing even more productive information system development and maintenance techniques.  This research corresponds to nowadays direction of Semantic Web Software Engineering \cite{SWEB}.
-\keywords{model driven architecture; linked open data; logic programming; knowledge--based systems}
+\keywords{model driven architecture; linked open data; logic programming; knowledge based systems}
 \end{abstract}
 
 
@@ -123,14 +122,14 @@ Linked Open Data (LOD) \cite{Bizer} technology has been suggested by W3C consort
 
 From the software designer point of view, LOD technologies allow development of program systems represent common and frequently used structures and data via common ontologies and web protocols \cite{Cherk}.  An application of semantic models at run time \cite{Kopay} allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.  LOD data can be used for description of various contexts and aspects (see, Aspect-Oriented Programming) interface elements, their behavior, data security, transactions, and so on.
 
-The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA Platform Independent Model (PIM) is expressed as a set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  PIM forms a graph and a namespace of LOD space.  All the PIM elements are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to set of triples and store them in an ontology warehouse for further transformation into a Platform Specific Model (PSM). The stage of PIM design is very important as it in principle provides an evolution of the information system implementation within the development of the programming technologies in the future. %This means that correct and fully described PIM has more value versus PSM.
-The ClioPatria ontology server and the SWI Prolog language \cite{Clio} are used as tools of PIM and PSM storage, querying and processing.
-
-We distinct four popular approaches of implementing PIM to PSM transformation, taking into account the runtime and other implementation platform features.  The first approach is model-to-model transformation with a model transformation language, such as QVT-X, ATL, \emph{etc.}  In this case PIM and resulting PSM are represented as XMI files.  Model transformation language rules recognizes structures in PIM and construct structures of PSM, having account various Boolean conditions calculated with helper rules. The second variant of transformation is realized with Domain Specific Language (DSL) infrastructure \cite{stratego}.  The transformation procedure is presented as translation of one DSL instance, \emph{i.e.} PIM, to an instance in another language.
+We distinct four popular approaches of implementing Platform independent model (PIM) to Platform specific model (PSM) transformation, taking into account the runtime and other implementation platform features.  The first approach is model-to-model transformation with a model transformation language, such as QVT-X, ATL, \emph{etc.}  In this case PIM and resulting PSM are represented as XMI files.  Model transformation language rules recognizes structures in PIM and construct structures of PSM, having account various Boolean conditions calculated with helper rules. The second variant of transformation is realized with Domain Specific Language (DSL) infrastructure \cite{stratego}.  The transformation procedure is presented as translation of one DSL instance, \emph{i.e.} PIM, to an instance in another language.
 
 The third approach is a library-based one, it allows deigning the resulting PSM and the source code easy enough.  Transformation functions from a library are applied to predicates or complex structures as subtasks. Usage of interpreted or ahead-of-time-compilation languages as Python, Perl, PHP, ASP.NET, JavaScript, HTML as a target language for PSMs decreases the development time and make it less complex.  Thus, application of the libraries is the direct interaction of PIM as a superposition of applied function.  The fourth approach is the multistage transformation of the source PIM \cite{tereh1} on the base of logical inference.  The transformation is declared as a logical theory and a scenario of subgoals to be achieved.
 
-The simplest way of implementation is to use Prolog or a functional language, and we use Logtalk, a macro package of the Prolog logical language.  The main advantage of the language usage is knowledge structuring thanks to the object-orientation.  Objects are used for representation of the source PIM model and the resulting PIM structures as well as source generators.  Moreover, the transformation objects is easily integrated with the libraries processing LOD and LOD warehouses.
+The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA PIM is expressed as a set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  PIM forms a graph and a namespace of LOD space.  All the PIM elements are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to a set of triples and store them in an ontology warehouse for further transformation into a PSM. %The stage of PIM design is very important as it in principle provides an evolution of the information system implementation within the development of the programming technologies in the future. %This means that correct and fully described PIM has more value versus PSM.
+The ClioPatria ontology server and the SWI Prolog language \cite{Clio} are used as tools of PIM and PSM storage, querying and processing.
+
+The simplest way of implementation is to use \textsc{Prolog} or a functional language, and we use \textsc{Logtalk}, a macro package of the Prolog logical language.  The main advantage of the language usage is knowledge structuring thanks to its object-orientation.  Objects are used for representation of the source PIM model and the resulting PIM structures as well as source generators.  Moreover, the transformation objects is easily integrated with the libraries processing LOD and LOD warehouses.
 
 The aim of this research is to construct tools for developing information systems with joint of MDA and LOD technologies in an indivisible cooperation.
 
@@ -192,119 +191,119 @@ Consider the user interface template generation for a web or desktop application
 
 Some UML-structures (OCL) and relations may be interpreted constructively as methods of objects: events, handlers, subscribers, database triggers and selectors (lookups widgets).
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=0.6\linewidth]{pics/samples-Class-diagram.png}
-  \caption{A very simple Modelio PIM}
-  \label{fig:pim}
-\end{figure}
+% \begin{figure}[t]
+%   \centering
+%   \includegraphics[width=0.6\linewidth]{pics/samples-Class-diagram.png}
+%   \caption{A very simple Modelio PIM}
+%   \label{fig:pim}
+% \end{figure}
 
-\subsection{An example of simple transformation}
-\label{sec:simpletr}
+% \subsection{An example of simple transformation}
+% \label{sec:simpletr}
 
-Consider a transformation of a very simple example of PIM presented in Fig.~\ref{fig:pim}.  In order to import PIM we need to create holding instance \texttt{sample} and initialize it.
-\begin{minted}{logtalk}
-:- object(sample,instantiates(packageclass)).
-:- initialization((::load_file('sample.xmi'),
-                ::register_prefixes,::process)).
-:- end_object.
-\end{minted}
-At the import stage, the source XMI converted into a graph.  We show its small part in the turtle format.
-\begin{minted}{turtle}
-@base <File://.../samples.xmi#> .
-<#__k9i9BN_EeijsfqEI5>
-  a uml:Class ;
-  <#ownedAttribute> <#RN_EeijsfqEI5> ,
-      <#hN_EeijsfqEI5>, <#9xN_EeijsfqEI5> ;
-  <#ownedOperation> <#BN_EeijsfqEI5> ;
-  rdfs:label "Person" .
-<#__k9i9RN_EeijsfqEI5>
-  a uml:Property ;
-  <#type> <http://...#String> ;
-  <#visibility> "public" ;
-  rdfs:label "Name" .
-<#BN_EeijsfqEI5>
-  a uml:Operation ;
-  <#ownedParameter> <#hN_EeijsfqEI5> ,
-                    <#hN_EeijsfqEI5> ;
-  <#visibility> "public" ;
-  rdfs:label "Pay" .
-\end{minted}
+% Consider a transformation of a very simple example of PIM presented in Fig.~\ref{fig:pim}.  In order to import PIM we need to create holding instance \texttt{sample} and initialize it.
+% \begin{minted}{logtalk}
+% :- object(sample,instantiates(packageclass)).
+% :- initialization((::load_file('sample.xmi'),
+%                 ::register_prefixes,::process)).
+% :- end_object.
+% \end{minted}
+% At the import stage, the source XMI converted into a graph.  We show its small part in the turtle format.
+% \begin{minted}{turtle}
+% @base <File://.../samples.xmi#> .
+% <#__k9i9BN_EeijsfqEI5>
+%   a uml:Class ;
+%   <#ownedAttribute> <#RN_EeijsfqEI5> ,
+%       <#hN_EeijsfqEI5>, <#9xN_EeijsfqEI5> ;
+%   <#ownedOperation> <#BN_EeijsfqEI5> ;
+%   rdfs:label "Person" .
+% <#__k9i9RN_EeijsfqEI5>
+%   a uml:Property ;
+%   <#type> <http://...#String> ;
+%   <#visibility> "public" ;
+%   rdfs:label "Name" .
+% <#BN_EeijsfqEI5>
+%   a uml:Operation ;
+%   <#ownedParameter> <#hN_EeijsfqEI5> ,
+%                     <#hN_EeijsfqEI5> ;
+%   <#visibility> "public" ;
+%   rdfs:label "Pay" .
+% \end{minted}
 
-Construction of the target class is realized by querying the graph with a parametric object \texttt{query(\_Graph)}.
-\begin{minted}{logtalk}
-% ?- direct(sample,lp,cp)::tr(class,person,ID).
-:- object(direct(_Package, _Local, _Code)).
-tr(class, Class, ClassID):-
-  ::package(Package), % get PIM
-  query(Package)::class(Name, ClassID),
-  ::new(Class, [instantiates(class)]),
-  ::new(Attributes,[instantiates(params)]),
-  ::new(Methods, [instantiates(methodlist)]),
-  Class::name(Name), % get class name.
-  forall( % process all attributes
-      ::tr(attribute, Attribute, ClassID, _),
-      Attributes::append(Attribute)),
-  forall( % process all methods.
-      ::tr(method, Method, ClassID,_),
-      Methods::append(Method)),
-  Class::attributes(Attributes), % construct
-  Class::methods(Methods). % construct
-:- end_object.
-:- object(query(_Graph)). % querying object
-class(Name, ID):- ::xmi(XMI), % the parameter
-  XMI::rdf(ID, rdf:type, uml:'Class'),
-  XMI::rdf(ID, rdfs:label, literal(Name)).
-:- end_object.
-\end{minted}
+% Construction of the target class is realized by querying the graph with a parametric object \texttt{query(\_Graph)}.
+% \begin{minted}{logtalk}
+% % ?- direct(sample,lp,cp)::tr(class,person,ID).
+% :- object(direct(_Package, _Local, _Code)).
+% tr(class, Class, ClassID):-
+%   ::package(Package), % get PIM
+%   query(Package)::class(Name, ClassID),
+%   ::new(Class, [instantiates(class)]),
+%   ::new(Attributes,[instantiates(params)]),
+%   ::new(Methods, [instantiates(methodlist)]),
+%   Class::name(Name), % get class name.
+%   forall( % process all attributes
+%       ::tr(attribute, Attribute, ClassID, _),
+%       Attributes::append(Attribute)),
+%   forall( % process all methods.
+%       ::tr(method, Method, ClassID,_),
+%       Methods::append(Method)),
+%   Class::attributes(Attributes), % construct
+%   Class::methods(Methods). % construct
+% :- end_object.
+% :- object(query(_Graph)). % querying object
+% class(Name, ID):- ::xmi(XMI), % the parameter
+%   XMI::rdf(ID, rdf:type, uml:'Class'),
+%   XMI::rdf(ID, rdfs:label, literal(Name)).
+% :- end_object.
+% \end{minted}
 
-Target structures constructed by blocks of elements and other blocks like in Python \texttt{llvmlite} library.  New \texttt{item}s are appended or prepended in a block.  Rendering the sources is realized with methods of construction classes.
+% Target structures constructed by blocks of elements and other blocks like in Python \texttt{llvmlite} library.  New \texttt{item}s are appended or prepended in a block.  Rendering the sources is realized with methods of construction classes.
 
-\begin{minted}{logtalk}
-:- object(class, specializes(code_block)).
-renderitem(Item, Result):- % . for each item.
- ^^renderitem(Item, Result). % call parent.
-render(Result):-
- ^^render(Name),
- % .....
- root::indent, % Python block tabulation
- (  ::item(attributes(Attributes))->
-    Attributes::render(DefAttrs),
-    root::iswritef(ConstructorDef,
-      'def __init__(self, %w):',[DefAttrs]),
-    root::indent,
-    Attributes::items(InstAttrs),
-    findall(S, (lists::member(Attr, InstAttrs),
-                Attr::item(name(AttrName)),
-                root::iswritef(S, "self.%w=%w",
-                        [AttrName, AttrName])),
-            AttrAssigns),
-    root::unindent,
-    AttrList=[ConstructorDef|AttrAssigns];
-    root::iswritef(ConstructorDef,
-     'def __init__(self):', []),
-    root::indent,
-    root::iswritef(Pass,'pass', []),
-    root::unindent,
-    AttrList=[ConstructorDef, Pass]),
-  % .....
-  lists::append(AttrList, Methods, StringList),
-  root::unindent,
-  Result=[Signature | StringList].
-:- end_object.
-\end{minted}
+% \begin{minted}{logtalk}
+% :- object(class, specializes(code_block)).
+% renderitem(Item, Result):- % . for each item.
+%  ^^renderitem(Item, Result). % call parent.
+% render(Result):-
+%  ^^render(Name),
+%  % .....
+%  root::indent, % Python block tabulation
+%  (  ::item(attributes(Attributes))->
+%     Attributes::render(DefAttrs),
+%     root::iswritef(ConstructorDef,
+%       'def __init__(self, %w):',[DefAttrs]),
+%     root::indent,
+%     Attributes::items(InstAttrs),
+%     findall(S, (lists::member(Attr, InstAttrs),
+%                 Attr::item(name(AttrName)),
+%                 root::iswritef(S, "self.%w=%w",
+%                         [AttrName, AttrName])),
+%             AttrAssigns),
+%     root::unindent,
+%     AttrList=[ConstructorDef|AttrAssigns];
+%     root::iswritef(ConstructorDef,
+%      'def __init__(self):', []),
+%     root::indent,
+%     root::iswritef(Pass,'pass', []),
+%     root::unindent,
+%     AttrList=[ConstructorDef, Pass]),
+%   % .....
+%   lists::append(AttrList, Methods, StringList),
+%   root::unindent,
+%   Result=[Signature | StringList].
+% :- end_object.
+% \end{minted}
 
-As a result we obtain the following Python code that ignores the types of the entities.
-\begin{minted}{python}
-# ?- person::render_to(write).
-class Person:
-    def __init__(self, Name, Family, BirthDay):
-        self.Name=Name
-        self.Family=Family
-        self.BirthDay=BirthDay
-    def Pay(self, Amount):
-        pass
-\end{minted}
+% As a result we obtain the following Python code that ignores the types of the entities.
+% \begin{minted}{python}
+% # ?- person::render_to(write).
+% class Person:
+%     def __init__(self, Name, Family, BirthDay):
+%         self.Name=Name
+%         self.Family=Family
+%         self.BirthDay=BirthDay
+%     def Pay(self, Amount):
+%         pass
+% \end{minted}
 
 \section{Applications}
 \label{sec:app}
