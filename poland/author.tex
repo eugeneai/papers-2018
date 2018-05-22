@@ -1,0 +1,369 @@
+%%%%%%%%%%%%%%%%%%%% author.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for your "contribution" to a proceedings volume
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{svproc}
+%
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+\usepackage{multirow}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,mongolian,english]{babel}
+
+
+% to typeset URLs, URIs, and DOIs
+\usepackage{url}
+
+\def\UrlFont{\rmfamily}
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+
+\begin{document}
+\mainmatter              % start of a contribution
+%
+%\title{Phonetic String Matching in Russian Language}
+\title{Phonetic String Matching for Languages with Cyrillic Alphabet }
+%
+\titlerunning{Phonetic String Matching}  % abbreviated title (for running head)
+%                                     also used for the TOC unless
+%                                     \toctitle is used
+%
+\author{Viacheslav Paramonov\inst{1,} \inst{2}  \and Alexey Shigarov\inst{1,} \inst{2}
+\and Gennady Ruzhnikov\inst{1} \and Evgeny Cherkashin\inst{1,} \inst{2,} \inst{3}}
+%
+\authorrunning{Viacheslav Paramonov et al.} % abbreviated author list (for running head)
+%
+%%%% list of authors for the TOC (use if author list has to be modified)
+\tocauthor{Viacheslav Paramonov, Alexey Shigarov, Gennady Ruzhnikov and Evgeny Cherkashin}
+%
+\institute{Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, Irkutsk, 664033, Russia  \\
+\email{\texttt{\{slv, shigarov, rugnikov, eugeneai\}@icc.ru}}
+\and
+Institute of Mathematics, Economics and Informatics \\ Irkutsk State University, 20 Gagarina Avenue, Irkutsk, 664003, Russia \\
+\and
+National Research Irkutsk State Technical University,\\ 83 Lermontov Street, 664074, Russia}
+
+\maketitle              % typeset the title of the contribution
+
+\begin{abstract}
+
+The usage of phonetic similarity for textual strings comparison and elimination of misprints is  one of significant issues in philology. Moreover, this one of tasks in automatic text processing. Nowadays most of used phonetic algorithms are designed for English language words processing. The quality of comparison may be descended for non-English languages especially for languages which have rich morphology and use non-Latin alphabet symbols, e.g. East Slavic languages with Cyrillic letters. We propose an approach to phonetic comparison Russian language words. It is based on detection letters and letter consequences that have similar sound according rules of language. Resultant phonetic presentation of words may coded by primes. The paper considers efficiency of reviewed algorithm also. The algorithm was adopted for Mongolian language words phonetically processing.
+% We would like to encourage you to list your keywords within
+% the abstract section using the \keywords{...} command.
+\keywords{Natural Language Processing, phonetic algorithms, string comparison, Cyrillic letters}
+\end{abstract}
+
+
+\section{Introduction}
+% no \IEEEPARstart
+Integration of heterogeneous documents which have different formats of representation allows to accumulate information datasets and use it for analysis by different criteria. Textual data which collected by persons may have different formats of presentation and may contain fallacies. It is a serious obstacle to data processing and integration  \cite{Storeya-2017}.
+
+Collected data very often presented in spreadsheets. Fallacies in data arise as a result of misprints, spelling mistakes, invalid usage of date or currency delimiters, faults of text recognition etc. In this regard data cleanse is required before integration. It is one of important steps in data integration processes. It includes many aspects such as detection and automatic correction of spelling mistakes, incorrect values, logical inconsistencies, and missing data.
+
+Some of integrable data is possible to juxtapose with dictionaries (classifiers) values. Example of such data are: types and location places of vegetation and spiders propagation in region, persons names and surnames etc. One of strings comparison methods  is based on their phonetic codes comparison. This paper considers Russian language words detection and correction by applying methods of phonetic comparison.
+
+The idea of phonetics algorithms is words identification by seeking according to similarity of their pronunciation \cite{Parmar-2014}. The most typical application of phonetic algorithms intended for nouns as names and surnames \cite{Zahoransky-2015} identification. Changing of noun case and form, for example, leads to ineffective uses of phonetic algorithms. In this Such changes are not significant in our case. Therefore phonetic algorithms are most suitable for word comparison with reference books or dictionaries (classifiers) values.
+
+The algorithm adoption for applying to Mongolian language is proposed also.
+
+\section{Data anomalies}
+In this paper reviewed textual data on Russian language. This language belongs to East-Slavic language group. It uses by more than 250 million speakers~\cite{Cubberley-2002}. Russian language alphabet contains of 33 Cyrillic letters. It has 10 vowels, 22 consonant and two special letters ъ ("hard sign"), ь ("soft sign").
+
+In this research we consider scientific data which were collected without usage of any spacial software and electronic dictionaries which guarantee data quality. This kinds of data may contains some mistakes, called as anomalies \cite{Orr-1998}. Anomalies often arise in processes of data entry. The rate of these mistakes is about 5\% and depend on many criteria. \cite{Orr-1998}.
+
+
+\section{Usage phonetic algorithms for Russian text cleanse tasks}
+\subsection{Phonetic spelling anomalies}
+Types of spelling anomalies depend on language particularities. For example Russian language words spelling anomalies may be subject to following principles \cite{Skripnik-2010}:
+\begin{itemize}
+\item \textbf{morphological} – a uniform graphic symbol of morphemes by the letter i.e. a person tries to write all audible sounds by letters \cite{Valgina-2002};
+\item \textbf{phonologic} – preservation of writing of phonemes spelling regardless the word of change;
+\item \textbf{phonetic} – words written as they are heard;
+\item \textbf{traditional} (historic) – writing by “tradition” i.e. as it was written in old times or as in the language from word was borrowed.
+\end{itemize}
+
+Most of spelling errors in Russian are associated with language phonetic norms. The type of mistakes generally depends on person education level\cite{Parubchenko-2005}.
+
+In this paper Russian language words would be presented in transliteration also. Transliteration was made in accordance with standard GOST R 52535.1-2006 \cite{GOST-2006} and shown in \textbf{[ ]} characters. This designation will help to facilitate the understanding of text for persons who are not aware of Cyrillic characters.
+
+\subsection{Phonetic algorithms}
+General idea of phonetic algorithms is words comparison according their pronunciation (phonetic forms). It does not depend on orthographical rules. In this approach words are phonetically similar if their codes are matching.
+
+Phonetic algorithms allow to find typos related to changing places of two adjacent letters and typos based on sound similarities. Well-known phonetic algorithms based on English-words coding. There are some algorithms modification for Turkish, Spanish languages. They described in \cite{Alotaibi-2013}. However this languages are based on Latin alphabet symbols. There are some approaches of phonetic coding for languages where alphabet characters differ than Latin. As rule this approach based symbols transliteration and on Soundex phonetic algorithm \cite{Soundex} applying.
+
+Usage of well-known phonetic algorithms for Russian text is a result of transliterated Cyrillic to Latin characters coding. However transliterated words do not always have a unique record. Main reason of this an absence of commonly used transliteration standards. There are some transliteration rules of International Civil Aviation Organization, Ministry of Internal Affairs of Russia, The Federal Migration Service are differ that rules in \cite{GOST-2006}.
+
+\section{Russian language phonetic string matching approach}
+Transliteration allows to get Cyrillic text in Latin letters representation. Misspellings in East–-Slavic languages with Cyrillic letters generally differ from these in English or German texts. The reasons of it is different rules of pronunciation and writing in different languages. In transliteration it is unable to consider features of letter sequences for each language.
+
+Suggested in the paper algorithm Polyphon \cite{Paramonov-2016} use word transformation with due regard to rules of Russian language and according to its phonetic particularities. It allows to get more correct phonetic code for conformable strings. The stages of algorithm are:
+
+\begin{enumerate}
+\item substitution of Latin letters which are similar to Russian with Russian;
+\item removal of all non-Russian alphabet characters from the string;
+\item modification of letters before dividers (special letters as "ъ" and "ь");
+\item transformation of doubled characters into one;;
+\item transformation of similar letters following each other into one;
+\item transformation of character sequences.
+\end{enumerate}
+
+Let us consider algorithm steps more detail. Some letters in Russian alphabet have equivalent in writing with Latin. These are such letters as: a \textbf{[a]}$\sim$ а, e \textbf{[e]} $\sim$ е, о \textbf{[o]} $\sim$ о, c \textbf{[es]} $\sim$ с, x \textbf{[kha]} $\sim$ x. Some letters equal in capital letters only: B \textbf{[ve]} $\sim$ В, M \textbf{[em]} $\sim$ М, H \textbf{[en]} $\sim$ Н. Sometimes these letters are substituted (incidentally or purposely) when text is typing. If this kind of Latin letters present in the text they will exchange to Cyrillic ones.
+
+Any others characters that do not belong Russian alphabet will remove from text.
+
+Special letters “ь” and “ъ” do not have any pronunciation. They use for giving softness or hardness for consonants respectively. For this reason there is no need to consider these characters.
+
+Next stage is transformation of similar letters following each other into one e.g. “xx” to “x”. It was done because not always possible to define double letters in hearing. Therefore, we carry out these transformations for rule of generalisation.
+
+Thus, Polyphon uses coding letters by sounds, which are heard. table The \ref{lbl-simphon} provided ways of different pronunciation. The aim of the proposed phonetic algorithm is generalisation letters and sounds combinations \cite{Ivanova-2005}. The reason of generalisation is based on that some sounds from letters and letters sequences depend on stress position.  Such deviations from norms are meet in social and territorial dialects in Russia \cite{Zhirmunsky-1936}. A reduction of vowels occurs in Russian when word has 3 and more syllables. Vowels at the beginning and the end of the word are remaining without change. Thus if the word contains 3 and more syllables we remove all vowels in the middle of the word. The basis of splitting into syllables is the number of vowels in the word. However, some vowels may be put in the word with error. We assume that if there are more than 4 consonants they presented at least in 2 syllables.
+
+\begin{table}[t!]
+\renewcommand{\arraystretch}{1.3}
+\caption{Ways of different pronunciation}
+\label{lbl-simphon}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Correct writing form & Ways of pronouncing\\
+\hline
+\multirow{интерпретация [interpretatsiya]} & интерпритация [interpritatsiya] \\
+\cline{2-2}
+	& инт\textbf{э}рпр\textbf{и}тация [int\textbf{e}rpr\textbf{i}tatsiya] \\
+\cline{2-2}
+	& инт\textbf{э}рпретация [int\textbf{e}rpretatsiya] \\
+\cline{2-2}
+	& интерпретац\textbf{ы}я [interpretats\textbf{i}ya] \\
+\cline{2-2}
+	& инт\textbf{э}рпр\textbf{и}та\textbf{тсы}я [interpr\textbf{i}ta\textbf{tsy}ya] \\
+\hline
+\end{tabular}
+\end{table}
+
+The next stage is the substitution of the sequences of letters taking into account the changes made in table \ref{lbl-raplacement}. Examples of letters sequence substitution are presented in table \ref{lbl-seqconv}. Often a combination of letters leads to different sound. The review from \cite{Ivanova-2005} was used as a basis for these combinations.
+
+\begin{table*}[t!]
+ \caption{Replacement of letters}
+ \label{lbl-raplacement}
+ \centering
+ \begin{tabular}{|c*{11}{|c}|}
+ \hline
+ \textbf{Letters} &	А, Е, Ё, И, Й, О, Ы, Э, Я	& Б & В & Г &	Д &	З &	Щ &	Ж &	М &	Ю \\
+ \hline
+ \textbf{Modification result} &	А &	П &	Ф &	К &	Т &	С &	Ш &	Ш &	Н &	У \\
+\hline
+ \end{tabular}
+\end{table*}
+
+\begin{table*}[t!]
+	\caption{Letters sequence conversion}
+    \label{lbl-seqconv}
+    \centering
+    \begin{tabular}{|c*{17}{|c}|}
+    \hline
+    \textbf{Sequence} &	АКА & АН &	ЗЧ &	ЛНЦ &	ЛФСТФ &	НАТ &	НТЦ &	НТ & НТА &	НТК &	НТС \\
+
+	\textbf{Result} &	АФА &	Н &	Ш &	НЦ &	ЛСТФ &	Н &	НЦ & Н & НА &	НК  &	НС \\
+    \hline
+	\addlinespace
+    \hline
+    \textbf{Sequence} & НТСК &	НТШ &	ОКО &	ПАЛ &	РТЧ &	РТЦ &	СП &	ТСЯ &	СТЛ &	СТН &	СЧ \\
+
+	\textbf{Result} &	НСК &	НШ &	ОФО &	ПЛ &	РЧ &	РЦ &	СФ &	Ц &	СЛ &	СН &	Ш \\
+    \hline
+	\addlinespace
+    \hline
+    \textbf{Sequence} &	СШ &	ТАТ & ТСА &	ТАФ &	ТС &	ТЦ &	ТЧ &	ФАК &	ФСТФ &	ШЧ \\
+
+	\textbf{Result} &	Ш &	Т & Ц &	ТФ &	ТЦ &	Ц &	Ч &	ФК &	СТФ &	Ш \\
+    \hline
+    \end{tabular}
+\end{table*}
+
+If any of transformation was made we should back to stage with doubled characters searching.
+
+The result of word transformation is a phonetic code. Ones replaces consecutive same letters, for example: "`Эхирит-Булагатский"' \textbf{[eherit-bulagatskij]} (the name of district in Irkutsk Region of Russia) \begin{math}\rightarrow \end{math} "`ахаратпулакатска"' \textbf{[aharatpulakatska]}. This coding is admit recognition of different spelling errors related with word pronunciation: "эх\textbf{е}ри\textbf{д}-була\textbf{к}атски" \textbf{[eherid-bulakatskij]}, "\textbf{е}хирит булага\textbf{т}ский" \textbf{[eherit bulagatskij]} etc. So when phonetic codes are found it is need to juxtapose ones for person entered and classifier values.
+
+It is possible to extend area of Polyphon to use fuzzy phonetic comparison. All repeating letters are deleted from the string in this case. Thus one letter may be present in the string one time only. Each letter has a prime numerical code according to table \ref{lbl-primes}. The resulting code is the sum of primes. Usage sum of primes guarantees that strings with different letters will have different codes.
+
+\begin{table*}[t!]
+	\caption{Coding letters by primes}
+    \label{lbl-primes}
+    \centering
+    \begin{tabular}{|c*{18}{|c}|}
+    \hline
+    \textbf{letter} & А & П & К & Л & М & Н & Р & С & Т & У & Ф &  Х & Ц & Ч & Щ & Э & Я \\
+    \hline
+    \textbf{code} & 2 & 3 &	5 &	7 &	11 & 13 & 17 & 19 &	23 & 29 & 31 &	37 & 41 & 43 & 47 & 53 & 59 \\
+    \hline
+    \end{tabular}
+\end{table*}
+
+\section{Experimental testing of the algorithm}
+We perform the following experiment for estimation efficiency of the proposed algorithm. The experiment consists of several stages:
+\begin{itemize}
+\item data preparation -- generation a data set of words with specially amended mistakes;
+\item testing the phonetic algorithm;
+\item comparison with existing algorithms.
+\end{itemize}
+
+The basis for testing are words from Ozhegov’ explanatory dictionary \cite{Ozhegov-2007}. The words without their description were used for the experiment. Some words were removed from review because they are identical --- one word could have more than one meaning. The initial amount of words for error introduction is 38955.
+The method for errors generation was proposed. The errors, which expressed in words, reflect the phonetic phenomena and processes of Russian language. This errors generation is based on:
+\begin{itemize}
+\item position changes – the phonetic rule at the end of the word (devocalization of a paired consonant on the end of the word) and reduction (a qualitative reduction is letters substitution e.g. "о" \textbf{[o]} and "и" \textbf{[i]}, "е" \textbf{[e]} to "и" \textbf{[i]}, etc. in a weak position);
+\item assimilation and dissimilation processes - devocalization and vocalization of concordats in the word. The phenomenon of assimilation is the similarity of sounds, i.e. (ножка {\textbf{шк}} [nozhka {\textbf{shk}}], отдать {\textbf{дд}} [otdat’ {\textbf{dd}}], сдоба {\textbf{зд}} [sdoba {\textbf{zd}}], косьба {\textbf{зьб}} [kos’ba {\textbf{z’b}}]) \cite{Kastkin-1999}.
+\end{itemize}
+
+We did not use ready data set of errors for uor experiment due the absence of it. Some of services such as \url{https://wordstat.yandex.ru/}\footnote[1]{Yandex keyword statistics service} may provide very limited number of queries.
+So we used a positional stunning and voicing of consonants in accordance with how it is described in \cite{Skripnik-2010,Kastkin-1999}. Voiced pair stunned at the end of words and before voiceless consonants. (мозг {\textbf{ск}}[mozg {\textbf{sk}}] , параход {\textbf{т}} [parahod {\textbf{t}}]). Voiceless consonants converts to voiced consonants every time, in the case when their location before voiced (сдать {\textbf{здать}} [sdat’ {\textbf{zdat’}}]). The exception is the unpaired voiced consonants and “в” character. In the diaeresis process one sound is removed out and a different sound appears (сердце {\textbf{с'эрцъ}} [serdtse {\textbf{s’ertc’}}], солнце {\textbf{сонцэ}} [solntse {\textbf{solntce}}] ). The fusion process is merging of consonants (жарится моется [zharitsya – moetsya] – жарит(\textbf{ц})а [zharit(\textbf{c})ya], мыться [myt’sya] – мы(\textbf{ц})а [my(\textbf{tc})a]).
+
+The basis for the third category errors is Russian language orthography errors in unstressed vowels and “ь”, “ъ”.
+Wrong writing of “ь” for assimilation softness of consonants in combinations зд(*) [zd], -ст(*) [st],-зн(*) [zn],-тн(*) [tn],-сн(*) [ch],-ст(*) [st],-нн(*) [nn], -нч(*) [nch], -нщ(*) [nsh], - нт(*) [nt], -дн(*) [dn], where (*) is vowel е [e], ё [jo], ю [yu], я [ya], и [i]. (гвозьди [gvozdi], есьть [es’t’], жизьнь [zhizh’n’], защитьник [zash’itnik], лисьтья [list’ya], раньнего [ran’ego], сеньтябрь [sentyabr’], утреньнюю [utren’yuyu],  шерсьть [shers’t’], коньчились [konchilis’], опусьтели [opus’teli], отьнес [otnes], песьня [pes’nya], полдьню [pold’nyu]). The submission of ``ь'' instead of ``ъ'' in words with ``ь'' before vowels ``е'', ``ё'', ``ю'', ``я'', ``и'' --- (бьют [b’yut] – бъют [byut]) and (сьезд [s’ezd]) on the contrary was considered as well.
+
+Anomalies of incorrect ``не'' [ne] and ``ни'' [ni] writing were not considered in the paper. Errors of letters mixing and their shift were not generated also.
+
+The software use all words and tries entering errors of each type into the word if it is possible. The number of generated words, which contain errors, is 261977.
+
+The resulting document has two columns – original “correct” word and the same word with phonetic error(s). Examples of words with mistakes are shown in table \ref{lbl-enterr}.
+
+\begin{table}[t!]
+\renewcommand{\arraystretch}{1.3}
+\caption{Example of words with generated mistakes}
+\label{lbl-enterr}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Original word & Word with mistake(es)\\
+\hline
+\multirow{АВАНЗАЛ [AVANZAL]} & АВВАНЗАЛ [AVVANZAL] \\
+\cline{2-2}
+	& АВАН\textbf{ЗЗ}АЛ [AVAN\textbf{ZZ}AL] \\
+\cline{2-2}
+	& \textbf{Е}ВАНЗАЛ [\textbf{E}VANZAL] \\
+\cline{2-2}
+	& АВАНЗА\textbf{ЛЛ} [AVANZA\textbf{LL}] \\
+\cline{2-2}
+	& АВ\textbf{АА}НЗАЛ [AV\textbf{AA}NZAL] \\
+\cline{2-2}
+	& АВА\textbf{НН}ЗАЛ [AVA\textbf{NN}ZAL] \\
+\cline{2-2}
+	& \textbf{АА}ВАНЗАЛ [\textbf{AA}VANZAL] \\
+\cline{2-2}
+	& АВАНЗ\textbf{АА}Л [AVANZ\textbf{AA}L] \\
+\cline{2-2}
+	& АВАН\textbf{САА}Л [AVAN\textbf{SAA}L] \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\subsection{Algorithm testing and comparison}
+The proposed algorithm was applied to a prepared set of test data. As a result we had an accurate verification of correct words and words with phonetic mistake added. The accuracy of Polyphon data matching is higher than in \cite{Paramonov-2016}. It is the result of multiple repeated of algorithm stages if any stage  has been lead to any transformation. The increase in time is not significant in this case.
+
+We compare such phonetic algorithms as Soundex, Metaphone, Caverphone, Daitch-Mokotoff Soundex. These algorithms use an English alphabet characters only. The standard of transliteration GOST~R~52535.1--2006 was used \cite{GOST-2006}.
+
+The results of testing obtained by the proposed algorithm, Double Mataphone, Caverphone and Daitch-Mokotoff Soundex  are shown in table VIII. It should be noted that string which were shown as different in Double Mataphone, Caverphone and Daitch-Mokotoff Soundex are  displayed as equals in proposed algorithm.
+
+\begin{table}[t!]
+\renewcommand{\arraystretch}{1.3}
+\caption{Algorithms comparison results}
+\label{lbl-algcomp}
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Algorithm & \specialcell{Matches of phonetic \\ codes, \%} & Time, ms\\
+\hline
+Proposed algorithm & 97.02 & 3756 \\
+\hline
+\specialcell{Proposed algorithm \\(fuzzy phonetic comparison)} & 99.2 & 1720 \\
+\hline
+Soundex	& 90.24 & 1096 \\
+\hline
+Metaphone &	90.29 &	870 \\
+\hline
+Double Metaphone &	96.15 &	1451 \\
+\hline
+Caverphone & 90.41 &	9770 \\
+\hline
+NYSIIS & 75.97 & 1517 \\
+\hline
+DaitchMokotoffSoundex &	96.84 &	1763 \\
+
+\hline
+\end{tabular}
+\end{table}
+
+It should also be noted that all algorithms have been tested on single words rather than on sentences.
+
+\subsection{Description of test results }
+The results of testing demonstrate that application of prime coding is the most effective for comparison. However, most of information about word might be lost during approach such as Daitch-Mokotoff Soundex  algorithm. It can lead to wrong comparisons. Word transformation with the suggested approach allows to compare word according to their possible phonetic transformation. The suggested approach allows to compare words more accurately. Unrecognised words represent words with several types of mistakes, including reduction.
+
+\section{Extending the algorithm for other languages}
+Authors also made attempts to apply Polyphon to Mongolian language \cite{Budnjam-2017}. This language of Mongolic language family but it is greatly differ from languages of East--Slavic group. However modern Mongolian alphabet is based on Russian alphabet. It consists of 35 letters. 20 letters among them are vowels and 12 are consonants, letter й \textbf{[j]} and two special letters ъ, ь.
+
+It is possible to use of Mongolian language phonetic rules for transformation of words letters. The shortness of the vowels in the letter is made up by writing a single letters: о \textbf{[o]}, а \textbf{[a]}, э \textbf{[e]} etc.
+
+The continuance of vowels on the written form is made up by doubling the writing of the corresponding letters, for example, oo \textbf{[oo]}, aa \textbf{[aa]}, үү \textbf{[uu]}, etc. However, a number of vowel sounds are characterised by a special pronunciation and in some cases does not adhere to the graphic writing of letters.
+
+Among the phonetic features of the Mongolian language, diphthongs are also singled out. It is a combination of two sounds. In total there are 5 diphthongs in the language: ай \textbf{[aj]}, ой \textbf{[oj]}, уй \textbf{[juj]}, үй \textbf{[uj]}, эй \textbf{[ej]}. One of the basic rules of the phonetics of the Mongolian language is synharmonism - the law of harmony of vowels. In addition to the synharmonicity of Mongolian phonetics, a complex syllabic structure is also inherent, which makes possible the presence of up to three consonants at the end of the syllable. It should also be noted that there is no grammatical gender in the Mongolian language. A noun in the form of a stem can perform the syntactic functions of the subject, the definition, the complement, and the nominal part of the compound predicate. Stress in words is not put, because it is always on the first syllable.
+
+So in this case it is need to transform diphthong to one letter, for example ай \textbf{aj}, ой \textbf{oj}, эй \textbf{ej} \rightarrow э \textbf{e}; уй \textbf{uj}, үй \textbf{uj} \rightarrow у \textbf{u}.
+
+Shortness and longness vowels in modern Mongolian language a meaning-determining function. Concerning this more than two consecutive letters are converted to two: ааа -- аа, ооо -- оо, ууу -- уу etc, so that misprint is possible here. Moreover transformation of doubled characters to one do not produced. This action may involve on word semantic interpretation: цас \textbf{tcas} –- цаас \textbf{tcaas}, ул \textbf{ul} -– уул \textbf{uul} и т.п.
+
+Letters replacement refers to both vowel and consonant. Features of the syllabic structure are not taken into account in this case.
+Further, the analysis of the word is carried out taking into account the possible substitutions that have been made earlier. As a result, a phonetic comparison of words can be used to improve the efficiency of comparing the user text of information contained in various classifiers. Unlike the Russian language algorithm may be use not for nouns only.
+
+\section{Conclusion}
+In this paper, we presented the algorithm for Russian words phonetic comparison including fuzzy phonetic comparison option. This algorithm can be used not only for surnames but for establishing corresponding of the word to the qualifier entry. Moreover developing of suggested approach may be use for text rhythmicity analysis \cite{Damasevichius}. The described approach might be useful for data integration process. The proposed methods can be applied into data clean up tools for Russian text processing. Accurate data clean up may be useful for integrating data from different sources.
+
+The proposed approach is based on Russian language phonetic rules. Phonetic coding is more exact in comparison with the algorithms using transliteration. We suggest using of this kind algorithm not for surnames only but for establishing compliance word meaning to qualifiers. We also adopted algorithm for Mongolian. Letters transformation rules allow to be used for Cyrillic alphabet languages such as Russian, Belarusian, Ukrainian, Serbian, Mongolian.
+
+% conference papers do not normally have an appendix
+
+
+% use section* for acknowledgment
+\section*{Acknowledgement}
+The reported study was supported in part by RFBR (grants 18-07-00758, 17-57-44006, 17-47-380007). Experiments were performed on the resources of the Shared Equipment Centre of Integrated information and computing network of Irkutsk Research and Educational Complex \url{http://net.icc.ru}.
+
+
+
+
+
+
+\begin{thebibliography}{18}
+
+\bibitem{Storeya-2017} V.C.~Storeya, Il-Y.~Songb. Big data technologies and Management: What conceptual modelling can do. // Data \& Knowledge Engineering. --- Vol.~108. --- 2017. pp.~50--67.
+\bibitem{Cubberley-2002} P.~Cubberley Russian: A Linguistic Introduction. Cambridge press. --– 2002. 396 p.
+\bibitem{Parmar-2014}	V.P.~Parmar, C.K.~Kumbharana. Study Existing Various Phonetic Algorithms and Designing and Development of a working model for the New Developed Algorithm and Comparison by implementing it with Existing Algorithm(s) // International Journal of Computer Applications (0975 –-- 8887) Volume 98 -– No.19, July 2014. --– pp. 45--49.
+\bibitem{Zahoransky-2015} D.~Zahoransky, I.~Polasek. Text Search of Surnames in Some Slavic and Other Morphologically Rich Languages Using Rule Based Phonetic Algorithms // Audio, Speech, and Language Processing, IEEE/ACM Trans on (T--ASL). IEEE. --- 2015. pp.553--563
+\bibitem{Orr-1998} K.~Orr. Data Quality and Systems Theory. // Communications of the ACM, Vol. 41, No. 2, 1998, 66--71
+\bibitem{Skripnik-2010} Ya.N.~Skripnik, T.M.~Smolenskaya. Phonetics of modern Russian Language (Фонетика современного русского языка: Учебное пособие) / Editor: Ya.N.~Skripnik. --- Stavropol --- VoSIGI. --- 2010. --- 152~p. (in Russian).
+\bibitem{Valgina-2002} N.S.~Valgina, D.E.~Rozental', M.I.Fomina. Modern Russian Language: Textbook (Современный русский язык: Учебник) / Editor: N.S.~Valgina -- 6-th Edition. --- Moscow --- Logos --- 2002 --- 528~p. (in Russian).
+\bibitem{Parubchenko-2005} L.B.~Parubchenko. Hypercorrection errors (Ошибки гиперкоррекции)// Russian Literature. No 4, 2005.-- p.p. 23--27. (in Russian)
+\bibitem{GOST-2006} GOST R 52535.1-2006. Identification cards. Machine readable travel documents. Part 1 Machine Readable Passports. National Standard of the Russian Federation (ГОСТ Р 52535.1-2006. Карты идентификационные. Машиносчитываемые дорожные документы. Часть 1. Машиносчитываемые паспорта. Национальный стандарт Российской Федерации). --- Moscow --- Russia. --- 2006 --- 18 p. (in Russian)
+\bibitem{Paramonov-2016} V.V.~Paramonov, A.O.~Shigarov, G.M.~Ruzhnikov, P.V.~Belykh. Polyphon: An Algorithm for Phonetic String Matching in Russian Language.In Proceeding of the 22nd International Conference Information and Software Thechnologies, ICTIST 2016. Communications in Computer Science. --- 2016, Vol.~639 --- pp. 568--579.
+\bibitem{Alotaibi-2013} Y.~Alotaibi, A.~Meftah. Review of distinctive phonetic features and the Arabic share in related modern research // Turkish Journal of Electrical Engineering \& Computer Sciences 2013, Vol. 21 Issue 5, pp.~1426-1439
+\bibitem{Soundex}	The Soundex Indexing System. National archives. \texttt{URL:} \url{http://www.archives.gov/research/census/soundex.html}
+\bibitem{Ivanova-2005} Ivanova T.F. New orthoepic dictionary of Russian. Pronunciation. Accent. Grammatical forms (Новый орфоэпический словарь русского языка. Произношение. Ударение. Грамматические формы) Second edititon. --- Russian language-Media, 2005. --- 893 p. (in Russian)
+\bibitem{Zhirmunsky-1936} V.~Zhirmunsky. National Language and social dialects (Национальный язык и социальные диалекты). --- Moscow: The state publisher of fiction. --- 1936. --- 300 p. (in Russian)
+\bibitem{Ozhegov-2007} Ozhegov S.I. Dictionary of Russian language. About 53000 words. (Словарь русского языка: Ок. 53 000 слов) / Editor Skvortsova L.I. Edition 24, Moscow: Oniks, World and education. --- 2007 --- 1200 p. (in Russian)
+\bibitem{Kastkin-1999} L.L.~Kasatkin. Modern Russian dialectics and literary phonetics as a source for the history of the Russian language (Современная Русская диалектика и литературная фонетика как источник для истории русского языка). --- Moscow: Nauka. --- 1999 --- 528 p.
+\bibitem{Budnjam-2017} S.~Budnjam. V.V.~Paramonov, G.M.~Ruzhnikov. Phonetic strings comparison with particularities of the Mongolian language // Scientific notes of the University of Science of Mongolia (Фонетическое сравнение строк с учетом особенностей монгольского языка. Эрдмийн Сургуулийн эрдмийн бичиг). --- Ulaanbaatar --- 2017 -- N 1 -- pp. 40-47
+\bibitem{Damasevichius} R.~Damashevicius, J.~Kapociute-Dzikine, M.~Wozniak. Towards Rhythmicity Analysis of Text using Empirical Mode Decomposition // In Proceeding of the 9th International Joint Conference on Knowledge Discovery, Knowledge Engineering and Knowledge Management (IC3K 2017). --- 2017 --- Vol. 1: KDIR. -- pp. 310-317.
+
+\end{thebibliography}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
