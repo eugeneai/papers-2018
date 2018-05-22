@@ -54,7 +54,7 @@ National Research Irkutsk State Technical University,\\ 83 Lermontov Street, 664
 
 \begin{abstract}
 
-The usage of phonetic similarity for textual strings comparison and elimination of misprints is  one of significant issues in philology. Moreover, this one of tasks in automatic text processing. Nowadays most of used phonetic algorithms are designed for English language words processing. The quality of comparison may be descended for non-English languages especially for languages which have rich morphology and use non-Latin alphabet symbols, e.g. East Slavic languages with Cyrillic letters. We propose an approach to phonetic comparison Russian language words. It is based on detection letters and letter consequences that have similar sound according rules of language. Resultant phonetic presentation of words may coded by primes. The paper considers efficiency of reviewed algorithm also. The algorithm was adopted for Mongolian language words phonetically processing.
+The usage of phonetic similarity in comparison of textual strings and elimination of misprints is one of significant issues in philology. It is widely used in automatic text checking. Nowadays most of phonetic algorithms are designed for English language words processing. The quality of comparison may be decreased for non-English languages especially for languages, which have rich morphology and use non-Latin alphabet symbols, e.g. East Slavic languages with Cyrillic letters. We propose an approach to phonetic comparison of Russian language words. It is based on detection letters and letter sequences that have similar pronunciation according to rules of the language. The resultant phonetic representation of the words are coded by \textbf{primes}. The efficiency of the reviewed algorithm is considered in the paper. The algorithm was adopted for Mongolian language phonetic processing.
 % We would like to encourage you to list your keywords within
 % the abstract section using the \keywords{...} command.
 \keywords{Natural Language Processing, phonetic algorithms, string comparison, Cyrillic letters}
@@ -63,42 +63,42 @@ The usage of phonetic similarity for textual strings comparison and elimination 
 
 \section{Introduction}
 % no \IEEEPARstart
-Integration of heterogeneous documents which have different formats of representation allows to accumulate information datasets and use it for analysis by different criteria. Textual data which collected by persons may have different formats of presentation and may contain fallacies. It is a serious obstacle to data processing and integration  \cite{Storeya-2017}.
+Integration of heterogeneous documents which have different formats of representation allows one to accumulate information datasets and use them for analysis by different criteria. Textual data collected by persons may have different formats of presentation and may contain fallacies. It is a serious obstacle to data processing and integration  \cite{Storeya-2017}.
 
-Collected data very often presented in spreadsheets. Fallacies in data arise as a result of misprints, spelling mistakes, invalid usage of date or currency delimiters, faults of text recognition etc. In this regard data cleanse is required before integration. It is one of important steps in data integration processes. It includes many aspects such as detection and automatic correction of spelling mistakes, incorrect values, logical inconsistencies, and missing data.
+Collected data very often presented in spreadsheets. Fallacies in data arise as a result of misprints, spelling mistakes, invalid usage of date or currency delimiters, faults of text recognition etc. In this regard, data cleanse is required before the integration. It is one of important steps in data integration processes. It embodies many aspects such as detection and automatic correction of spelling mistakes, incorrect values, logical inconsistencies, and missing data.
 
-Some of integrable data is possible to juxtapose with dictionaries (classifiers) values. Example of such data are: types and location places of vegetation and spiders propagation in region, persons names and surnames etc. One of strings comparison methods  is based on their phonetic codes comparison. This paper considers Russian language words detection and correction by applying methods of phonetic comparison.
+Some of integrable data is possible to juxtapose with dictionaries and classifiers. Example of such data are types and location places \textbf{of vegetation and spiders propagation in region}, proper names etc. One of strings comparison methods is based on their phonetic codes comparison. This paper considers Russian language words detection and correction by applying methods of phonetic comparison.
 
-The idea of phonetics algorithms is words identification by seeking according to similarity of their pronunciation \cite{Parmar-2014}. The most typical application of phonetic algorithms intended for nouns as names and surnames \cite{Zahoransky-2015} identification. Changing of noun case and form, for example, leads to ineffective uses of phonetic algorithms. In this Such changes are not significant in our case. Therefore phonetic algorithms are most suitable for word comparison with reference books or dictionaries (classifiers) values.
+The idea of phonetics algorithms is based on word identification by seeking similarly pronounced words \cite{Parmar-2014}. The typical application of phonetic algorithms intended for nouns as names and surnames \cite{Zahoransky-2015} identification. Changing of noun case and form results in e.g. an inefficient use of phonetic algorithms. \textbf{Such changes are not significant in our case}. Therefore phonetic algorithms are most suitable for word comparison with directories, dictionaries and classifiers.
 
-The algorithm adoption for applying to Mongolian language is proposed also.
+An algorithm adoption for the Mongolian language is proposed also.
 
 \section{Data anomalies}
-In this paper reviewed textual data on Russian language. This language belongs to East-Slavic language group. It uses by more than 250 million speakers~\cite{Cubberley-2002}. Russian language alphabet contains of 33 Cyrillic letters. It has 10 vowels, 22 consonant and two special letters ъ ("hard sign"), ь ("soft sign").
+The Russian language belongs to the East--Slavic language group. It uses by more than 250 million speakers~\cite{Cubberley-2002}. The Russian language alphabet contains 33 Cyrillic letters. It has 10 vowels, 22 consonants and two special letters ъ ("hard sign"), ь ("soft sign").
 
-In this research we consider scientific data which were collected without usage of any spacial software and electronic dictionaries which guarantee data quality. This kinds of data may contains some mistakes, called as anomalies \cite{Orr-1998}. Anomalies often arise in processes of data entry. The rate of these mistakes is about 5\% and depend on many criteria. \cite{Orr-1998}.
+In this research, we consider scientific data collected without usage of any spacial software and electronic dictionaries\textbf{ which guarantee data quality}. \textbf{This kinds of data may contains some mistakes, called as anomalies} \cite{Orr-1998}. Anomalies are often arisen in processes of data \textbf{entry}. The rate of these mistakes is about 5\% and depends on many circumstance. \cite{Orr-1998}.
 
 
-\section{Usage phonetic algorithms for Russian text cleanse tasks}
+\section{Usage phonetic algorithms for Russian text cleansing}
 \subsection{Phonetic spelling anomalies}
-Types of spelling anomalies depend on language particularities. For example Russian language words spelling anomalies may be subject to following principles \cite{Skripnik-2010}:
+Types of spelling anomalies depend on language particularities. For example Russian language words spelling anomalies may be subject to following classes \cite{Skripnik-2010}:
 \begin{itemize}
-\item \textbf{morphological} – a uniform graphic symbol of morphemes by the letter i.e. a person tries to write all audible sounds by letters \cite{Valgina-2002};
-\item \textbf{phonologic} – preservation of writing of phonemes spelling regardless the word of change;
-\item \textbf{phonetic} – words written as they are heard;
-\item \textbf{traditional} (historic) – writing by “tradition” i.e. as it was written in old times or as in the language from word was borrowed.
+\item \textbf{morphological} -- \textbf{uniform graphic symbol of morphemes by the letter}, i.e. a person tries to write all audible sounds by letters \cite{Valgina-2002};
+\item \textbf{phonologic} – \textbf{preservation of writing of phonemes spelling regardless the word of change};
+\item \textbf{phonetic} – \textbf{words written as they are heard};
+\item \textbf{traditional} \textbf{(historic) – writing by “tradition” i.e. as it was written in old times or as in the language from word was borrowed}.
 \end{itemize}
 
 Most of spelling errors in Russian are associated with language phonetic norms. The type of mistakes generally depends on person education level\cite{Parubchenko-2005}.
 
-In this paper Russian language words would be presented in transliteration also. Transliteration was made in accordance with standard GOST R 52535.1-2006 \cite{GOST-2006} and shown in \textbf{[ ]} characters. This designation will help to facilitate the understanding of text for persons who are not aware of Cyrillic characters.
+In this paper, Russian language words will be accompanied with transliteration forms for reader convenience. Transliteration is made in accordance to the standard GOST R 52535.1-2006 \cite{GOST-2006} and shown in \textbf{[ ]} characters. This designation will help to facilitate the understanding of text for persons who are not aware of Cyrillic characters.
 
 \subsection{Phonetic algorithms}
-General idea of phonetic algorithms is words comparison according their pronunciation (phonetic forms). It does not depend on orthographical rules. In this approach words are phonetically similar if their codes are matching.
+General idea of phonetic algorithms is based on word comparison according their pronunciation (phonetic forms). It does not depend on orthographic rules. In this approach, words are considered to be phonetically similar if their codes are matching.
 
-Phonetic algorithms allow to find typos related to changing places of two adjacent letters and typos based on sound similarities. Well-known phonetic algorithms based on English-words coding. There are some algorithms modification for Turkish, Spanish languages. They described in \cite{Alotaibi-2013}. However this languages are based on Latin alphabet symbols. There are some approaches of phonetic coding for languages where alphabet characters differ than Latin. As rule this approach based symbols transliteration and on Soundex phonetic algorithm \cite{Soundex} applying.
+Phonetic algorithms allow one to figure out typos related to changing places of two adjacent letters and typos based on pronunciation similarities. Well-known phonetic algorithms are based on English-words coding. There are some algorithm modifications for Turkish, Spanish languages. They described in \cite{Alotaibi-2013}. However this languages are based on Latin alphabet symbols. There are some approaches of phonetic coding for languages where alphabet characters\textbf{ differ than Latin}. This approach is usually based on symbols transliteration and on Soundex phonetic algorithm \cite{Soundex} application.
 
-Usage of well-known phonetic algorithms for Russian text is a result of transliterated Cyrillic to Latin characters coding. However transliterated words do not always have a unique record. Main reason of this an absence of commonly used transliteration standards. There are some transliteration rules of International Civil Aviation Organization, Ministry of Internal Affairs of Russia, The Federal Migration Service are differ that rules in \cite{GOST-2006}.
+\textbf{Usage of well-known phonetic algorithms for Russian text is a result of transliterated Cyrillic to Latin characters coding. However transliterated words do not always have a unique record. Main reason of this an absence of commonly used transliteration standards. There are some transliteration rules of International Civil Aviation Organization, Ministry of Internal Affairs of Russia, The Federal Migration Service are differ that rules in \cite{GOST-2006}.}
 
 \section{Russian language phonetic string matching approach}
 Transliteration allows to get Cyrillic text in Latin letters representation. Misspellings in East–-Slavic languages with Cyrillic letters generally differ from these in English or German texts. The reasons of it is different rules of pronunciation and writing in different languages. In transliteration it is unable to consider features of letter sequences for each language.
