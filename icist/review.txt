@@ -1,0 +1,88 @@
+Reviewer B:
+The paper is well written, with good Technical Quality and sufficient
+references, although some references do not appear in the reference list of
+the article, namely references 4, 5, 8, 9 and 14, which requires some
+attention by the authors. I think it fits the topic of Model-Driven
+Development of the software engineering scope of ICIST 2018. It seems to me
+that **section 5 should be next to section 1** in order to make the content of
+the article clearer. **The cases presented as implementation of the system
+should be more detailed and present concrete results**
+
+------------------------------------------------------
+
+------------------------------------------------------
+Reviewer C:
+
+The article provides an idea of ​​tools designed to create an IS by
+adhering to MDA and LOD principles. The idea is really interesting, **but not
+clearly described**.
+
+The article contains a lot of text that attempts to explain the idea, but
+**lacks the essential details that reveal the rationality of the idea**. The
+article as it is written does not allow the reader to **understand and
+appreciate how the proposed solution really works**. Experimental evaluation
+is also lacking - it is not enough to mention what kind of application the
+tools mentioned above were used.
+
+A couple of questions that arise when reading the paper (there are more).
+Authors write:
+
+- "MDA PIM is expressed as a set of UML diagrams (Class Diagram, State
+Diagram, etc.)." Is the solution really working with **any set of UML**
+diagrams, with any set of models (PIM) expressed in the UML notation?
+
+- "All the PIM elements are defined as ontology resources, i.e. with URI
+references to LOD terms. ". Can any **PIM element be linked to the LOD term**?
+**Which LOD vocabularies are used**?
+
+By the way, the author's solution is based on the use of MDA and UML models.
+However in the paper a free notation is used to **reveal the idea. Why not use
+UML diagrams**?
+
+
+------------------------------------------------------
+
+------------------------------------------------------
+Reviewer D:
+
+The paper discusses the use of Model Driven Architecture and Linked Open
+Data, and Semantic Web, technologies (ontology) for the development of
+information systems.
+
+Comments:
+
++ - use no references in abstract
+
+- how does your approach addresses the security concerns?
+
+- how does your method addresses the problem of software evolution and
+changing requirements, and the need to introduce changes into systems?
+
+- provide some practical (or illustrative) examples, how your approach could
+be applied
+
+- cite relevant references:
+
+Rhazali, Y., Hadi, Y., Chana, I., Lahmer, M., & Rhattoy, A. (2018). A model
+transformation in model driven architecture from business model to web
+model. IAENG International Journal of Computer Science, 45(1), 104-117.
+
+Hamid, B., & Weber, D. (2018). Engineering secure systems: Models, patterns
+and empirical validation. Computers and Security, 77, 315-348.
+doi:10.1016/j.cose.2018.03.016
+
+Tragatschnig, S., Stevanetic, S., & Zdun, U. (2018). Supporting the
+evolution of event-driven service-oriented architectures using change
+patterns. Information and Software Technology, 100, 133-146.
+
+Bouougada, B., Bouchiha, D., & Malki, M. (2015). A framework for
+reengineering web applications into linked data based on MDA. Paper
+presented at the ACM International Conference Proceeding Series, ,
+23-25-November-2015 doi:10.1145/2816839.2816880
+
+Štuikys, V., & Damaševičius, R. (2013). Meta-program development as a
+model transformation process doi:10.1007/978-1-4471-4126-6_11
+
+Štuikys, V., Damaševičius, R., & Targamadze, A. (2010). A model-driven
+view to meta-program development process. Information Technology and
+Control, 39(2), 89-99.
