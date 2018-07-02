@@ -101,7 +101,7 @@ University of Novi Sad, Technical faculty "Mihajlo Pupin", \DJ{}ure \DJ{}akovi\'
  Zrenjanin, 23000, Serbia  \and
 %Irkutsk State University, 20 Gagarina Avenue, 664002, Russia \and
 National Research Irkutsk State Technical University, 83 Lermontov Street, 664074, Russia\\
-\email{eugeneai@icc.ru,digger@istu.edu,ljubica.kazi@gmail.com}%
+\email{\href{mailto:eugeneai@icc.ru}{eugeneai@icc.ru},\href{mailto:digger@istu.edu}{digger@istu.edu},\href{mailto:ljubica.kazi@gmail.com}{ljubica.kazi@gmail.com}}%
 }
 
 % make the title area
@@ -120,16 +120,16 @@ Model Driven Architecture (MDA) is a software development methodology based on t
 
 Linked Open Data (LOD) \cite{Bizer} technology has been suggested by W3C consortium to represent the semantic information in the published web content in a way that provides not only the possibility of its processing with software agents (Semantic Web), but also to link all available information into a single semantic graph using relations and global universal identifiers (URIs) of resources. The descriptive capabilities of semantic web technologies, HTML5 document publishing tools, and LOD technologies form an infrastructural basis for, \emph{e.g.}, authoring and publishing documents \cite{Capadisli}. The LOD provide a logical markup for the information presented in a document, informative basis for the different variants of visual representation and interpretation, logical connections with other documents, export information into other documents, procedural processing, \emph{etc.} An important advantage of LOD usage in information environments is weakening of the requirements to the information warehouses: the document itself is a formalized data warehouse \cite{Cherk}. In some extent, this allows reallocation of the time spent on designing the database structure for storage of partially formalized documents to the process of solving a domain problem: the user (developer) markups the document text data with semantic meaning.
 
-From the software designer point of view, LOD technologies allow development of program systems represent common and frequently used structures and data via common ontologies and web protocols \cite{Cherk}.  An application of semantic models at run time \cite{Kopay} allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.  LOD data can be used for description of various contexts and aspects (see, Aspect-Oriented Programming) interface elements, their behavior, data security, transactions, and so on.
+From the software designer point of view, LOD technologies allow development of program systems represent common and frequently used structures and data via common ontologies and web protocols \cite{Cherk}.  An application of semantic models at run time \cite{Kopay} allowed software designers to partially cope with problem of requirements and data structure evolution in lifespan of information systems.  A part of system configuration (static or dynamic) is build on domain ontology model interpretation, thus modifying information system behavior, resulting in a wider flexibility of system functioning.  LOD data can be used for description of various contexts and aspects, interface elements, their behavior, user access regulation, transactions, and so on.
 
-We distinct four popular approaches of implementing Platform independent model (PIM) to Platform specific model (PSM) transformation, taking into account the runtime and other implementation platform features.  The first approach is model-to-model transformation with a model transformation language, such as QVT-X, ATL, \emph{etc.}  In this case PIM and resulting PSM are represented as XMI files.  Model transformation language rules recognizes structures in PIM and construct structures of PSM, having account various Boolean conditions calculated with helper rules. The second variant of transformation is realized with Domain Specific Language (DSL) infrastructure \cite{stratego}.  The transformation procedure is presented as translation of one DSL instance, \emph{i.e.} PIM, to an instance in another language.
+We distinct four popular approaches of implementing Platform independent model (PIM) to Platform specific model (PSM) transformation, taking into account the runtime and other implementation platform features.  The first approach is model-to-model transformation with a model transformation language, such as QVT-X, ATL, \emph{etc.}  In this case PIM and resulting PSM are represented as XMI files.  Model transformation language rules recognizes structures in PIM and construct structures of PSM, having account various \texttt{boolean} conditions calculated with helper rules. The second variant of transformation is realized with Domain Specific Language (DSL) infrastructure \cite{stratego}.  The transformation procedure is presented as translation of one DSL instance, \emph{i.e.} PIM, to an instance in another language.
 
-The third approach is a library-based one, it allows deigning the resulting PSM and the source code easy enough.  Transformation functions from a library are applied to predicates or complex structures as subtasks. Usage of interpreted or ahead-of-time-compilation languages as Python, Perl, PHP, ASP.NET, JavaScript, HTML as a target language for PSMs decreases the development time and make it less complex.  Thus, application of the libraries is the direct interaction of PIM as a superposition of applied function.  The fourth approach is the multistage transformation of the source PIM \cite{tereh1} on the base of logical inference.  The transformation is declared as a logical theory and a scenario of subgoals to be achieved.
+The third approach is a library-based one, it allows deigning the resulting PSM and the source code with functions from a library that are applied to predicates or complex structures as subtasks. Usage of interpreted or ahead-of-time-compilation languages as Python, Perl, PHP, ASP.NET, JavaScript, HTML as a target language for PSMs decreases the development time and make it less complex.  Thus, application of the libraries is the direct interaction of PIM as a superposition of applied function.  The fourth approach is the multistage transformation of the source PIM \cite{tereh1} on the base of logical inference.  The transformation is declared as a logical theory and a scenario of subgoals to be achieved.
 
-The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA PIM is expressed as a set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}).  PIM forms a graph and a namespace of LOD space.  All the PIM elements are defined as ontology resources, \emph{i.e.} with URI references to LOD terms.  This allows us to translate PIM UML model to a set of triples and store them in an ontology warehouse for further transformation into a PSM. %The stage of PIM design is very important as it in principle provides an evolution of the information system implementation within the development of the programming technologies in the future. %This means that correct and fully described PIM has more value versus PSM.
+The present research deals with developing software instrumental tools for general design of information systems using both Model Driven Architecture (MDA) and LOD \cite{MDA}.  MDA PIM is expressed as a set of UML diagrams (Class Diagram, State Diagram, \emph{etc.}) logically connected with rules of transformations.  PIM forms an RDF graph instance that can be assigned a namespace.  All the PIM elements are defined as A-Box ontology resources, \emph{i.e.} with URI references to LOD terms in a namespace of XMI standard.  The graph is stores in an ontology warehouse for further transformation into a PSM. %The stage of PIM design is very important as it in principle provides an evolution of the information system implementation within the development of the programming technologies in the future. %This means that correct and fully described PIM has more value versus PSM.
 The ClioPatria ontology server and the SWI Prolog language \cite{Clio} are used as tools of PIM and PSM storage, querying and processing.
 
-The simplest way of implementation is to use \textsc{Prolog} or a functional language, and we use \textsc{Logtalk}, a macro package of the Prolog logical language.  The main advantage of the language usage is knowledge structuring thanks to its object-orientation.  Objects are used for representation of the source PIM model and the resulting PIM structures as well as source generators.  Moreover, the transformation objects is easily integrated with the libraries processing LOD and LOD warehouses.
+The direct way of a transformation implementation is to use \textsc{Prolog} or a functional language, and we use \textsc{Logtalk}, a macro package of Prolog.  The main advantage of the language usage is knowledge structuring thanks to its object-orientation.  Objects are used for representation of the source PIM model and the resulting PIM structures as well as source code generators.  Moreover, the transformation rules are easily integrated with libraries processing LOD and LOD warehouses.
 
 The aim of this research is to construct tools for developing information systems with joint of MDA and LOD technologies in an indivisible cooperation.
 
@@ -139,18 +139,18 @@ The aim of this research is to construct tools for developing information system
 
 The most widely used technology of model transformation is ATL (ATLAS Transformation Language) \cite{atl} and its predecessor QVT, a OMG standard \cite{QVT}.  The language and its engine supports conversion from one XMI model to another one in the same format.  The language structures describe recognition of properties of compositions of the source model and direct construction of new structures in the target model accounting the property values.
 
-The ATL is supported with visual tools for rule construction.  The tools are integrated in Eclipse IDE.  Similar to ATL, Transformation Model Representation Language (TMRL) is developed in \cite{nikita} but oriented on knowledge visual representation with following conversion them in various production rule languages (CLIPS, OWL).  The visual presentation of transforming rules are used also in \cite{GT}, where a general approach is adopted for the purpose.  In a recent paper \cite{azis}, ATL is used to transform Computational Independent Model (CIM) represented as BPMN diagram into set of UML diagrams, defining PIM.  In \cite{uml2owl}, a converter of UML package structures represented in XMI was developed as a XSLT transformation.
+The ATL is supported with visual tools for rule construction.  The tools are integrated in Eclipse IDE.  Similar to ATL, Transformation Model Representation Language (TMRL) is developed in \cite{nikita} but oriented on knowledge visual representation with following conversion in various production rules in CLIPS and OWL.  The visual presentation of transforming rules are used also in \cite{GT}, where a general approach is adopted for the purpose.  In a recent paper \cite{azis}, ATL is used to transform Computational Independent Model (CIM) represented as BPMN diagram into set of UML diagrams, defining PIM.  In \cite{uml2owl}, a converter of UML package structures represented in XMI was developed as a XSLT transformation.
 
 OMG proposed ODM standard \cite{odmprof} for knowledge modeling.  A Visual Ontology Modeler \cite{odnext} is being developed for building and verifying OWL ontologies for ODM~1.0, as well as in the reverse direction, ontologies are represented as UML Class Diagrams \cite{odmvis}.
 
-In our approach we use the structurally simplest language, Prolog, and its infrastructure, which is capable to load various model sources, including XMI, semantic graphs, \emph{etc.} with corresponding import module, as well as processing them \emph{em masse}, organizing multi-stage modular transformations.
+An XML based specifications are used in representing metadata about web services, WSDL \cite{wsdl}, and the WS-BPEL language \cite{wsbpel} for describing orchestration of web services within execution of an instance of a business process.  The idea of the language is to describe complex systems down to Web Services units, their internal and external structure and behavior, as well as services interaction in the script instance.
 
-An XML based specifications are used in representing metadata about web services, WSDL \cite{wsdl}, and the WS-BPEL language \cite{wsbpel} for describing orchestration of web services within execution of an instance of a business process.  The idea of the language is to describe complex systems down to Web Services units, their internal and external structure and behavior, as well as services interaction in the script instance.  Our project concentrates on programming in the small aspect of information system development, \emph{i.e.} dealing with modeling and implementation software components composing the services.
+In our approach we use the structurally simplest language, Prolog, and its infrastructure, which is capable to load various model sources, including XMI, semantic graphs, \emph{etc.} with corresponding import module, as well as their processing \emph{em masse}, organizing multi-stage modular transformations. We also concentrate our efforts on programming in the small aspect of information system development, \emph{i.e.} dealing with modeling and implementation software components composing the services.
 
 \section{Transformation software architecture}
 \label{sec:arch}
 
-The architecture of the system is presented in Fig.~\ref{fig:arch}.  The PIM is designed with an UML editor.  We use Modelio \cite{modelio} as it contains means for formal definition of structured stereotypes, and it is open-sourced.  The model of an information system is converted in a RDF graph encapsulated in a Logtalk object.  The set of such objects are passed to the Transformation subsystem that is represented as a hierarchy of modules.  The subsystem queries server storage of ontologies and library rules stored on the server via Pengines interface module.  Library rules represent query helpers, which allow server-side preprocessing of the queries in its Inference machine.
+The architecture of the system is presented in Fig.~\ref{fig:arch}.  The PIM is designed with an UML editor as a set of diagrams.  We use Modelio \cite{modelio} as it contains means for formal definition of structured stereotypes, and it is open-sourced.  The model of an information system is converted in a RDF graph encapsulated in a Logtalk object.  The set of such objects are passed to the Transformation subsystem that is represented as a hierarchy of modules.  The subsystem queries server storage of ontologies and library rules stored on the server via Pengines interface module.  Library rules represent query helpers, which allow server-side preprocessing of the queries in its Inference machine.
 
 \begin{figure}[t]
   \centering
@@ -159,20 +159,18 @@ The architecture of the system is presented in Fig.~\ref{fig:arch}.  The PIM is 
   \label{fig:arch}
 \end{figure}
 
-The server is being implemented on the base of ClioPatria ontology storage, which in turn is realized with SWI-Prolog programming system with some C language subroutines.  The ontology database supports durable storage and transactional querying as well as text search facility.  ClioPatria SPARQL queries execution subsystem operates in a federated regime out of the box.  The usage of Prolog based infrastructure for triple processing significantly reduces the structural and semantic complexity of whole system. It supports several formats of compact storage of ontological data.  The Pengines subsystem organizes a secure access to the triples from clients, it is implemented as a simple protocol on top of HTTP.  There are a number of implementation libraries for the protocols for popular programming languages, including client-side Prolog, JavaScript, Java, Python.
+The server is being implemented on the base of ClioPatria ontology storage, which in turn is realized with SWI-Prolog programming system with some C language subroutines.  The ontology database supports durable storage and transactional querying as well as text search facility.  ClioPatria SPARQL queries execution subsystem operates in a federated regime out of the box.  The usage of Prolog based infrastructure for triple processing significantly reduces the structural and semantic complexity of whole system. It supports several formats of compact storage of ontological data.  The Pengines subsystem organizes a regulated access to the triples from clients, it is implemented as a simple protocol on top of HTTP.  %There are a number of implementation libraries for the protocols for popular programming languages, including client-side Prolog, JavaScript, Java, Python.
 
 Ontologies are loaded into ClioPatria via its web interface, or by means of startup script with a library predicates.  ClioPatria has a simple interface for ontology browsing, transaction management, triple search by its literal values, and triple graph visualization for subset of triples.  The system has tools for SPARQL query testing and debugging.
 
-\section{Implementation}
+\section{Implementation of transformation}
 \label{sec:impl}
 
-The transformation is implemented as a Logtalk library integrated with a RDF storage.  All the data processing is under control of SWI-Prolog.  In our research we suppose that the input of the process is PIM, a set of logically linked UML-diagrams, ontologies and data stored in the warehouse of ontologies as well as other databases.  These data sources are assembled in a PIM with a data description scenario represented as process of PSM generation out of the sources.
+The transformation is implemented as a Logtalk library integrated with a RDF storage.  All the data processing is under control of SWI-Prolog.  No special DSL languages like ATL are needed, as we can do generalizations in LogTalk.  PIM logical structure is defined as a set of sources: UML-diagrams, ontologies and data stored in the warehouse of ontologies as well as other databases.  Logical connections of the elements of the sources are defined in a transformation program as well as the scenario of transformation.  The output of the transformation is a set of configured interlinked Logtalk objects representing PSM.  The source codes of the subsystems and the initial states of databases are generated from these object complexes.
 
-The output of the transformation is a set of configured interlinked Logtalk objects representing PSM.  The source codes of the subsystems and the initial states of databases are generated from these object complexes.
+At this stage of the research we implemented a processor of input XMI-2.0 files, which contain the UML-model of an information system, instances of transaction classes.  The XMI files exported by Modelio UML designer consist of a model of the system as a set of top packages, and two profile packages.  One profile package describes local definitions, and another represents the system and code generation configuration.  The import processor converts their DOM trees into corresponding graphs of RDF triples.  Each triple represents one relationship between two structural elements of an UML diagram.  The instances have public interface used to query their graphs for the structural element compositions.
 
-At this stage of the research we implemented a processor of input XMI-2 XML files, which contain the UML-model of an information system, instances of Logtalk classes.  The XMI files exported by Modelio UML designer consist of a model of the system as a set of top packages, and two profile packages.  One profile package describes local definitions, and another represents the system and code generation definitions.  The import processor converts the DOM tree of input XMI into corresponding graphs of triples.  Each triple represents one relationship between two structural elements of an UML diagram.  The instances have public interface used to query their graphs for the structural element compositions.
-
-Platform model (PM) in a broad sense is the transformation procedure implemented as Logtalk components (instances) organized in an hierarchy of transformation modules (Fig.~\ref{fig:modules}) in the image and likeness of our earlier work \cite{tereh1}.  Each component (module) queries the sources and constructs two classes of data: own state of private data and structures of external objects.  Own states, in particular, contain mappings of types between the source and target attributes, the implementation of designer decision on the general way of structure transformation.  Own states, in fact, represent the module configuration of its transformation state.
+Platform model (PM) in a broad sense is the transformation procedure implemented as Logtalk components (instances) organized in an hierarchy of transformation modules (Fig.~\ref{fig:modules}) in the image and likeness of our earlier work \cite{tereh1}.  Each component (module) queries the sources and constructs two classes of data: own state of private data and structures of external objects.  The states, in particular, contain mappings of types between the source and target attributes, the implementation of designer decision on the general way of structure transformation.  %The Own states, in fact, represent the module configuration of its transformation state.
 
 \begin{figure}[t]
   \centering
@@ -183,7 +181,7 @@ Platform model (PM) in a broad sense is the transformation procedure implemented
 
 External objects are structures constructing PSM, \emph{i.e.}, the set or a category of configured objects reflecting PIM structures and target sources and data.  Transformation modules generate the objects as a results of general decisions.  Their configurations are also inferred from the properties of structural elements of PIM and the profile configurations.  The leaf nodes of the hierarchy is the scenario of PSM generation.  The usage of pure logical approach instead of the mix of two languages allowed us to reduce significantly the size and diversity of the PM description.
 
-As soon as the scenario is fulfilled the PSM is converted into source codes and data.  The conversion in \cite{tereh1} was made by means partial application of text templates.  In this case we do not use templates and generate the source code with simple procedures.  SWI-Prolong module index contains a simple template engine module simple-template intended for generation of static HTML pages.  The Prolog system also contain a dictionary-like structures and predicates for dictionary data manipulation, which can be used to represent data to be filled in the templates.  So open-source SWI-Prolog infrastructure is well equipped for developing MDA instruments.
+As soon as the scenario is fulfilled the PSM is converted into source codes and data.  The conversion in \cite{tereh1} was made by means partial application of text templates.  In this case we do not use templates and generate the source code with simple procedures.  SWI-Prolong module index contains a simple template engine module \texttt{simple-template} intended for generation of static HTML pages.  The Prolog system also contain a dictionary-like structures and predicates for dictionary data manipulation, which can be used to represent data to be filled in the templates.  So open-source SWI-Prolog infrastructure is well equipped for developing MDA instruments.
 
 \subsection{Inference of the class structure}
 \label{sec:infstru}
@@ -195,13 +193,11 @@ The main difference of MDA with respect to CASE technologies is the possibility 
 \subsection{Inference of the properties}
 \label{sec:infprop}
 
-One of the interesting application of the Semantic WEB technologies, namely Linked Open Data ones, is the inference of the properties of the generated structural elements.  The properties of PSM elements, \emph{e.g.}, instance attributes, are derived from PIM UML structure elements, \emph{i.e.}, their standard UML definitions, analysis of relations being involved in, features of combinations of associated stereotypes and tag values, as well as knowledge and data obtained from local ontology warehouse and SPARQL queries to other servers (cached for a better performance), for example, to DBPedia.org.
+One of the interesting application of the Semantic WEB technologies, namely Linked Open Data, is the inference of the properties of the generated structural elements.  The properties of PSM elements, \emph{e.g.}, instance attributes, are derived from PIM UML structure elements, \emph{i.e.}, their standard UML definitions, analysis of relations being involved elements, features of combinations of associated stereotypes and tag values, as well as knowledge and data obtained from local ontology warehouse and SPARQL queries to other servers (cached for a better performance), for example, to \texttt{DBPedia.org}.
 
-Consider the user interface template generation for a web or desktop application.  The model of the interface has a description of the structure and a specification of the properties of the constituent widgets.  If we refer from PIM with tag values \texttt{rdf:object} and \texttt{rdf:type} of a special stereotype \texttt{<<DBPedia>>} to a corresponding DBPedia resource we can use the DBPedia subgraph for constructing \texttt{title} and \texttt{placeholder} attributes of an input field.  In principle, we can figure out a label for the user locale.
-
+Consider the user interface template generation for a web or desktop application.  The model of the interface has a description of the structure and a specification of the properties of the constituent widgets.  If we refer from PIM with tag values \texttt{rdf:object} and \texttt{rdf:type} of a special stereotype \texttt{<<DBPedia>>} to a corresponding DBPedia resource we can use the DBPedia subgraph for constructing \texttt{title} and \texttt{placeholder} attributes of an input field.  In principle, we can figure out a label for user's locale.
 %\subsection{Inference of methods}
 %\label{sec:infmeth}
-
 Some UML-structures (OCL) and relations may be interpreted constructively as methods of objects: events, handlers, subscribers, database triggers and selectors (lookups widgets).
 
 % \begin{figure}[t]
@@ -214,10 +210,10 @@ Some UML-structures (OCL) and relations may be interpreted constructively as met
 % \subsection{An example of simple transformation}
 % \label{sec:simpletr}
 
-Consider some transformation rules. In order to import PIM we need to create holding instance \texttt{sample} and initialize it.
+Consider some transformation rules. In order to import PIM we need to create holding instance \texttt{sample} and initialize it. In this a very simple example it is class \texttt{Person} in a Class diagram.
 \begin{minted}{logtalk}
 :- object(sample,instantiates(packageclass)).
-:- initialization((::load_file('sample.xmi'), ::reg_prefixes,::process)).
+:- initialization((::load_file('sample.xmi'),::reg_prefixes,::process)).
 :- end_object.
 \end{minted}
 At the import stage, the source XMI converted into a graph.  We show its small part in the turtle format.
@@ -240,7 +236,7 @@ Construction of the target class is realized by querying the graph with a parame
 \begin{minted}{logtalk}
 % ?- direct(sample,lp,cp)::tr(class,person,ID).
 :- object(direct(_Package, _Local, _Code)).
-tr(class, Class, ClassID):- ::package(Package), % get PIM
+tr(class, Class, ClassID):- ::package(Package), % obtain a PIM
   query(Package)::class(Name, ClassID),
   ::new(Class, [instantiates(class)]),
   ::new(Attributes,[instantiates(params)]),
@@ -258,12 +254,12 @@ class(N, ID):- ::xmi(X), % the parameter N=Name, X=XMI
 :- end_object.
 \end{minted}
 
-Target structures constructed by blocks of elements and other blocks like in Python \texttt{llvmlite} library.  New \texttt{item}s are appended or prepended in a block.  Rendering the sources is realized with methods of construction classes.
+Target structures constructed by blocks of elements and other blocks like in \texttt{llvmlite} library.  New \texttt{item}s are appended or prepended in a block.  Rendering the sources is realized with methods of construction classes.
 
 \begin{minted}{logtalk}
 :- object(class, specializes(code_block)).
 renderitem(Item, Result):- ^^renderitem(Item, Result). % call parent.
-render(Result):- ^^render(Name), % .....
+render(Result):- ^^render(Name), .....
  root::indent, % Python block indentation
  (  ::item(attributes(Attributes))-> Attributes::render(DAttrs),
        root::iswritef(ConstructorDef, 'def __init__(self, %w):',[DAttrs]),
@@ -274,10 +270,10 @@ render(Result):- ^^render(Name), % .....
     AttrList=[ConstructorDef|AttrAssigns];
     root::iswritef(ConstructorDef, 'def __init__(self):', []),
     root::indent, root::iswritef(Pass,'pass', []),
-    root::unindent, AttrList=[ConstructorDef, Pass]),
-  % .....
+    root::unindent, AttrList=[ConstructorDef, Pass]    ),
+   .....
   lists::append(AttrList, Methods, StringList), root::unindent,
-  Result=[Signature | StringList].
+  Result=[Signature | StringList]. % Join source lines.
 :- end_object.
 \end{minted}
 
@@ -296,15 +292,15 @@ class Person:
 \section{Applications}
 \label{sec:app}
 
-The described MDA tools are used and will be used in a number of interesting projects.  The first project was to synthesize a Python interface driver of a cash register for a ticket system in a private cinema.
+The described MDA tools are used in a number of interesting projects.  The first project was to synthesize a Python interface driver of a cash register for a ticket system in a private cinema.
 
 In the only Russian commercial planetary, a problem of connecting new cash register to a \emph{ad hoc} ticket and billing system arose.  The resources were limited by two weeks for main development and one programmer.  There was an old version of a program for the previous cash machine, a documentation to the new one, as well as test utility implementing the protocol obtained from vendor driver pack.  The description of the protocol in the manual was not precise: the sense of some fields were not understandable, the description of the automatons modeling the behavior in communications was too abstract, the documentation described two versions of the protocol, programmer has no previous experience with control of cash machines.
 
-The decision of application of the MDA was made after the first investigation of the situation.  The protocol commands and the automatons were represented as UML Class and State diagrams.  After the application of the transformation adapted modules an interface component was generated.  The component encoded API call of a command into the bytes of protocol string and decoded the answer byte string from the cash machine into the answer object.  The interaction automaton of the computer and the cash device converted to a state machine with special states denoting exceptions, \emph{i.e.} undocumented and faulty behavior.  Tree levels of the interaction has been implemented: low-level protocol for message exchange, middle-level automaton cash machine state control and computer synchronization, and high-level algorithm implementing cash machine usage in fiscal operations.
+The decision of application of the MDA was made after the first investigation of the situation.  The protocol commands and the automatons were represented as UML Class and State diagrams.  After the application of the transformation adapted modules an interface component was generated.  The component encoded API call of a command into the bytes of protocol string and decoded the answer byte string from the cash machine into the answer object.  The interaction automaton of the computer and the cash device converted to a state machine with special states denoting exceptions related to undocumented and faulty behavior.  Tree levels of the interaction has been implemented: low-level protocol for message exchange, middle-level automaton cash machine state control and computer synchronization, and high-level algorithm implementing cash machine usage in fiscal operations within internet ticket booking system.
 
 The low- and middle-level interaction were tested on dumped data of the test tool.  The tests showed the protocol documentation mistakes and version variant.  It also helped in PM and PIM refinement.  The first two levels of interaction started functioning in two weeks.  Another reserved two weeks was devoted to refinement of the fiscal operation, ticked printing design and deployment.
 
-The second active project is a technological support of the development of New Generation Sequencing computation infrastructure for investigation of lake Baikal microbiome.  The investigation is a composition of elementary bioinfomatic operations implemented by external software like Mothur and R.  The generative tools are used to describe the operations as elements of a dataflow graph \cite{dataflow}.  Each operation communicates other ones with connections of ports.  The internal structures of its ports and parameters are represented with classes of UML Class Diagram.  The PM adopted to generate set of stub Java classes reflecting Mothur operations of Rapidminer Studio.  LOD is used to supply user descriptions in user interface for the operations.
+The second active project is a technological support of the development of New Generation Sequencing computation infrastructure for investigation of lake Baikal microbiome.  The investigation is a composition of elementary bioinfomatic operations implemented by external software like Mothur and R.  The developed tools are used to describe the operations as elements of a dataflow graph \cite{dataflow}.  Each operation communicates other ones with connections of ports.  The internal structures of its ports and parameters are represented with classes of UML Class Diagram.  The PM adopted to generate set of stub Java classes reflecting Mothur operations of Rapidminer Studio.  LOD is used to supply user descriptions in user interface for the operations.
 
 %FIXME: Extend here till fill of 12th page.
 
@@ -325,9 +321,9 @@ The second active project is a technological support of the development of New G
 
 \section{Conclusion}
 
-We considered an implementation and applications of indivisible usage of Model Driven Architecture and Linked Open Data, a Semantic Web, technologies in developing software on the base of model transformation.  The transformation is realized as a hierarchy of objects represented in Logtalk.  Results of analysis of the source model and synthesis of the target one are obtained with logical inference.
+We considered an implementation and applications of usage of Model Driven Architecture and Linked Open Data, a Semantic Web, technologies in developing software on the base of model transformation.  The transformation is realized as a hierarchy of objects represented in LogTalk, a macro package of Prolog.  Results of analysis of the source model and synthesis of the target one are obtained with logical inference.
 
-Usage of logical programming language simplifies the transformation procedure programming, the programmer is allowed to express semantics of recognized structures as properties of objects, manipulate object properties further. It also allows us to integrate the transformations with other Prolog libraries and services without usage of special language structures.
+Usage of logical programming language simplifies the transformation procedure programming, the programmer is allowed to express semantics of recognized structures as properties of objects, manipulate object properties further. It also allows us to integrate the transformations with other Prolog libraries and services without usage of special language structures. The transformation logically connect elements of source objects: UML diagrams, RDF A- and T-boxes, LogTalk modules, which are just structures to be processed accounting to a scenario.
 
 The approach is being tested in software development processes for synthesis of business-objects of information systems carcasses, interface modules for a protocol, as an ontology development tool, \emph{etc.} Further development of the software is aimed at extending transformation modules, creating libraries of platform descriptions for open-source frameworks, develop techniques of change propagation, and developing open-source UML editors to support UML~2.5 profile specification \cite{uml25} and XMI export.
 
