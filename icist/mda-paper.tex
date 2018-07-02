@@ -86,26 +86,23 @@
 %\renewcommand\IEEEkeywordsname{Keywords}
 %\DeclareRobustCommand*{\IEEEauthorrefmark}[1]{\raisebox{0pt}[0pt][0pt]{\textsuperscript{\footnotesize #1}}}
 \author{%
-%   Evgeny Cherkashin\inst{1,2,5,6},
-% Alexey Kopaygorodsky\inst{3,6},
-% Ljubica Kazi\inst{4},
-% Alexey Shigarov\inst{1,2},
-% Vyacheslav Paramonov\inst{2,5}
-% and
-% Boris Shevchenko\inst{6}%
-  Authors ommitted
+  Evgeny Cherkashin\inst{1,2,5},
+Alexey Kopaygorodsky\inst{3,5},
+Ljubica Kazi\inst{4},
+Alexey Shigarov\inst{1,2},
+and
+Vyacheslav Paramonov\inst{2}
 }
 %\authorrunning{E.~Cherkashin, A.~Kopaygorodsky, L.~Kazi et al.}
 \institute{%
-  Affiliation ommitted
-%%%%% Irkutsk Scientific Center of SB RAS, 134 Lermontov Street, 664033, Russia \and
-%%%%% Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, 664033, Russia \and
-%%%%% Melentiev Energy Systems Institute of SB RAS, 130 Lermontov Street, 664033, Russia \and
-%%%%% University of Novi Sad, Technical faculty "Mihajlo Pupin", \DJ{}ure \DJ{}akovi\'ca bb,
-%%%%%  Zrenjanin, 23000, Serbia  \and
-%%%%% Irkutsk State University, 20 Gagarina Avenue, 664002, Russia \and
-%%%%% National Research Irkutsk State Technical University, 83 Lermontov Street, 664074, Russia\\
-%%%%% \email{eugeneai@icc.ru,digger@istu.edu,ljubica.kazi@gmail.com}%
+Irkutsk Scientific Center of SB RAS, 134 Lermontov Street, 664033, Russia \and
+Matrosov Institute for System Dynamics and Control Theory of SB RAS, 134 Lermontov Street, 664033, Russia \and
+Melentiev Energy Systems Institute of SB RAS, 130 Lermontov Street, 664033, Russia \and
+University of Novi Sad, Technical faculty "Mihajlo Pupin", \DJ{}ure \DJ{}akovi\'ca bb,
+ Zrenjanin, 23000, Serbia  \and
+%Irkutsk State University, 20 Gagarina Avenue, 664002, Russia \and
+National Research Irkutsk State Technical University, 83 Lermontov Street, 664074, Russia\\
+\email{eugeneai@icc.ru,digger@istu.edu,ljubica.kazi@gmail.com}%
 }
 
 % make the title area
@@ -116,7 +113,6 @@ We consider tools for developing information systems with use of Model Driven Ar
 The tools will allow us to mediate the MDA static means of code generation and configuration at development stage with the techniques of flexible data structure processing at run time, thus, producing even more productive information system development and maintenance techniques.  This research corresponds to nowadays direction of Semantic Web Software Engineering.
 \keywords{model driven architecture; linked open data; logic programming; knowledge based systems}
 \end{abstract}
-
 
 \section{Introduction}
 % no \IEEEPARstart
@@ -138,6 +134,19 @@ The simplest way of implementation is to use \textsc{Prolog} or a functional lan
 
 The aim of this research is to construct tools for developing information systems with joint of MDA and LOD technologies in an indivisible cooperation.
 
+
+\section{Related technologies and standards}
+\label{sec:rel}
+
+The most widely used technology of model transformation is ATL (ATLAS Transformation Language) \cite{atl} and its predecessor QVT, a OMG standard \cite{QVT}.  The language and its engine supports conversion from one XMI model to another one in the same format.  The language structures describe recognition of properties of compositions of the source model and direct construction of new structures in the target model accounting the property values.
+
+The ATL is supported with visual tools for rule construction.  The tools are integrated in Eclipse IDE.  Similar to ATL, Transformation Model Representation Language (TMRL) is developed in \cite{nikita} but oriented on knowledge visual representation with following conversion them in various production rule languages (CLIPS, OWL).  The visual presentation of transforming rules are used also in \cite{GT}, where a general approach is adopted for the purpose.  In a recent paper \cite{azis}, ATL is used to transform Computational Independent Model (CIM) represented as BPMN diagram into set of UML diagrams, defining PIM.  In \cite{uml2owl}, a converter of UML package structures represented in XMI was developed as a XSLT transformation.
+
+OMG proposed ODM standard \cite{odmprof} for knowledge modeling.  A Visual Ontology Modeler \cite{odnext} is being developed for building and verifying OWL ontologies for ODM~1.0, as well as in the reverse direction, ontologies are represented as UML Class Diagrams \cite{odmvis}.
+
+In our approach we use the structurally simplest language, Prolog, and its infrastructure, which is capable to load various model sources, including XMI, semantic graphs, \emph{etc.} with corresponding import module, as well as processing them \emph{em masse}, organizing multi-stage modular transformations.
+
+An XML based specifications are used in representing metadata about web services, WSDL \cite{wsdl}, and the WS-BPEL language \cite{wsbpel} for describing orchestration of web services within execution of an instance of a business process.  The idea of the language is to describe complex systems down to Web Services units, their internal and external structure and behavior, as well as services interaction in the script instance.  Our project concentrates on programming in the small aspect of information system development, \emph{i.e.} dealing with modeling and implementation software components composing the services.
 
 \section{Transformation software architecture}
 \label{sec:arch}
@@ -325,33 +334,20 @@ The second active project is a technological support of the development of New G
 
 %FIXME: Extend here till fill of 12th page.
 
-\subsection{Future projects}
-\label{sec:futuretargets}
+% \subsection{Future projects}
+% \label{sec:futuretargets}
 
-The LOD technologies will be used in development of an extension module for Electronic Medical Record (EMR) subsystem in Irkutsk Regional Oncological Dispancery.  The aim of development is to incorporate into the diagnosis texts a markup that can be used in expert decision-making procedures, \emph{e.g.}, for quality control.
+% The LOD technologies will be used in development of an extension module for Electronic Medical Record (EMR) subsystem in Irkutsk Regional Oncological Dispancery.  The aim of development is to incorporate into the diagnosis texts a markup that can be used in expert decision-making procedures, \emph{e.g.}, for quality control.
 
-A patient must be specially prepared for surgery: a set of tests must be taken, the tests must correspond to criteria, the patient must be properly hospitalized, special preparatory procedures must be carried out, \emph{etc.}  All results are filled in check lists.   If patient's check list satisfies the conditions the patient is allowed to be surgically operated.  After the surgery a set of new manipulations are to be carried out.
+% A patient must be specially prepared for surgery: a set of tests must be taken, the tests must correspond to criteria, the patient must be properly hospitalized, special preparatory procedures must be carried out, \emph{etc.}  All results are filled in check lists.   If patient's check list satisfies the conditions the patient is allowed to be surgically operated.  After the surgery a set of new manipulations are to be carried out.
 
-The stated development is the very place for our MDA tools and LOD technologies application.  The EMR text field of the test results and diagnoses is used to store semiformalized representation of the input data for check lists.  The EMRs are divided into classes (types), and we can associate the type and its text LOD markup template.  The set of the attributes for each type is defined as classes of UML Class Diagram.  Check lists and set of after-surgery operation are represented as classes as well.  The input, check list, and new operations are joined in a special relation forming templates describing one quality control and planing module.
+% The stated development is the very place for our MDA tools and LOD technologies application.  The EMR text field of the test results and diagnoses is used to store semiformalized representation of the input data for check lists.  The EMRs are divided into classes (types), and we can associate the type and its text LOD markup template.  The set of the attributes for each type is defined as classes of UML Class Diagram.  Check lists and set of after-surgery operation are represented as classes as well.  The input, check list, and new operations are joined in a special relation forming templates describing one quality control and planing module.
 
-Thus, the usage of MDA in this task will allow incremental improvement of the quality control by means of visual construction of the templates.  Using LOD allows us to develop the main EMR, and the quality control and planning subsystems absolutely independently, effectively hiding complex behavior of EMR texts from main middle-ware and database structures.  It simplifies also the structure of the main database.
+% Thus, the usage of MDA in this task will allow incremental improvement of the quality control by means of visual construction of the templates.  Using LOD allows us to develop the main EMR, and the quality control and planning subsystems absolutely independently, effectively hiding complex behavior of EMR texts from main middle-ware and database structures.  It simplifies also the structure of the main database.
 
-Another interesting project is a development of a recommender system for the Irkutsk region real estate market.  The aim is to implement user means for assisting in decision making and choice refinement.  The real estate objects (flats, houses, offices) have various attributes, which used to describe the objects.  Each type of the objects are to be represented as classes in PIM, as well as the features of the user.
+% Another interesting project is a development of a recommender system for the Irkutsk region real estate market.  The aim is to implement user means for assisting in decision making and choice refinement.  The real estate objects (flats, houses, offices) have various attributes, which used to describe the objects.  Each type of the objects are to be represented as classes in PIM, as well as the features of the user.
 
-The attributes, features, and their relation constructed on the base of a domain ontology are the basis of logical processing of the database data and measuring the user interest to the object.  In this case the transformation modules convert the input XMI-data into a subgraph of A-box of Irkutsk region real estate domain ontology and into interface classes describing entities of BrightstarDB object-RDF mapping database.  The LOD is added as resource references to the external ontologies and individual resources.  Thus, in this case the MDA tools are used as ontology modeling software.
-
-\section{Related technologies and standards}
-\label{sec:rel}
-
-The most widely used technology of model transformation is ATL (ATLAS Transformation Language) \cite{atl} and its predecessor QVT, a OMG standard \cite{QVT}.  The language and its engine supports conversion from one XMI model to another one in the same format.  The language structures describe recognition of properties of compositions of the source model and direct construction of new structures in the target model accounting the property values.
-
-The ATL is supported with visual tools for rule construction.  The tools are integrated in Eclipse IDE.  Similar to ATL, Transformation Model Representation Language (TMRL) is developed in \cite{nikita} but oriented on knowledge visual representation with following conversion them in various production rule languages (CLIPS, OWL).  The visual presentation of transforming rules are used also in \cite{GT}, where a general approach is adopted for the purpose.  In a recent paper \cite{azis}, ATL is used to transform Computational Independent Model (CIM) represented as BPMN diagram into set of UML diagrams, defining PIM.  In \cite{uml2owl}, a converter of UML package structures represented in XMI was developed as a XSLT transformation.
-
-OMG proposed ODM standard \cite{odmprof} for knowledge modeling.  A Visual Ontology Modeler \cite{odnext} is being developed for building and verifying OWL ontologies for ODM~1.0, as well as in the reverse direction, ontologies are represented as UML Class Diagrams \cite{odmvis}.
-
-In our approach we use the structurally simplest language, Prolog, and its infrastructure, which is capable to load various model sources, including XMI, semantic graphs, \emph{etc.} with corresponding import module, as well as processing them \emph{em masse}, organizing multi-stage modular transformations.
-
-An XML based specifications are used in representing metadata about web services, WSDL \cite{wsdl}, and the WS-BPEL language \cite{wsbpel} for describing orchestration of web services within execution of an instance of a business process.  The idea of the language is to describe complex systems down to Web Services units, their internal and external structure and behavior, as well as services interaction in the script instance.  Our project concentrates on programming in the small aspect of information system development, \emph{i.e.} dealing with modeling and implementation software components composing the services.
+% The attributes, features, and their relation constructed on the base of a domain ontology are the basis of logical processing of the database data and measuring the user interest to the object.  In this case the transformation modules convert the input XMI-data into a subgraph of A-box of Irkutsk region real estate domain ontology and into interface classes describing entities of BrightstarDB object-RDF mapping database.  The LOD is added as resource references to the external ontologies and individual resources.  Thus, in this case the MDA tools are used as ontology modeling software.
 
 \section{Conclusion}
 
@@ -378,18 +374,18 @@ The results obtained with the use of the network infrastructure of Telecommunica
 \bibitem{SWEB} Semantic WEB Software Engineering. URL:\url{http://www.webist.org/Documents/Previous\_Invited\_Speakers/2012/WEBIST2012\_Pan.pdf}. Book: \url{https://www.iospress.nl/book/semantic-web-enabled-software-engineering/}.
 \bibitem{Bizer} \textbf{Ch. Bizer, T. Heath, T. Berners-Lee.} Linked Data -- The Story So Far. \emph{Semantic Web and Information Systems}. 2009. Vol. 5 (3). pp.~1--22.
 \bibitem{Capadisli} \textbf{S. Capadisli, S., Guy, A., Verborgh, R., Lange, C., Auer, S., Berners-Lee, T.} Decentralised Authoring, Annotations and Notifications for a Read-Write Web with dokieli, In: Cabot J., De Virgilio R., Torlone R. (eds) \emph{Web Engineering. ICWE 2017. Lecture Notes in Computer Science.} vol 10360. Springer, Cham. Preprint URL:\url{http://csarven.ca/dokieli-rww}, DOI:\url{10.1007/978-3-319-60131-1_33}.
-\bibitem{Cherk} % \textbf{E. Cherkashin, I. Orlova.} Instrumental tools for construction of the digital archives of the documents based on Linked Data. \emph{Modern technologies, System analysis, Modeling.} 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, URL:\url{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}
-\bibitem{Kopay} % \textbf{A. Kopaygorodsky.} Use of ontologies in semantic information systems. \emph{Ontology of Design.} 4(14), 2014, pp.~78--89 (in Russian) URL:\href{http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf#page=79}{\ttfamily http://agora.guru.ru/scientific\_journal/files/On\-tology\_Of\_Designing\_4\_2014\_opt1.pdf}
+\bibitem{Cherk} \textbf{E. Cherkashin, I. Orlova.} Instrumental tools for construction of the digital archives of the documents based on Linked Data. \emph{Modern technologies, System analysis, Modeling.} 4(56) 2017 pp. 100-107 (in Russian) \texttt{DOI:} \url{10.26731/1813-9108.2017.4(56).100-107}, URL:\url{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}
+\bibitem{Kopay} \textbf{A. Kopaygorodsky.} Use of ontologies in semantic information systems. \emph{Ontology of Design.} 4(14), 2014, pp.~78--89 (in Russian) URL:\href{http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf#page=79}{\ttfamily http://agora.guru.ru/scientific\_journal/files/On\-tology\_Of\_Designing\_4\_2014\_opt1.pdf}
 \bibitem{MDA} \textbf{D. Frankel.} Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
 \bibitem{Clio} \textbf{J. Wielemaker, W. Beek, M. Hildebrand, J. Ossenbruggen.} ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web, \emph{Semantic Web.} vol. 7, no. 5, 2016, pp.~529-541. DOI:\url{10.3233/SW-150191}
-\bibitem{stratego} % \textbf{D. Annenkov, E. Cherkashin.} Generation Technique for Django MVC Web Framework Using the Stratego Transformation Language. \emph{Proc. of 36th International Convention on Information and Communication Technology, Electronics and Microelectronics (MIPRO).} May 20--24, 2013, Opatija, Croatia, 2013, pp.~1084--1087.
-\bibitem{tereh1} % \textbf{E. Cherkashin, A. Larionov et al.} Logical programming and data mining as engine for MDA model transformation implementation. \emph{Procs of 36th International Convention on Information and Communication Technology, Electronics and Microelectronics (MIPRO).} May 20--24, 2013, Opatija, Croatia, pp.~1029--1036.
+\bibitem{stratego} \textbf{D. Annenkov, E. Cherkashin.} Generation Technique for Django MVC Web Framework Using the Stratego Transformation Language. \emph{Proc. of 36th International Convention on Information and Communication Technology, Electronics and Microelectronics (MIPRO).} May 20--24, 2013, Opatija, Croatia, 2013, pp.~1084--1087.
+\bibitem{tereh1} \textbf{E. Cherkashin, A. Larionov et al.} Logical programming and data mining as engine for MDA model transformation implementation. \emph{Procs of 36th International Convention on Information and Communication Technology, Electronics and Microelectronics (MIPRO).} May 20--24, 2013, Opatija, Croatia, pp.~1029--1036.
 \bibitem{modelio} Modelio Open Source -- UML and BPMN free modeling tool. URL:\url{https://www.modelio.org/}.
 \bibitem{dataflow} \textbf{Johnston W.M., Hanna J.R.P., Millar R.J.} Advances in Dataflow Programming Languages.
   \emph{ACM Computing Surveys}. -- 2004. -- Vol. 36. -- pp. 1--34.
 \bibitem{atl} \textbf{Jouault, F., Allilaire, F., Bezivin, J., Kurtev, I.} Atl: A model transformation tool. \emph{Sci. Comput. Program.} 72(1--2), pp.~31--39 (2008)
 \bibitem{QVT} The MOF Query/View/Transformation Specification Version 1.1. URL:\url{http://www.omg.org/spec/QVT/1.1}
-\bibitem{nikita} % \textbf{A. Berman, M. Grishchenko, N. Dorodnykh, O. Nikolaychuk, A. Yurin.} A model-driven approach and a tool to support creation of rule-based expert systems for industrial safety expertise. \emph{Proc. of the 12 th International Forum on Knowledge Asset Dynamics (IFKAD-2017)} -- Russia, St. Petersburg : Graduate School of 16 Management of St. Petersburg University.  2017.  P.~2034--2050.
+\bibitem{nikita} \textbf{A. Berman, M. Grishchenko, N. Dorodnykh, O. Nikolaychuk, A. Yurin.} A model-driven approach and a tool to support creation of rule-based expert systems for industrial safety expertise. \emph{Proc. of the 12 th International Forum on Knowledge Asset Dynamics (IFKAD-2017)} -- Russia, St. Petersburg : Graduate School of 16 Management of St. Petersburg University.  2017.  P.~2034--2050.
 \bibitem{GT} \textbf{A. Belghiat, M. Bourahla.} UML Class Diagrams to OWL Ontologies: A Graph Transformation based Approach. \emph{International Journal of Computer Applications}. 41. pp.~41--46. 10.5120/5525-7566.
 \bibitem{azis}\textbf{Y. Rhazali, Y. Hadi, A. Mouloudi.} Model Transformation with ATL into MDA from CIM to PIM Structured through MVC. \emph{Procedia Computer Science 83} (2016) 1096–1101. URL:\url{https://doi.org/10.1016/j.procs.2016.04.229}
 \bibitem{uml2owl} UMLtoOWL: Converter from UML to OWL. URL: \url{http://www.sfu.ca/~dgasevic/projects/UMLtoOWL/}.
@@ -401,35 +397,47 @@ The results obtained with the use of the network infrastructure of Telecommunica
 \bibitem{uml25} Unified Modeling Language, ver.~2.5 standard description. URL:\url{http://www.omg.org/spec/UML/2.5/PDF}
   2004.~--~Vol.~36.~--~P.~1--34.
 
-\bibitem{}
+\bibitem{Rhazali}
 \textbf{Rhazali, Y., Hadi, Y., Chana, I., Lahmer, M., Rhattoy, A.} A model
 transformation in model driven architecture from business model to web
-model. \emph{IAENG International Journal of Computer Science}, vol.~45(1), 2018, 104-117.
+model. \emph{IAENG International Journal of Computer Science}, vol.~45(1), 2018, 104-117, URL:\url{http://www.iaeng.org/IJCS/issues_v45/issue_1/IJCS_45_1_16.pdf}.
+% The paper \ref{Rhazali} proposes a model  transformation  method  to  master  the  transformation
+% from  CIM  to  PIM  web-based  in  accordance  with  the  Model
+% Driven  Architecture  approach. CIM is represented mainly with State and Use case UML-Diagrams connected with ATL rules.
 
-\bibitem{}
+\bibitem{Hamid}
 \textbf{Hamid, B., Weber, D.} Engineering secure systems: Models, patterns
-and empirical validation. \emph{Computers and Security},  vol~77, 2018, p.~315-348.
-doi:10.1016/j.cose.2018.03.016
+and empirical validation. \emph{Computers \& Security},  vol~77, 2018, p.~315-348.
+\href{https://www.sciencedirect.com/science/article/pii/S0167404818303043}{doi:10.1016/j.cose.2018.03.016}
 
-\bibitem{}
-\textbf{Tragatschnig, S., Stevanetic, S., Zdun, U.} Supporting the
+% In \ref{Hamid} an approach proposed for evaluation security aspects of distributed applications using modeling, MDA description and synthesis of the applications. A logical inference evaluation is carried out over the MDA synthesized logical security models.
+
+\bibitem{Zdun}
+\textbf{Tragatschnig, S., Stevanetic, S., Zdun, U.} \href{https://www.sciencedirect.com/science/article/abs/pii/S0950584916303251}{Supporting the
 evolution of event-driven service-oriented architectures using change
-patterns. \emph{Information and Software Technology.} vol.~100, 2018, p.!133-146.
+patterns.} \emph{Information and Software Technology.} vol.~100, 2018, p.~133-146. \href{doi:10.1016/j.infsof.2018.04.005}{https://www.sciencedirect.com/science/article/abs/pii/S0950584916303251}
 
-\bibitem{}
+
+% The paper \ref{Zdun} is considered a highly decoupled distributed event-driven application environment, whose design and functioning is dynamically controlled by its three-level DSL description and MDA transformations, which support change propagation.
+
+\bibitem{Malki}
 \textbf{Bouougada, B., Bouchiha, D., Malki, M.} A framework for
 reengineering web applications into linked data based on MDA. Paper
 presented at the ACM International Conference Proceeding Series, 2015,
 23-25-November-2015 doi:10.1145/2816839.2816880
 
-\bibitem{}
+% In \ref{Malki} a practical approach implemented with four-level description of ATL transformations from HTML-page to a RDF structure (via stage of an MDA PIM), which represents HTML (LI,TABLE, etc.) data as LOD.
+
+\bibitem{Dama}
 \textbf{Štuikys, V., Damaševičius, R.} Meta-program development as a
 model transformation process. 2013. doi:10.1007/978-1-4471-4126-6\_11
+% A wide overview of Western approaches to program transformation is given in \cite{Dama}, the language PROMOL is suggested as well as its logical semantics. This book, together with John McCarthy's and Steve Russell's LISP techologies and Enn Tyugu's conceptual programming, covers the problem space history almost completely.
 
 \bibitem{}
 \textbf{Štuikys, V., Damaševičius, R., Targamadze, A.} A model-driven
 view to meta-program development process. \emph{Information Technology and
 Control.} vol.~39(2), 2010, p.~89-99.
+
 
 \end{thebibliography}
 
