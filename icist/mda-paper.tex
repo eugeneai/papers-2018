@@ -214,109 +214,108 @@ Some UML-structures (OCL) and relations may be interpreted constructively as met
 % \subsection{An example of simple transformation}
 % \label{sec:simpletr}
 
-% Consider a transformation of a very simple example of PIM presented in Fig.~\ref{fig:pim}.  In order to import PIM we need to create holding instance \texttt{sample} and initialize it.
-% \begin{minted}{logtalk}
-% :- object(sample,instantiates(packageclass)).
-% :- initialization((::load_file('sample.xmi'),
-%                 ::register_prefixes,::process)).
-% :- end_object.
-% \end{minted}
-% At the import stage, the source XMI converted into a graph.  We show its small part in the turtle format.
-% \begin{minted}{turtle}
-% @base <File://.../samples.xmi#> .
-% <#__k9i9BN_EeijsfqEI5>
-%   a uml:Class ;
-%   <#ownedAttribute> <#RN_EeijsfqEI5> ,
-%       <#hN_EeijsfqEI5>, <#9xN_EeijsfqEI5> ;
-%   <#ownedOperation> <#BN_EeijsfqEI5> ;
-%   rdfs:label "Person" .
-% <#__k9i9RN_EeijsfqEI5>
-%   a uml:Property ;
-%   <#type> <http://...#String> ;
-%   <#visibility> "public" ;
-%   rdfs:label "Name" .
-% <#BN_EeijsfqEI5>
-%   a uml:Operation ;
-%   <#ownedParameter> <#hN_EeijsfqEI5> ,
-%                     <#hN_EeijsfqEI5> ;
-%   <#visibility> "public" ;
-%   rdfs:label "Pay" .
-% \end{minted}
+Consider some transformation rules. In order to import PIM we need to create holding instance \texttt{sample} and initialize it.
+\begin{minted}{logtalk}
+:- object(sample,instantiates(packageclass)).
+:- initialization((::load_file('sample.xmi'), ::reg_prefixes,::process)).
+:- end_object.
+\end{minted}
+At the import stage, the source XMI converted into a graph.  We show its small part in the turtle format.
+\begin{minted}{turtle}
+@base <File://.../samples.xmi#> .
+<#__k9i9BN_EeijsfqEI5>
+  a uml:Class ;
+  <#ownedAttribute> <#RN_EeijsfqEI5> ,
+      <#hN_EeijsfqEI5>, <#9xN_EeijsfqEI5> ;
+  <#ownedOperation> <#BN_EeijsfqEI5> ;
+  rdfs:label "Person" .
+<#__k9i9RN_EeijsfqEI5>
+  a uml:Property ;
+  <#type> <http://...#String> ;
+  <#visibility> "public" ;
+  rdfs:label "Name" .
+<#BN_EeijsfqEI5>
+  a uml:Operation ;
+  <#ownedParameter> <#hN_EeijsfqEI5> ,
+                    <#hN_EeijsfqEI5> ;
+  <#visibility> "public" ;
+  rdfs:label "Pay" .
+\end{minted}
 
-% Construction of the target class is realized by querying the graph with a parametric object \texttt{query(\_Graph)}.
-% \begin{minted}{logtalk}
-% % ?- direct(sample,lp,cp)::tr(class,person,ID).
-% :- object(direct(_Package, _Local, _Code)).
-% tr(class, Class, ClassID):-
-%   ::package(Package), % get PIM
-%   query(Package)::class(Name, ClassID),
-%   ::new(Class, [instantiates(class)]),
-%   ::new(Attributes,[instantiates(params)]),
-%   ::new(Methods, [instantiates(methodlist)]),
-%   Class::name(Name), % get class name.
-%   forall( % process all attributes
-%       ::tr(attribute, Attribute, ClassID, _),
-%       Attributes::append(Attribute)),
-%   forall( % process all methods.
-%       ::tr(method, Method, ClassID,_),
-%       Methods::append(Method)),
-%   Class::attributes(Attributes), % construct
-%   Class::methods(Methods). % construct
-% :- end_object.
-% :- object(query(_Graph)). % querying object
-% class(Name, ID):- ::xmi(XMI), % the parameter
-%   XMI::rdf(ID, rdf:type, uml:'Class'),
-%   XMI::rdf(ID, rdfs:label, literal(Name)).
-% :- end_object.
-% \end{minted}
+Construction of the target class is realized by querying the graph with a parametric object \texttt{query(\_Graph)}.
+\begin{minted}{logtalk}
+% ?- direct(sample,lp,cp)::tr(class,person,ID).
+:- object(direct(_Package, _Local, _Code)).
+tr(class, Class, ClassID):-
+  ::package(Package), % get PIM
+  query(Package)::class(Name, ClassID),
+  ::new(Class, [instantiates(class)]),
+  ::new(Attributes,[instantiates(params)]),
+  ::new(Methods, [instantiates(methodlist)]),
+  Class::name(Name), % get class name.
+  forall( % process all attributes
+      ::tr(attribute, Attribute, ClassID, _),
+      Attributes::append(Attribute)),
+  forall( % process all methods.
+      ::tr(method, Method, ClassID,_),
+      Methods::append(Method)),
+  Class::attributes(Attributes), % construct
+  Class::methods(Methods). % construct
+:- end_object.
+:- object(query(_Graph)). % querying object
+class(Name, ID):- ::xmi(XMI), % the parameter
+  XMI::rdf(ID, rdf:type, uml:'Class'),
+  XMI::rdf(ID, rdfs:label, literal(Name)).
+:- end_object.
+\end{minted}
 
-% Target structures constructed by blocks of elements and other blocks like in Python \texttt{llvmlite} library.  New \texttt{item}s are appended or prepended in a block.  Rendering the sources is realized with methods of construction classes.
+Target structures constructed by blocks of elements and other blocks like in Python \texttt{llvmlite} library.  New \texttt{item}s are appended or prepended in a block.  Rendering the sources is realized with methods of construction classes.
 
-% \begin{minted}{logtalk}
-% :- object(class, specializes(code_block)).
-% renderitem(Item, Result):- % . for each item.
-%  ^^renderitem(Item, Result). % call parent.
-% render(Result):-
-%  ^^render(Name),
-%  % .....
-%  root::indent, % Python block tabulation
-%  (  ::item(attributes(Attributes))->
-%     Attributes::render(DefAttrs),
-%     root::iswritef(ConstructorDef,
-%       'def __init__(self, %w):',[DefAttrs]),
-%     root::indent,
-%     Attributes::items(InstAttrs),
-%     findall(S, (lists::member(Attr, InstAttrs),
-%                 Attr::item(name(AttrName)),
-%                 root::iswritef(S, "self.%w=%w",
-%                         [AttrName, AttrName])),
-%             AttrAssigns),
-%     root::unindent,
-%     AttrList=[ConstructorDef|AttrAssigns];
-%     root::iswritef(ConstructorDef,
-%      'def __init__(self):', []),
-%     root::indent,
-%     root::iswritef(Pass,'pass', []),
-%     root::unindent,
-%     AttrList=[ConstructorDef, Pass]),
-%   % .....
-%   lists::append(AttrList, Methods, StringList),
-%   root::unindent,
-%   Result=[Signature | StringList].
-% :- end_object.
-% \end{minted}
+\begin{minted}{logtalk}
+:- object(class, specializes(code_block)).
+renderitem(Item, Result):- % . for each item.
+ ^^renderitem(Item, Result). % call parent.
+render(Result):-
+ ^^render(Name),
+ % .....
+ root::indent, % Python block tabulation
+ (  ::item(attributes(Attributes))->
+    Attributes::render(DefAttrs),
+    root::iswritef(ConstructorDef,
+      'def __init__(self, %w):',[DefAttrs]),
+    root::indent,
+    Attributes::items(InstAttrs),
+    findall(S, (lists::member(Attr, InstAttrs),
+                Attr::item(name(AttrName)),
+                root::iswritef(S, "self.%w=%w",
+                        [AttrName, AttrName])),
+            AttrAssigns),
+    root::unindent,
+    AttrList=[ConstructorDef|AttrAssigns];
+    root::iswritef(ConstructorDef,
+     'def __init__(self):', []),
+    root::indent,
+    root::iswritef(Pass,'pass', []),
+    root::unindent,
+    AttrList=[ConstructorDef, Pass]),
+  % .....
+  lists::append(AttrList, Methods, StringList),
+  root::unindent,
+  Result=[Signature | StringList].
+:- end_object.
+\end{minted}
 
-% As a result we obtain the following Python code that ignores the types of the entities.
-% \begin{minted}{python}
-% # ?- person::render_to(write).
-% class Person:
-%     def __init__(self, Name, Family, BirthDay):
-%         self.Name=Name
-%         self.Family=Family
-%         self.BirthDay=BirthDay
-%     def Pay(self, Amount):
-%         pass
-% \end{minted}
+As a result we obtain the following Python code that ignores the types of the entities.
+\begin{minted}{python}
+# ?- person::render_to(write).
+class Person:
+    def __init__(self, Name, Family, BirthDay):
+        self.Name=Name
+        self.Family=Family
+        self.BirthDay=BirthDay
+    def Pay(self, Amount):
+        pass
+\end{minted}
 
 \section{Applications}
 \label{sec:app}
