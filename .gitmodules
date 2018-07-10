@@ -1,3 +1,6 @@
 [submodule "nla"]
 	path = nla
 	url = https://git.overleaf.com/14208389mxphrzgbyznw
+[submodule "bit"]
+	path = bit
+	url = https://git.overleaf.com/17699791dfqrznybkqvx
