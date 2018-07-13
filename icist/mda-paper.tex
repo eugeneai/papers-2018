@@ -181,7 +181,7 @@ Platform model (PM) in a broad sense is the transformation procedure implemented
 
 External objects are structures constructing PSM, \emph{i.e.}, the set or a category of configured objects reflecting PIM structures and target sources and data.  Transformation modules generate the objects as a results of general decisions.  Their configurations are also inferred from the properties of structural elements of PIM and the profile configurations.  The leaf nodes of the hierarchy is the scenario of PSM generation.  The usage of pure logical approach instead of the mix of two languages allowed us to reduce significantly the size and diversity of the PM description.
 
-As soon as the scenario is fulfilled the PSM is converted into source codes and data.  The conversion in \cite{tereh1} was made by means partial application of text templates.  In this case we do not use templates and generate the source code with simple procedures.  SWI-Prolong module index contains a simple template engine module \texttt{simple-template} intended for generation of static HTML pages.  The Prolog system also contain a dictionary-like structures and predicates for dictionary data manipulation, which can be used to represent data to be filled in the templates.  So open-source SWI-Prolog infrastructure is well equipped for developing MDA instruments.
+As soon as the scenario is fulfilled the PSM is converted into source codes and data.  The conversion in \cite{tereh1} was made by means of partial application of text templates.  In this case we do not use templates and generate the source code with simple procedures.  SWI-Prolong module index contains a simple template engine module \texttt{simple-template} intended for generation of static HTML pages.  The Prolog system also contain a dictionary-like structures and predicates for dictionary data manipulation, which can be used to represent data to be filled in the templates.  So open-source SWI-Prolog infrastructure is well equipped for developing MDA instruments.
 
 \subsection{Inference of the class structure}
 \label{sec:infstru}
@@ -321,7 +321,7 @@ The second active project is a technological support of the development of New G
 
 \section{Conclusion}
 
-We considered an implementation and applications of usage of Model Driven Architecture and Linked Open Data, a Semantic Web, technologies in developing software on the base of model transformation.  The transformation is realized as a hierarchy of objects represented in LogTalk.  Results of analysis of the source model and synthesis of the target one are obtained with logical inference.
+We considered an implementation and applications of usage of Model Driven Architecture and Linked Open Data, a Semantic Web, technologies in developing software \cite{SWEB} on the base of model transformation.  The transformation is realized as a hierarchy of objects represented in LogTalk.  Results of analysis of the source model and synthesis of the target one are obtained with logical inference.
 
 Usage of logical programming language simplifies the transformation procedure programming, the programmer is allowed to express semantics of recognized structures as properties of objects, manipulate object properties further. It also allows us to integrate the transformations with other Prolog libraries and services without usage of special language structures. The transformation logically connect elements of source objects: UML diagrams, RDF A- and T-boxes, LogTalk modules, which are just structures to be processed accounting to a scenario.
 
@@ -333,35 +333,22 @@ The approach is being tested in software development processes for synthesis of 
 \section*{Acknowledgment}
 
 The results are obtained with the partial support of the various projects: Irkutsk scientific center of SB RAS No 4.2;
-The Council for grants of the President of Russian Federation, state support of leading scientific schools of the Russian Federation (NSH-8081.2016.9); Russian Foundation for Basic Research No 17-07-01341. The results obtained with the use of the network infrastructure of Telecommunication center of collective use "Integrated information-computational network of Irkutsk scientific-educational complex" (\url{http://net.icc.ru}). The authors are grateful to the community of Linked Open Vocabularies (\url{http://lov.okfn.org/dataset/lov/}) resource for assistance in the search for domain ontologies and \texttt{github.com} for hosting sources at \url{https://github.com/isu-enterprise/icc.xmitransform}.
+The Council for grants of the President of Russian Federation, state support of leading scientific schools of the Russian Federation (NSH-8081.2016.9); Russian Foundation for Basic Research, grants 17-07-01341, 18-07-00758 and 17-47-380007. The results obtained with the use of the network infrastructure of Telecommunication center of collective use "Integrated information-computational network of Irkutsk scientific-educational complex" (\url{http://net.icc.ru}). The authors are grateful to the community of Linked Open Vocabularies (\url{http://lov.okfn.org/dataset/lov/}) resource for assistance in the search for domain ontologies and \texttt{github.com} for hosting sources at \url{https://github.com/isu-enterprise/icc.xmitransform}.
 
 \begin{thebibliography}{11}
-\bibitem{SWEB} Semantic WEB Software Engineering. URL:\url{http://www.webist.org/Documents/Previous\_Invited\_Speakers/2012/WEBIST2012\_Pan.pdf}. %URL:\url{https://www.iospress.nl/book/semantic-web-enabled-software-engineering/}.
 \bibitem{Bizer} \textbf{Ch.\,Bizer, T.\,Heath, T.\,Berners-Lee.} Linked Data -- The Story So Far. \emph{Semantic Web and Information Systems}. 2009. Vol. 5 (3). pp.~1--22.
 \bibitem{Capadisli} \textbf{S.\,Capadisli, A.\,Guy, R.\,Verborgh, C.\,Lange, S.\,Auer, T.\,Berners-Lee.} Decentralised Authoring, Annotations and Notifications for a Read-Write Web with dokieli, In: Cabot J., De Virgilio R., Torlone R. (eds) \emph{Web Engineering. ICWE 2017. Lecture Notes in Computer Science.} vol 10360. Springer, Cham. Preprint URL:\url{http://csarven.ca/dokieli-rww}, DOI:\url{10.1007/978-3-319-60131-1_33}.
 \bibitem{Cherk} \textbf{E.\,Cherkashin, I.\,Orlova.} Instrumental tools for construction of the digital archives of the documents based on Linked Data. \emph{Modern technologies, System analysis, Modeling.} 4(56) 2017 pp. 100-107 (in Russian) \href{http://stsam.irgups.ru/sites/default/files/articles\_pdf\_files/100-107.pdf}{doi:10.26731/1813-9108.2017.4(56).100-107}
 \bibitem{Kopay} \textbf{A.\,Kopaygorodsky.} Use of ontologies in semantic information systems. \emph{Ontology of Design.} vol.~4(14), 2014, pp.~78--89 (in Russian) %URL:\href{http://agora.guru.ru/scientific_journal/files/Ontology_Of_Designing_4_2014_opt1.pdf#page=79}{\ttfamily %http://agora.guru.ru/scientific\_journal/files/On\-tology\_Of\_Designing\_4\_2014\_opt1.pdf}
-\bibitem{MDA} \textbf{D.\,Frankel.} Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
-\bibitem{Clio} \textbf{J.\,Wielemaker, W.\,Beek, M.\,Hildebrand, J.\,Ossenbruggen.} ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web, \emph{Semantic Web.} vol. 7, no. 5, 2016, pp.~529-541. DOI:\url{10.3233/SW-150191}
 \bibitem{stratego} \textbf{D.\,Annenkov, E.\,Cherkashin.} Generation Technique for Django MVC Web Framework Using the Stratego Transformation Language. \emph{Proc. of 36th International Convention on Information and Communication Technology, Electronics and Microelectronics (MIPRO).} May 20--24, 2013, Opatija, Croatia, 2013, pp.~1084--1087.
 \bibitem{tereh1} \textbf{E.\,Cherkashin, A.\,Larionov et al.} Logical programming and data mining as engine for MDA model transformation implementation. \emph{Procs of 36th International Convention on Information and Communication Technology, Electronics and Microelectronics (MIPRO).} May 20--24, 2013, Opatija, Croatia, pp.~1029--1036.
-\bibitem{modelio} Modelio Open Source -- UML and BPMN free modeling tool. URL:\url{https://www.modelio.org/}.
-\bibitem{dataflow} \textbf{Johnston W.M., Hanna J.R.P., Millar R.J.} Advances in Dataflow Programming Languages.
-  \emph{ACM Computing Surveys}. -- 2004. -- Vol. 36. -- pp. 1--34.
+\bibitem{MDA} \textbf{D.\,Frankel.} Model Driven Architecture: Applying MDA to Enterprise Computing. Wiley; 1 edition, 2003, 352 p.
+\bibitem{Clio} \textbf{J.\,Wielemaker, W.\,Beek, M.\,Hildebrand, J.\,Ossenbruggen.} ClioPatria: A SWI-Prolog Infrastructure for the Semantic Web, \emph{Semantic Web.} vol. 7, no. 5, 2016, pp.~529-541. DOI:\url{10.3233/SW-150191}
 \bibitem{atl} \textbf{F.\,Jouault, F.\,Allilaire, J.\,Bezivin, I.\,Kurtev.} Atl: A model transformation tool. \emph{Sci. Comput. Program.} 72(1--2), pp.~31--39 (2008)
 \bibitem{QVT} The MOF Query/View/Transformation Specification Version 1.1. URL:\url{http://www.omg.org/spec/QVT/1.1}
 \bibitem{nikita} \textbf{A.\,Berman, M.\,Grishchenko, N.\,Dorodnykh, O.\,Nikolaychuk, A.\,Yurin.} A model-driven approach and a tool to support creation of rule-based expert systems for industrial safety expertise. \emph{Proc. of the 12 th International Forum on Knowledge Asset Dynamics (IFKAD-2017)} -- Russia, St.\,Petersburg : Graduate School of 16 Management of St.\,Petersburg University.  2017.  P.~2034--2050.
 \bibitem{GT} \textbf{A.\,Belghiat, M.\,Bourahla.} UML Class Diagrams to OWL Ontologies: A Graph Transformation based Approach. \emph{International Journal of Computer Applications}. 41. pp.~41--46. 10.5120/5525-7566.
 \bibitem{azis}\textbf{Y.\,Rhazali, Y.\,Hadi, A.\,Mouloudi.} Model Transformation with ATL into MDA from CIM to PIM Structured through MVC. \emph{Procedia Computer Science 83} (2016) 1096–1101. URL:\url{https://doi.org/10.1016/j.procs.2016.04.229}
-\bibitem{uml2owl} UMLtoOWL: Converter from UML to OWL. URL: \url{http://www.sfu.ca/~dgasevic/projects/UMLtoOWL/}.
-\bibitem{odmprof} ODM UML profile for OWL. URL:\url{http://www.omg.org/spec/ODM/1.0/PDF/}.
-\bibitem{odnext} Ontology Domain Modeling example. URL:\url{https://thematix.com/tools/vom/}.
-\bibitem{odmvis} OWL UML Visualizer. URL:\url{http://owlgred.lumii.lv/}.
-\bibitem{wsbpel} Business Process Execution Language -- Wikipedia, the free encyclopedia. \url{https://en.wikipedia.org/wiki/Business_Process_Execution_Language}
-\bibitem{wsdl} Web Services Description Language -- Wikipedia, the free encyclopedia.  URL:\url{https://en.wikipedia.org/wiki/Web_Services_Description_Language}
-\bibitem{uml25} Unified Modeling Language, ver.~2.5 standard description. URL:\url{http://www.omg.org/spec/UML/2.5/PDF}
-  2004.~--~Vol.~36.~--~P.~1--34.
-
 \bibitem{Rhazali}
 \textbf{Y.\,Rhazali, Y.\,Hadi, I.\,Chana, M.\,Lahmer, A.\,Rhattoy.} A model
 transformation in model driven architecture from business model to web
@@ -393,6 +380,7 @@ presented at the ACM International Conference Proceeding Series, 2015,
 
 % In \ref{Malki} a practical approach implemented with four-level description of ATL transformations from HTML-page to a RDF structure (via stage of an MDA PIM), which represents HTML (LI,TABLE, etc.) data as LOD.
 
+\bibitem{uml2owl} UMLtoOWL: Converter from UML to OWL. URL: \url{http://www.sfu.ca/~dgasevic/projects/UMLtoOWL/}.
 \bibitem{Dama}
 \textbf{V.\,\v{S}tuikys, R.\,Dama\v{s}evi\v{c}ius.} Meta-program development as a
 model transformation process. 2013. doi:10.1007/978-1-4471-4126-6\_11
@@ -402,6 +390,18 @@ model transformation process. 2013. doi:10.1007/978-1-4471-4126-6\_11
 \textbf{V.\,\v{S}tuikys, R.\,Dama\v{s}evi\v{c}ius, A.\,Targamadze.} A model-driven
 view to meta-program development process. \emph{Information Technology and
 Control.} vol.~39(2), 2010, p.~89-99. URL:\url{http://itc.ktu.lt/index.php/ITC/article/download/12302/6838}
+\bibitem{odmprof} ODM UML profile for OWL. URL:\url{http://www.omg.org/spec/ODM/1.0/PDF/}.
+\bibitem{odnext} Ontology Domain Modeling example. URL:\url{https://thematix.com/tools/vom/}.
+\bibitem{odmvis} OWL UML Visualizer. URL:\url{http://owlgred.lumii.lv/}.
+\bibitem{wsdl} Web Services Description Language -- Wikipedia, the free encyclopedia.  URL:\url{https://en.wikipedia.org/wiki/Web_Services_Description_Language}
+\bibitem{wsbpel} Business Process Execution Language -- Wikipedia, the free encyclopedia. \url{https://en.wikipedia.org/wiki/Business_Process_Execution_Language}
+\bibitem{modelio} Modelio Open Source -- UML and BPMN free modeling tool. URL:\url{https://www.modelio.org/}.
+\bibitem{dataflow} \textbf{Johnston W.M., Hanna J.R.P., Millar R.J.} Advances in Dataflow Programming Languages.
+  \emph{ACM Computing Surveys}. -- 2004. -- Vol. 36. -- pp. 1--34.
+  2004.~--~Vol.~36.~--~P.~1--34.
+\bibitem{SWEB} Semantic WEB Software Engineering. URL:\url{http://www.webist.org/Documents/Previous\_Invited\_Speakers/2012/WEBIST2012\_Pan.pdf}. %URL:\url{https://www.iospress.nl/book/semantic-web-enabled-software-engineering/}.
+\bibitem{uml25} Unified Modeling Language, ver.~2.5 standard description. URL:\url{http://www.omg.org/spec/UML/2.5/PDF}
+
 
 
 \end{thebibliography}

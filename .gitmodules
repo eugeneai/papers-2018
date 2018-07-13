@@ -4,3 +4,6 @@
 [submodule "bit"]
 	path = bit
 	url = https://git.overleaf.com/17699791dfqrznybkqvx
+[submodule "ceur"]
+	path = ceur
+	url = https://git.overleaf.com/17721422xzpvttkvdrrd
