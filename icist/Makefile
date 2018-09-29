@@ -1,6 +1,11 @@
-.PHONY: clean run
+.PHONY: clean run present
 
 LATEXMK=latexmk -lualatex -latexoption=-shell-escape
+
+present: talk-mda-2018-10.pdf
+
+talk-mda-2018-10.pdf: talk-mda-2018-10.tex
+	$(LATEXMK) $<
 
 mda-paper.pdf: mda-paper.tex
 	$(LATEXMK) $<
