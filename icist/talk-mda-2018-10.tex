@@ -154,11 +154,25 @@ Vilnius, Lithuania
   \item has flexible semantics: we can define transformations and constraints within the same syntax;
   \item implement object-oriented knowledge (rules) structuring, encapsulation and replacement;
   \item compositional way of transformation implementation;
-  \item has implementation for many Prolog engines;
+  \item powerful engine to post constraints on object-to-object messages (events);
+  \item has implementation for many Prolog engines.
   \end{itemize}
-  The <<regular>> language allow us to use its libraries not related to MDA transformations.
+  The <<regular>> language allow us to use its libraries not directly related to MDA transformations.
 \end{frame}
-
+\begin{frame}[fragile]
+  \frametitle{Semantic Web technologies in representation of models
+    during transformation}
+  \begin{itemize}
+  \item Assimilates experience of domain basic researches trending to standardization;
+  \item regular set of triples denote a graph (T-Box, A-Box);
+  \item standard vocabularies are formally described (\verb|rdfs:range|,\verb|rdfs:domain|);
+  \item supported with most programming systems (libraries, inference engines, SPARQL);
+  \item has a way of global element identification;
+  \item SWI-Prolog supports direct queries to a graph, as well as interpreting some predicates (\verb|dc:title|, \verb|rdfs:label|), encapsulating sparse RDF structure into a predicate arguments;
+  \item there is simple way of data security implementation (\verb|rdfs:seeAlso|);
+  \item by means of Semantic Web \& LOD we are able to encapsulate data transmission between heterogeneous information systems;
+  \end{itemize}
+\end{frame}
 
 
 \begin{frame}
