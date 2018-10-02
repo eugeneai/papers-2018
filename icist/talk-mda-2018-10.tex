@@ -2,7 +2,6 @@
 \usepackage{amsmath,amssymb,longtable,hhline}
 \usepackage{mathrsfs}
 \usepackage{xcolor}
-\usepackage{listings}
 \usepackage{hyperref}
 \usepackage{multicol}
 \usepackage{anyfontsize}
@@ -10,7 +9,8 @@
 
 \usemintedstyle{tango}
 \newcommand{\ltprgsize}{\fontsize{5}{5}\selectfont}
-\setminted{fontsize=\ltprgsize,mathescape}
+%\newcommand{\ltprgsize}{\footnotesize}
+\setminted{fontsize=\footnotesize{},mathescape}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -23,9 +23,9 @@
     pdfmenubar=false,        % show Acrobat’s menu?
     pdffitwindow=false,     % window fit to page when opened
     pdfstartview={FitH},    % fits the width of the page to the window
-    pdftitle={Компьютерная алгебра в задачах оптимизации},    % title
-    pdfauthor={Evgeny Cherkashin, Seseg Badmatsyrenova},     % author
-    pdfsubject={symbolic computations},   % subject of the document
+    pdftitle={Model Driven Architecture Implementation using Linked Data},    % title
+    pdfauthor={Evgeny Cherkashin, Alexey Kopaygorodsky, Ljubica Kazi, Alexey Shigarov, Viacheslav Paramonov},     % author
+    pdfsubject={model driven architecture},   % subject of the document
     pdfnewwindow=true,      % links in new PDF window
     colorlinks=true,       % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
@@ -34,35 +34,14 @@
     urlcolor=blue           % color of external links
 }
 
-\lstset{language=Python,
-  basicstyle=\footnotesize\ttfamily,        % the size of the fonts that are used for the code
-  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-  breaklines=true,                 % sets automatic line breaking
-  captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{mygreen},    % comment style
-  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-%  frame=single,                    % adds a frame around the code
-  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  keywordstyle=\color{blue},       % keyword style
-%  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-  numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
-  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,          % underline spaces within strings only
-  showtabs=false,                  % show tabs within strings adding particular underscores
-  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{mymauve},     % string literal style
-  tabsize=2,                       % sets default tabsize to 2 spaces
-%  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of
-}
 \usepackage{pifont}
 
 \usetheme{Warsaw}
 \usecolortheme{crane}
 %\useinnertheme{rectangles}
-\setbeamertemplate{itemize item}{\scriptsize\hbox{\donotcoloroutermaths\ding{113}}}
+%\setbeamertemplate{itemize item}{\scriptsize\hbox{\donotcoloroutermaths\ding{113}}}
+\definecolor{darkding}{RGB}{200,56,0}
+\setbeamertemplate{itemize item}{\scriptsize\hbox{\color{darkding}{\bfseries\ding{113}}}}
 \setbeamertemplate{itemize subitem}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
 \setbeamertemplate{itemize subsubitem}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleright$}}
 \setbeamertemplate{enumerate item}{\insertenumlabel.}
@@ -85,7 +64,7 @@
     \defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
     \setmathfont{Latin Modern Math}
     \setsansfont{Linux Biolinum O}
-    \setmonofont{Fira Mono}
+    \setmonofont{Fira Mono}[Scale=MatchLowercase]
     \usefonttheme{professionalfonts}
     % \setmathfont[
     %     Ligatures=TeX,
@@ -110,7 +89,7 @@
 \begin{document}
 \title[Model Driven Architecture Implementation using Linked Data]{Model Driven Architecture Implementation using Linked Data}
 \author[E.~Cherkashin, A.~Kopaygorodsky, L.~Kazi, A.~Shigarov, V.~Paramonov]{\bfseries%
-  Evgeny Cherkashin, Alexey Kopaygorodsky, Ljubica Kazi, Alexey Shigarov, Vyacheslav Paramonov}
+  Evgeny Cherkashin, Alexey Kopaygorodsky, Ljubica Kazi, Alexey Shigarov, Viacheslav Paramonov}
 \institute[ISDCT SB RAS, ESI SB RAS, ISC SB RAS, University of Novi Sad, Technical faculty "Mihajlo Pupin",
 National Research Irkutsk State Technical University]{\normalsize ISDCT SB RAS, ESI SB RAS, ISC SB RAS, National Research Irkutsk State Technical University, Irkutsk,Russia,\\
   University of Novi Sad, Technical faculty "Mihajlo Pupin", Zrenjanin, Serbia\\[1em]
@@ -125,14 +104,28 @@ Vilnius, Lithuania
 \maketitle
 \begin{frame}
   \frametitle{Research objectives}
-  \textbf{Main objective} of the research is to construct a MDA technology based on nowadays system modeling visual languages (SysML,BPMN,CMMN) and existing Semantic Web \textbf{vocabularies}. The following techniques and software are under development:
+  \textbf{Main objective} of the research is to construct a MDA technology based on nowadays system modeling visual languages (SysML,BPMN,CMMN) and existing Semantic Web \textbf{vocabularies} and \textbf{technologies}. The following techniques and software are under development:
   \begin{enumerate}
   \item CIM representation with SysML, BPMN, CMMN, and results of source code processing,
   \item CIM, PIM, PSM representation in RDF with existing vocabularies,
   \item transformation implementation with logical language Logtalk,
-  \item usage of LOD sources in the transformations,
-  \item generation of documents and interfaces with LOD markup.
+  \item usage of LOD sources in the transformations for obtaining additional semantic data,
+  \item generation of documents and user interfaces with LOD markup.
   \end{enumerate}
+\end{frame}
+\begin{frame}
+  \frametitle{Related technologies and standards}
+  \begin{itemize}
+  \item The most widely used technologies \textbf{ATL} and its predecessor QVT, an OMG standard; developed for XMI to XMI conversion;
+  \item Usage of ATL trending to shift to CIM level, \emph{e.g.}, BPMN diagram is converted into set of UML diagrams (PIM); used for construction web-applications, CIM is represented with State and Use case UML-Diagrams.
+  \item MDA usage is widening, \emph{e.g.}, for analysis of security aspects of distributed application with logical inference over MDA represented model;
+  \item UML is used as CIM/PIM in modeling vocabularies (ontologies); there is an OMG standard specification;
+  \item XML specifications are used to describe services, \emph{e.g.} WSDL, WS-BPEL;
+  \item MDA is opposed to conceptual programming by Enn Tyugu.
+  \end{itemize}
+
+  We describe transformation in Prolog (Logtalk), representing CIM, PIM and PSM as RDF graphs, allowing non-XMI sources to be used, organizing multi-stage modular transformations.
+
 \end{frame}
 \begin{frame}
   \frametitle{Model Driven Architecture and Linked Open Data}
@@ -167,10 +160,10 @@ Vilnius, Lithuania
   \item regular set of triples denote a graph (T-Box, A-Box);
   \item standard vocabularies are formally described (\verb|rdfs:range|,\verb|rdfs:domain|);
   \item supported with most programming systems (libraries, inference engines, SPARQL);
-  \item has a way of global element identification;
+  \item has a way of global element identification, \emph{i.e.} we can refer the same object from different software systems;
   \item SWI-Prolog supports direct queries to a graph, as well as interpreting some predicates (\verb|dc:title|, \verb|rdfs:label|), encapsulating sparse RDF structure into a predicate arguments;
   \item there is simple way of data security implementation (\verb|rdfs:seeAlso|);
-  \item by means of Semantic Web \& LOD we are able to encapsulate data transmission between heterogeneous information systems;
+  \item by means of Semantic Web \& LOD we are able to encapsulate data transmission between heterogeneous information systems.
   \end{itemize}
 \end{frame}
 
@@ -185,7 +178,7 @@ Vilnius, Lithuania
   \frametitle{PSM: Class structure inference}
 
 %\begin{multicols}{2}
-\begin{minted}{logtalk}
+\begin{minted}[fontsize=\tiny]{logtalk}
 :- object(direct(_Package,_LocalProf,_CodeProf)).    % Transformation driver object
 :- public([tr/4,tr/3]).                              % Public interface of a class synthesis scenario
 :- protected([package/1, profiles/2, profile/1]).
@@ -235,16 +228,16 @@ tr(method, Method, ClassID, MethodID):-              % Transformation of methods
 :- protected(xmi/1).
 :- public([class/2, attribute/3, method/3]).
 xmi(XMI) :- parameter(1, XMI).
-class(Name, ID):-               % Recognition of Class in RDF
+class(Name, ID):-                            % Recognition of Class in RDF
     ::xmi(XMI),
     XMI::rdf(ID,rdf:type,uml,'Class'),
     XMI::rdf(ID,rdfs:label, literal(Name)).
-attribute(Name, ClassID, ID):-  % ...attribute...
+attribute(Name, ClassID, ID):-               % ...attribute...
     ::xmi(XMI),
     XMI::graph(G),
     XMI::rdf(ClassID, G:ownedAttribute, ID),
     XMI::rdf(ID, rdfs:label, literal(Name)).
-method(Name, ClassID, ID):-     % ...method...
+method(Name, ClassID, ID):-                  % ...method...
     ::xmi(XMI),
     XMI::graph(G),
     XMI::rdf(ClassID, G:ownedOperation, ID),
@@ -254,17 +247,14 @@ method(Name, ClassID, ID):-     % ...method...
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Code Block}
-  Идея реализации взята из библиотеки \verb|llvmlib|.
-\begin{minted}{logtalk}
+  \frametitle{Code Block (idea is taken from \texttt{llvmlib})}
+\begin{minted}[fontsize=\footnotesize{}]{logtalk}
 :- object(code_block, specializes(root)).
 :- public([append/1, prepend/1, clear/0,      % Public interface of the object
-   render/1, render_to/1, remove/1, item/1,
-   items/1 ]).
+   render/1, render_to/1, remove/1, item/1, items/1]).
 :- dynamic([item_/1]).                        % Code block items
 :- private([item_/1]).
 :- protected([renderitem/2, render_to/2]).    % Methods specialized during inheritance
-
 item(Item)   :- ::item_(Item).
 items(Items) :- bagof(I, ::item(I), Items).
 append(Item) :- ::assertz(item_(Item)).       % Add an item at the end of database
@@ -273,17 +263,12 @@ remove(Item) :- ::retract(item_(Item)).       % Delete item
 clear        :- ::retractall(item_(_)).       % Clear code block.
 render(_)    :- writef::writef("ERROR: \      % Convert bock to a list of source lines
 Implement render/1 by a subclass!\n"), fail.
-
-render_to(Stream):- ::render(List),
-    ::render_to(List, Stream).
-render_to(List, Stream):-
-    lists::is_list(List),!,
-    forall(lists::member(X,List),
-       ::render_to(X, Stream)).
+render_to(Stream):- ::render(List), ::render_to(List, Stream).
+render_to(List, Stream):- lists::is_list(List),!,
+    forall(lists::member(X,List), ::render_to(X, Stream)).
 render_to(X,_) :- write(X),nl.
 renderitem(Object, String):-                  % Delegate rendering to object itself
-    current_object(Object), !,
-    Object::render(String).
+    current_object(Object), !, Object::render(String).
 renderitem(literal(Item), String):-!,         % Convert a literal to its string representation
     atom_string(Item, String).
 renderitem(Item, String):-                    % Just print the item (debugging).
@@ -294,9 +279,9 @@ renderitem(Item, String):-                    % Just print the item (debugging).
 
 \begin{frame}[fragile]
   \frametitle{Generation of a Python Class}
-  PSM of a Class is a specialization of Code Block. Class has blocks for parent classes, attributes and methods. In order to generate source code we need to define the blocks, and then run \verb|render/1|. The \verb|Result| variable will have list of source lines.
+  PSM of a Class is a specialization of Code Block. Class has blocks for parent classes, attributes and methods. In order to generate source code we need to define the blocks, and then run \verb|render/1|. The \verb|Result| variable will have list of source lines.\\[-2em]
 \begin{multicols}{2}
-\begin{minted}{logtalk}
+\begin{minted}[fontsize=\scriptsize]{logtalk}
 :- object(class, specializes(code_block),
    imports([named])). % Category of named entities
 :- public([classlist/1, methods/1, attributes/1]).
@@ -306,7 +291,6 @@ attributes(Attributes):- % List of attributes
     ::prepend(attributes(Attributes)).
 methods(MethodList):-    % List of methods
     ::append(methods(MethodList)).
-
 renderitem(Item, Result):- % default rendering
     ^^renderitem(Item, Result).
 render(Result):-         % Source generator
@@ -352,37 +336,32 @@ render(Result):-         % Source generator
 \begin{frame}[fragile]
   \frametitle{Logtalk Categories}
   A category of named entities
-\begin{minted}{logtalk}
+\begin{minted}[fontsize=\scriptsize]{logtalk}
 :- category(named).
 :- public([name/1, render/1]).
 :- protected([renderitem/2]).
 name(Name):- ::prepend(name(Name)).
 renderitem(name(Name), String):-!, atom_string(Name, String).
 render(String):-  % What is code generation from items
-    ::item(name(Name)),
-    ::renderitem(name(Name), String).
+    ::item(name(Name)), ::renderitem(name(Name), String).
 :-end_category.
 \end{minted}
-Категория поименованных сущностей, имеющих тип
-\begin{minted}{logtalk}
+Category of named and typed entities.
+\begin{minted}[fontsize=\scriptsize]{logtalk}
 :- category(namedtyped, extends(named)).
 :- public([type/1,render/2, separator_option/2,list_separator/1]).
 :- protected([renderitem/2]).
 type(Type):- ::append(type(Type)).
-renderitem(Item, String):-
-    ^^renderitem(Item, String),!.
-renderitem(type(Type),String):-!,
-    ::list_separator(Separator),
+renderitem(Item, String):- ^^renderitem(Item, String),!.
+renderitem(type(Type),String):-!, ::list_separator(Separator),
     writef::swritef(String, '%w%w', [Separator, Type]).
-render(Middle, String):-
-    ^^render(SName),
+render(Middle, String):- ^^render(SName),
     (   ::item(type(Type)) ->
         ::renderitem(type(Type), SType),
         string_concat(SName, Middle, _1),
         string_concat(_1, SType, String) ;
         SName = String  ).
 render(String):-  ::render("", String).
-
 list_separator(Separator):-
     ::separator_option(Name, Default),!, % Global options
     root::option(Name, Separator, Default).
@@ -391,15 +370,84 @@ list_separator(Separator):-
 \end{minted}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Access LOD data}
+
+  \begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{minted}[fontsize=\scriptsize]{logtalk}
+:- category(sparql).
+:- public(query/2).
+query(Pattern,Parameters,Row):-
+    prepare(Pattern,Parameters,Query),
+    server(Host,Port,Path),
+    sparql_query(Query, Row,
+        [host(Host),port(Port),path(Path)]).
+:- protected(server/3).  % must be implemented
+                         % by a subclass.
+:- protected(prepare/3). % prepares a query
+% . . . . . . . . . .    %             string.
+:- end_category.
+
+:- object(dbpedia).
+:- protected(server/3).
+server('dbpedia.org',80,'/sparql').
+:- public(entity_name/2).
+entity_name(Entity,Language,Name):-
+    query('select ?name where { '
+          ' %w rdfs:label ?name. '
+          'FILTER langMatches( lang(?label),'
+          ' "%w" )}', [Entity, Language],
+          row(Name)).
+:- end_object.
+
+% ?- dbpedia::entity_name(dbr:'Passport', 'ru', Name).
+\end{minted}
+\end{column}
+\begin{column}{0.5\textwidth}
+  \flushright
+\includegraphics[width=0.8\linewidth]{simple-diag.pdf}
+\end{column}
+\end{columns}
+\end{frame}
+
+
 \begin{frame}
   \frametitle{Applications: Dataflow representation of NGS analysis of amplicons}
   \begin{center}
     \includegraphics[width=0.9\linewidth]{Dataflow-color-en.png}
   \end{center}
 \end{frame}
+
+
+\begin{frame}
+  \frametitle{Discussion}
+  \begin{itemize}
+  \item Logtalk and RDF are flexible, sufficiently universal and convenient implementation infrastructures for MDA;
+  \item the best means is encapsulation by Prolog predicates and Logtalk objects;
+  \item not all Logtalk properties are investigated: there might be more interesting programming techniques developed.
+  \end{itemize}
+  Problems
+  \begin{itemize}
+  \item Very simple tasks take too much efforts, \emph{e.g.}, convert an identifier in CamelCase;
+  \item Development of a technique for document automatic markup with vocabulary entities.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusion}
+  We
+  Основная решаемая задача в исследовании -- изучить применимость SysML, BPMN и CMMN в качестве CIM при разработке информационных систем. Кроме того
+  \begin{itemize}
+  \item В рамках возможного реинжениринга БП ИООД создать платформу интеграции существующих ИС друг с другом и бизнес-процессами <<To Be>>.
+  \item Создать инструментальные средства MDA для порождения каркасов информационных систем на основе сформированных моделей БП.
+  \item develop a technique, which will minimize usage of dynamic objects, ...
+  \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{Rapidminer module}
-\begin{minted}{cpp}
+\begin{minted}[fontsize=\tiny]{cpp}
 vector<string> AlignCommand::setParameters(){ // PART OF MODULE SOURCE
 try {
   CommandParameter ptemplate("reference", "InputTypes", "", "", "none", "none", "none","",false,true,true); parameters.push_back(ptemplate);
@@ -409,7 +457,7 @@ try {
   CommandParameter pmatch("match", "Number", "", "1.0", "", "", "","",false,false); parameters.push_back(pmatch);
 // . . . . . . .
 \end{minted}
-\begin{minted}{java}
+\begin{minted}[fontsize=\tiny]{java}
 package com.rapidminer.ngs.operator; // GENERATED JAVA MODULE
 // imports
 
@@ -445,13 +493,11 @@ class MothurChimeraCcodeOperator extends MothurGeneratedOperator {
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{RDF (TTL) representation}
+  \frametitle{RDF (TTL) representation and ad its query object}
 \begin{multicols}{2}
-\begin{minted}{turtle}
-# . . . . .
+\begin{minted}[fontsize=\tiny]{turtle}
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
 ngsp:spec a ngsp:Specification ;
     ngsp:module mothur:NoCommand,
         mothur:align-check,
@@ -485,11 +531,9 @@ mothur:align-check-name-parameter a ngsp:Parameter ;
     ngsp:chooseOnlyOneGroup "namecount" ;
     ngsp:important false ;
     ngsp:multipleSelectionAllowed false ;
-    ngsp:optionsDefault "" ;
-    ngsp:required false ;
 # . . . . .
 \end{minted}
-\begin{minted}{logtalk}
+\begin{minted}[fontsize=\tiny]{logtalk}
 :- object(queryparam(_RDF,_Parameter),
           extends(ngsquerybase)).
 
@@ -530,20 +574,8 @@ attr(Name, Value):-
 
 \end{minted}
 \end{multicols}
-\begin{minted}{logtalk}
-
-\end{minted}
 \end{frame}
 
-
-\begin{frame}
-  \frametitle{Conclusion}
-  Основная решаемая задача в исследовании -- изучить применимость SysML, BPMN и CMMN в качестве CIM при разработке информационных систем. Кроме того
-  \begin{itemize}
-  \item В рамках возможного реинжениринга БП ИООД создать платформу интеграции существующих ИС друг с другом и бизнес-процессами <<To Be>>.
-  \item Создать инструментальные средства MDA для порождения каркасов информационных систем на основе сформированных моделей БП.
-  \end{itemize}
-\end{frame}
 
 \end{document}
 
