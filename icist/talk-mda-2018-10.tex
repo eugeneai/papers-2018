@@ -106,7 +106,7 @@ Vilnius, Lithuania
 \maketitle
 \begin{frame}
   \frametitle{Research objectives}
-  \textbf{Main objective} of the research is to construct a MDA technology based on nowadays system modeling visual languages (SysML,BPMN,CMMN) and existing Semantic Web \textbf{vocabularies} and \textbf{technologies}. The following techniques and software are under development:
+  \textbf{Main objective} of the research is to construct a MDA technology based on nowadays system modeling visual languages (SysML, BPMN, CMMN) and existing Semantic Web \textbf{vocabularies} and \textbf{technologies}. The following techniques and software are under development:
   \begin{enumerate}
   \item CIM representation with SysML, BPMN, CMMN, and results of source code processing,
   \item CIM, PIM, PSM representation in RDF with existing vocabularies,
@@ -151,7 +151,7 @@ Vilnius, Lithuania
   \item Standard vocabularies are formally described (\verb|rdfs:domain|, \verb|rdfs:range|);
   \item Supported with most programming systems (libraries, inference engines, SPARQL);
   \item RDF has a way of global element identification, \emph{i.e.} we can refer the same object from different software systems;
-  \item SWI-Prolog supports direct queries to a graph, as well as interpreting some predicates (\verb|rdfs:label|, \verb|dc:title|), encapsulating sparse RDF structure into a predicate arguments; ontological server ClioPatria;
+  \item SWI-Prolog supports direct queries to a graph, as well as interpreting some predicates (\verb|rdfs:label|, \verb|dc:title|), wraps sparse RDF structure into a predicate arguments; ontological server ClioPatria;
   \item There is simple way of data security implementation (\verb|rdfs:seeAlso|);
   \item By means of Semantic Web \& LOD we are able to organize data transfer between heterogeneous information systems.
   \end{itemize}
@@ -174,50 +174,46 @@ Vilnius, Lithuania
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{PSM: Class structure inference}
+  \frametitle{PSM: Scenario of a Class synthesis}
 
 %\begin{multicols}{2}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
 \begin{minted}[fontsize=\tiny]{logtalk}
 :- object(direct(_Package,_LocalProf,_CodeProf)).    % Transformation driver object
 :- public([tr/4,tr/3]).                              % Public interface of a class synthesis scenario
-:- protected([package/1, profiles/2, profile/1]).
-package(Package):- parameter(1, Package).            % Access to the parameter of the object
-profile(Profile):- parameter(2, Profile).
-profile(Profile):- parameter(3, Profile).
-profiles(L):-
-    findall(Profile, ::profile(Profile), L).
+% . . . . . . . . . .
 tr(class, Class, ClassID):- ::package(Package),      % Synthesize a class
     query(Package)::class(Name, ClassID),            % Query package structure in XMI
-    create_object(Class,                             % Create a <<Class>> object
-        [instantiates(class)],[],[]),
-    create_object(Attributes,                        % Create <<Attributes>> object
-        [instantiates(params)],[],[]),
-    create_object(Methods,                           % ...<<Methods>>.
-        [instantiates(methodlist)],[],[]),
+    create_object(Class,      % . . . . .            % Create a <<Class>> object
+    create_object(Attributes, % . . . . .            % Create <<Attributes>> object
+    create_object(Methods,    % . . . . .            % ...<<Methods>>.
     Class::name(Name),                               % Name the class.
-    forall(                                          % Generate attributes of the class,
-        ::tr(attribute,Attribute,ClassID,_AttrID),   % organizing them in a local database.
-        Attributes::append(Attribute) ),
-    forall(                                          % ...methods...
-        ::tr(method, Method, ClassID, _MethodID),
-        Methods::append(Method) ),
-    Class::attributes(Attributes),                   % Set the attributes for the class.
+    % Generate attributes of the class,
+    % organizing them in a local database.
+    % ...methods...
+    Class::attributes(Attributes),                   % Set the attributes for class.
     Class::methods(Methods).                         % ...methods.
+
 tr(attribute, Attribute, ClassID, AttributeID):-     % Attribute transformations
     ::package(Package),
     query(Package)::attribute(Name,ClassID,AttrID),
-    create_object(Attribute,
-        [instantiates(param)],[],[]),
+    create_object(Attribute,  % . . . . .
     Attribute::name(Name).                           % Name the attribute.
+
 tr(method, Method, ClassID, MethodID):-              % Transformation of methods
     ::package(Package),
     query(Package)::method(Name,ClassID,MethodID),
-    create_object(Method,
-    [instantiates(method)],[],[]),
+    create_object(Method,     % . . . . .
     Method::name(Name).                              % Name of the method
 :- end_object.
 \end{minted}
-%\end{multicols}
+    \end{column}
+    \begin{column}{0.4\linewidth}
+      \includegraphics[width=1\linewidth]{scenario.pdf}
+    \end{column}
+  \end{columns}
+  % \end{multicols}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -239,86 +235,76 @@ method(Name, ClassID, ID):-                  % ...method...
     ::xmi(XMI),
     XMI::rdf(ClassID, xmi:ownedOperation, ID),
     XMI::rdf(ID, rdfs:label, literal(Name)).
+% . . . . . . . . . . .
 :- end_object.
 \end{minted}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Code Block (idea is taken from \texttt{llvmlib})}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \flushleft
 \begin{minted}[fontsize=\footnotesize{}]{logtalk}
 :- object(code_block, specializes(root)).
-:- public([append/1, prepend/1, clear/0,      % Public interface of the object
-   render/1, render_to/1, remove/1, item/1, items/1]).
-:- dynamic([item_/1]).                        % Code block items
+% Public interface of the object
+:- public([append/1, prepend/1, clear/0,
+   render/1, render_to/1, remove/1,
+   item/1, items/1]).
+% Code block items
+:- dynamic([item_/1]).
 :- private([item_/1]).
-:- protected([renderitem/2, render_to/2]).    % Methods specialized during inheritance
-item(Item)   :- ::item_(Item).
-items(Items) :- bagof(I, ::item(I), Items).
-append(Item) :- ::assertz(item_(Item)).       % Add an item at the end of database
-prepend(Item):- ::asserta(item_(Item)).       %                ... beginning ...
-remove(Item) :- ::retract(item_(Item)).       % Delete item
-clear        :- ::retractall(item_(_)).       % Clear code block.
-render(_)    :- writef::writef("ERROR: \      % Convert bock to a list of source lines
-Implement render/1 by a subclass!\n"), fail.
-render_to(Stream):- ::render(List), ::render_to(List, Stream).
-render_to(List, Stream):- lists::is_list(List),!,
-    forall(lists::member(X,List), ::render_to(X, Stream)).
-render_to(X,_) :- write(X),nl.
-renderitem(Object, String):-                  % Delegate rendering to object itself
-    current_object(Object), !, Object::render(String).
-renderitem(literal(Item), String):-!,         % Convert a literal to its string representation
+% Methods specialized during inheritance
+:- protected([renderitem/2, render_to/2]).
+% . . . . . . . . . . . .
+% Delegate rendering to object itself
+renderitem(Object, String):-
+    current_object(Object), !,
+    Object::render(String).
+% Convert a literal to its string
+% representation
+renderitem(literal(Item), String):-!,
     atom_string(Item, String).
-renderitem(Item, String):-                    % Just print the item (debugging).
+% Just print the item (debugging).
+renderitem(Item, String):-
     root::iswritef(String, '%q', [Item]).
 :- end_object.
 \end{minted}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \includegraphics[width=1\linewidth]{code_block.pdf}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Generation of a Python Class}
-  PSM of a Class is a specialization of Code Block. Class has blocks for parent classes, attributes and methods. In order to generate source code we need to define the blocks, and then run \verb|render/1|. The \verb|Result| variable will have list of source lines.\\[-2em]
-\begin{multicols}{2}
+  \frametitle{PSM of a Python Class as a specialization of Code Block}
+%\begin{multicols}{2}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \flushleft
 \begin{minted}[fontsize=\scriptsize]{logtalk}
 :- object(class, specializes(code_block),
    imports([named])). % Category of named entities
 :- public([classlist/1, methods/1, attributes/1]).
-classlist(ClassList):- % List of parent classes
-    ::prepend(classlist(ClassList)).
-attributes(Attributes):- % List of attributes
-    ::prepend(attributes(Attributes)).
-methods(MethodList):-    % List of methods
-    ::append(methods(MethodList)).
-renderitem(Item, Result):- % default rendering
-    ^^renderitem(Item, Result).
+% . . . . . . . . . . . . . .
+renderitem(Item, Result):-      % proceed with default
+    ^^renderitem(Item, Result). % rendering
 render(Result):-         % Source generator
-    ^^render(Name),      % specific to Class block
+    ^^render(Name),      % implemented in a category
     ( ::item(classlist(List)) ->
-      List::render(ClassList),
-      root::iswritef(Signature,'class %w(%w):',
-        [Name, ClassList]);
-      root::iswritef(Signature,'class %w:',
+     % . . . . . . . . . . .
         [Name]) ),
-    root::indent,        % Extend indent.
     ( ::item(attributes(Attributes))->
-      Attributes::render(DefAttrList),
-      root::iswritef(ConstructorDef,
-        'def __init__(self, %w):',
+     % . . . . . . . . . . .
         [DefAttrList]),
-      root::indent,      % more indent
       Attributes::items(InstanceAttrs),
       findall(S, ( % initialize attributes
-         lists::member(Attr, InstanceAttrs),
-         Attr::item(name(AttrName)),
-         root::iswritef(S, "self.%w=%w",
-           [AttrName, AttrName])
+         % . . . . . . . . .
          ), AttrAssigns),
         root::unindent,
         AttrList=[ConstructorDef|AttrAssigns];
-        root::iswritef(ConstructorDef,
-          'def __init__(self): ', []),
-        root::indent,
-        root::iswritef(Pass,'pass', []),
-        root::unindent,
+         % . . . . . . . . .
         AttrList=[ConstructorDef, Pass] ),
     ( ::item(methods(Methods))-> % If any ...
       Methods::render(MethodList);
@@ -327,7 +313,12 @@ render(Result):-         % Source generator
     root::unindent, Result=[Signature|StringList].
 :- end_object.
 \end{minted}
-\end{multicols}
+    \end{column}
+    \begin{column}{0.4\linewidth}
+      \includegraphics[width=1\linewidth]{code_block_class.pdf}
+    \end{column}
+  \end{columns}
+  % \end{multicols}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -343,7 +334,7 @@ render(String):-  % What is code generation from items
     ::item(name(Name)), ::renderitem(name(Name), String).
 :-end_category.
 \end{minted}
-Category of named and typed entities.
+Category of named and typed entities
 \begin{minted}[fontsize=\scriptsize]{logtalk}
 :- category(namedtyped, extends(named)).
 :- public([type/1,render/2, separator_option/2,list_separator/1]).
@@ -438,27 +429,40 @@ entity_name(Entity,Language,Name):-
 
 \begin{frame}
   \frametitle{Discussion}
+  Interesting positive impressions obtained:
   \begin{itemize}
   \item Logtalk and RDF are flexible, sufficiently universal and convenient implementation infrastructures for MDA;
-  \item the best means is encapsulation by Prolog predicates and Logtalk objects;
-  \item not all Logtalk properties are investigated: there might be more interesting programming techniques developed.
+  \item The best implemenation means is Prolog predicate wrapping and Logtalk object encapsulation of rules;
+  \item Not all Logtalk properties are investigated: there might be more sophisticated programming techniques developed, \emph{e.g.}, on the base of message watchers.
   \end{itemize}
-  Problems
+  Technical problems making the approach somewhat problematic:
   \begin{itemize}
-  \item Very simple tasks take too much efforts, \emph{e.g.}, convert an identifier in CamelCase;
-  \item Development of a technique for document automatic markup with vocabulary entities.
+  \item Very simple tasks take too much efforts, \emph{e.g.}, text processing: convert an identifier into the CamelCase;
+  \item It takes too long to surf Internet in order to find a vocabulary for a domain, but it is more productive than development;
+  \item Prolog is not a popular language in MDA, neither Logtalk.
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Conclusion}
-  We
-  Основная решаемая задача в исследовании -- изучить применимость SysML, BPMN и CMMN в качестве CIM при разработке информационных систем. Кроме того
+  The following results have been obtained as for today:
   \begin{itemize}
-  \item В рамках возможного реинжениринга БП ИООД создать платформу интеграции существующих ИС друг с другом и бизнес-процессами <<To Be>>.
-  \item Создать инструментальные средства MDA для порождения каркасов информационных систем на основе сформированных моделей БП.
-  \item develop a technique, which will minimize usage of dynamic objects, ...
+  \item A technique for model representation has been developed and tested.
+  \item A programming technique using object-oriented logical language Logtalk is deviced.
+  \item Ptototypes of various transformation procedures are implemented.
+  \item Transformation tools are tested in application areas and no significant technical problems were mentioned.
   \end{itemize}
+  Further development directions are as follows:
+  \begin{itemize}
+  \item A technique for document automatic markup with vocabulary entities.
+  \item A transformation implemenation techniques, minimizing usage of dynamic objects, targeting on macro properties of Logtalk.
+  \item Form a toolset out of existing prototypes obeing nowadays software development requirements.
+  \end{itemize}
+  The source codes are available at \url{https://github.com/isu-enterprise/icc.xmitransform}, \url{https://github.com/eugeneai/icc.mothurpim}.
+\end{frame}
+
+\begin{frame}
+  \Large Thanks for Your interest to our project!
 \end{frame}
 
 \begin{frame}[fragile]
