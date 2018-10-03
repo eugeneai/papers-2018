@@ -87,17 +87,19 @@
 % --------------------------
 
 \begin{document}
+
+\setbeamertemplate{background canvas}[vertical shading][bottom=white,top=white]
+\setbeamercolor{background canvas}{bg=white}
+
 \title[Model Driven Architecture Implementation using Linked Data]{Model Driven Architecture Implementation using Linked Data}
 \author[E.~Cherkashin, A.~Kopaygorodsky, L.~Kazi, A.~Shigarov, V.~Paramonov]{\bfseries%
-  Evgeny Cherkashin, Alexey Kopaygorodsky, Ljubica Kazi, Alexey Shigarov, Viacheslav Paramonov}
-\institute[ISDCT SB RAS, ESI SB RAS, ISC SB RAS, University of Novi Sad, Technical faculty "Mihajlo Pupin",
-National Research Irkutsk State Technical University]{\normalsize ISDCT SB RAS, ESI SB RAS, ISC SB RAS, National Research Irkutsk State Technical University, Irkutsk,Russia,\\
-  University of Novi Sad, Technical faculty "Mihajlo Pupin", Zrenjanin, Serbia\\[1em]
-\email{\href{mailto:eugeneai@icc.ru}{eugeneai@icc.ru},\href{mailto:digger@istu.edu}{digger@istu.edu}}%
+  Evgeny Cherkashin, Alexey Kopaygorodsky, Ljubica Kazi, Alexey Shigarov, \underline{Viacheslav Paramonov}}
+\institute{\normalsize Institute of System Dynamics and Control Theory, Siberian branch of Russian Academy of Sciences, Irkutsk, Russia\\ University of Novi Sad, Technical faculty <<Mihajlo Pupin>>, Zrenjanin, Serbia\\[1em]
+\email{\href{mailto:eugeneai@icc.ru}{eugeneai@icc.ru}}%
 }
 \date[2018]{{}\\
 The 24${}^\text{th}$ International Conference on Information\\ and Software Technologies (ICIST 2018)\\
-October 4${}^\text{th}$ -- 6${}^\text{th}$, 2018\\
+October 4${}^\text{th}$ -- 6${}^\text{th}$, 2018,
 Vilnius, Lithuania
 }
 %\date{\today}
@@ -109,7 +111,7 @@ Vilnius, Lithuania
   \item CIM representation with SysML, BPMN, CMMN, and results of source code processing,
   \item CIM, PIM, PSM representation in RDF with existing vocabularies,
   \item transformation implementation with logical language Logtalk,
-  \item usage of LOD sources in the transformations for obtaining additional semantic data,
+  \item usage of LOD sources in transformations for obtaining additional semantic data,
   \item generation of documents and user interfaces with LOD markup.
   \end{enumerate}
 \end{frame}
@@ -124,19 +126,7 @@ Vilnius, Lithuania
   \item MDA is opposed to conceptual programming by Enn Tyugu.
   \end{itemize}
 
-  We describe transformation in Prolog (Logtalk), representing CIM, PIM and PSM as RDF graphs, allowing non-XMI sources to be used, organizing multi-stage modular transformations.
-
-\end{frame}
-\begin{frame}
-  \frametitle{Model Driven Architecture and Linked Open Data}
-  \begin{center}
-    \includegraphics[width=0.9\linewidth]{mda-overview.pdf}
-  \end{center}
-\end{frame}
-\begin{frame}
-  \frametitle{MDA component architecture}
-  \centering
-  \includegraphics[width=1\linewidth]{architecture-mda-lod-ext.pdf}
+  We describe transformation in Logtalk, representing CIM, PIM and PSM as RDF graphs, allowing non-XMI sources to be used, organizing multi-stage modular transformations.
 \end{frame}
 \begin{frame}
   \frametitle{Logtalk as transformation definition language}
@@ -157,17 +147,26 @@ Vilnius, Lithuania
     during transformation}
   \begin{itemize}
   \item Assimilates experience of domain basic researches trending to standardization;
-  \item regular set of triples denote a graph (T-Box, A-Box);
-  \item standard vocabularies are formally described (\verb|rdfs:range|,\verb|rdfs:domain|);
-  \item supported with most programming systems (libraries, inference engines, SPARQL);
-  \item has a way of global element identification, \emph{i.e.} we can refer the same object from different software systems;
-  \item SWI-Prolog supports direct queries to a graph, as well as interpreting some predicates (\verb|dc:title|, \verb|rdfs:label|), encapsulating sparse RDF structure into a predicate arguments;
-  \item there is simple way of data security implementation (\verb|rdfs:seeAlso|);
-  \item by means of Semantic Web \& LOD we are able to encapsulate data transmission between heterogeneous information systems.
+  \item Regular set of triples denote a graph (T-Box, A-Box);
+  \item Standard vocabularies are formally described (\verb|rdfs:domain|, \verb|rdfs:range|);
+  \item Supported with most programming systems (libraries, inference engines, SPARQL);
+  \item RDF has a way of global element identification, \emph{i.e.} we can refer the same object from different software systems;
+  \item SWI-Prolog supports direct queries to a graph, as well as interpreting some predicates (\verb|rdfs:label|, \verb|dc:title|), encapsulating sparse RDF structure into a predicate arguments; ontological server ClioPatria;
+  \item There is simple way of data security implementation (\verb|rdfs:seeAlso|);
+  \item By means of Semantic Web \& LOD we are able to organize data transfer between heterogeneous information systems.
   \end{itemize}
 \end{frame}
-
-
+\begin{frame}
+  \frametitle{Model Driven Architecture and Linked Open Data}
+  \begin{center}
+    \includegraphics[width=0.9\linewidth]{mda-overview.pdf}
+  \end{center}
+\end{frame}
+\begin{frame}
+  \frametitle{MDA infrastructure}
+  \centering
+  \includegraphics[width=1\linewidth]{architecture-mda-lod-ext.pdf}
+\end{frame}
 \begin{frame}
   \frametitle{Architecture of transformation modules}
   \centering
@@ -230,17 +229,15 @@ tr(method, Method, ClassID, MethodID):-              % Transformation of methods
 xmi(XMI) :- parameter(1, XMI).
 class(Name, ID):-                            % Recognition of Class in RDF
     ::xmi(XMI),
-    XMI::rdf(ID,rdf:type,uml,'Class'),
+    XMI::rdf(ID,rdf:type,uml:'Class'),
     XMI::rdf(ID,rdfs:label, literal(Name)).
 attribute(Name, ClassID, ID):-               % ...attribute...
     ::xmi(XMI),
-    XMI::graph(G),
-    XMI::rdf(ClassID, G:ownedAttribute, ID),
+    XMI::rdf(ClassID, xmi:ownedAttribute, ID),
     XMI::rdf(ID, rdfs:label, literal(Name)).
 method(Name, ClassID, ID):-                  % ...method...
     ::xmi(XMI),
-    XMI::graph(G),
-    XMI::rdf(ClassID, G:ownedOperation, ID),
+    XMI::rdf(ClassID, xmi:ownedOperation, ID),
     XMI::rdf(ID, rdfs:label, literal(Name)).
 :- end_object.
 \end{minted}
@@ -389,7 +386,7 @@ query(Pattern,Parameters,Row):-
 % . . . . . . . . . .    %             string.
 :- end_category.
 
-:- object(dbpedia).
+:- object(dbpedia, extends(sparql)).
 :- protected(server/3).
 server('dbpedia.org',80,'/sparql').
 :- public(entity_name/2).
@@ -414,9 +411,28 @@ entity_name(Entity,Language,Name):-
 
 \begin{frame}
   \frametitle{Applications: Dataflow representation of NGS analysis of amplicons}
-  \begin{center}
-    \includegraphics[width=0.9\linewidth]{Dataflow-color-en.png}
-  \end{center}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{raggedright}
+        \includegraphics[width=1\linewidth]{Dataflow-color-en.png}
+      \end{raggedright}
+    \end{column}
+    \begin{column}{0.4\textwidth}\footnotesize
+      \begin{tabular}{ll}
+        Term & Description \\
+        \hline
+        NGS & New Generation\\ & Sequencing\\
+        Amplicon & A DNA or RNA part \\
+                 & copied many times \\
+        Mothur & A software toolset for\\ & NGS research \\
+        Rapidminer & A visual tool for \\
+             & data mining modeling\\
+             &  and execution
+      \end{tabular}
+      ${}$\\[1em]
+      Green blocks are Mothur modules. Others are Rapidminer modules.
+    \end{column}
+  \end{columns}
 \end{frame}
 
 
