@@ -1,0 +1,15 @@
+10/20/18 9:18 PM
+Project Statistics
+
+                 	Segments	Words	Characters (without spaces)	Characters (including spaces)	#Files	
+Total:           	     346	 3735	                      27119	                        30318	     2	
+Remaining:       	      37	  429	                       2987	                         3368	     2	
+Unique:          	     313	 3710	                      26989	                        30185	     2	
+Unique Remaining:	      37	  429	                       2987	                         3368	     2	
+
+
+Individual File Statistics:
+
+File Name             	Total Segments	Remaining Segments	Unique Segments	Unique Remaining Segments	Total Words	Remaining Words	Unique Words	Unique Remaining Words	Total Characters (without spaces)	Remaining Characters (without spaces)	Unique Characters (without spaces)	Unique Remaining Characters (without spaces)	Total Characters (including spaces)	Remaining Characters (including spaces)	Unique Characters (including spaces)	Unique Remaining Characters (including spaces)	
+Cherkashin-2007.docx  	           327	                19	            295	                       19	       3534	            230	        3511	                   230	                            25662	                                 1534	                             25536	                                        1534	                              28677	                                   1732	                               28549	                                          1732	
+cherkashin_orlova.docx	            19	                18	             18	                       18	        201	            199	         199	                   199	                             1457	                                 1453	                              1453	                                        1453	                               1641	                                   1636	                                1636	                                          1636	
