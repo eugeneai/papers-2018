@@ -11,13 +11,13 @@
 
   \setmainfont{Times New Roman}
   \setsansfont{Calibri}
-  \setmonofont{Fira Mono Regular}
+  \setmonofont{Fira Code}
 
   %\setmathfont{Cambria Math}%
 
   \newfontfamily{\cyrillicfont}{Times New Roman}
   \newfontfamily{\cyrillicfontrm}{Times New Roman}
-  \newfontfamily{\cyrillicfonttt}{Fira Mono Regular}
+  \newfontfamily{\cyrillicfonttt}{Fira Code}
   \newfontfamily{\cyrillicfontsf}{Fira Sans Regular}
 \fi
 
@@ -110,7 +110,7 @@
     \defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle}
     \setmathfont{Latin Modern Math}
     \setsansfont{Linux Biolinum O}
-    \setmonofont{Fira Mono}
+    \setmonofont{Fira Code}
     \usefonttheme{professionalfonts}
     % \setmathfont[
     %     Ligatures=TeX,
@@ -133,8 +133,8 @@
 
 \begin{document}
 \title[Структурирование знаний в MDA]{Структурирование знаний процедуры трансформации моделей в МДА\thanks{Интеграционная программа ИНЦ СО РАН \textnumero~АААА-А17-117041250054-8, проект \textnumero~4.2 «Применение методов NGS-BD (NextGenerationSequencing – BigData) для решения вопросов экологии».}}
-\author{Е.Черкашин}
-\institute[ИДСТУ СО РАН]{ИДСТУ им. В.М.Матросова СО РАН}
+\author{Е.~А.~Черкашин}
+\institute[ИДСТУ СО РАН]{ИДСТУ им.~В.~М.~Матросова СО РАН}
 \date[2018]{{}\\[1.5cm]
 <<Ляпуновские чтения>>\\
 3-5 декабря 2018, Иркутск
@@ -153,14 +153,28 @@
 \end{block}
   В системах программирования Prolog, структурирование развито не так сильно: ISO Prolog позволяет  разбивать программу на модули, а также общая схема организации сервисов пакетов.
 
-Для ISO Prolog предложено [одно из] расширений синтаксиса --- язык ОО\footnote{Объектно-ориентированное [программирование]}-программирования \textbf{LogTalk}\footnote{Название унаследовано от Smalltalk.}, представляющий собой \textbf{макропакет}, транслирующий исходный код в Prolog.
-
+Для ISO Prolog предложено [одно из] расширений синтаксиса --- язык ОО\footnote{Объектно-ориентированное [программирование].}-программирования \textbf{LogTalk}\footnote{Название унаследовано от Smalltalk.}, представляющий собой \textbf{макропакет}, транслирующий исходный код в Prolog.
 \end{frame}
 
 \begin{frame}
   \frametitle{Архитектура сети модулей трансформации моделей}
   \centering
   \includegraphics[width=0.9\linewidth]{qms-pics/architect_tree_pres-ru-wo-OCL.pdf}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Технологии и стандарты}
+  \begin{itemize}
+  \item Наиболее широко используемые технологии -- \textbf{ATL} и ее предшественник QVT -- стандарты OMG; поддерживают XMI$\to$XMI-преобразования; TRML.
+  \item Использование ATL сдвигается на уровень CIM\footnote{Computationally independent model -- Вычислительно-независимая модель.}, например, BPMN-диаграммы преобразуются в UML (PIM\footnote{Platform independent model -- Модель, не зависящая от платформы.}); пользуется для разработки WEB-приложений, CIM представляется при помощи State- и Use case-диаграмм.
+  \item Применение MDA становиться все шире, например, анализ аспектов защиты информации в распределенных приложениях; логический вывод над моделями в MDA;
+  \item UML пользуется для представления CIM/PIM при моделировании онтологий; уже есть OMG-стандарт для спецификации;
+  \item Спецификации на базе XML применяются для моделирования сервисов, например, WSDL, WS-BPEL;
+  \item Подход MDA противопоставляется концептуальному моделированию Энна Тыугу (порождающее программирование).
+  \end{itemize}
+
+  Мы не ограничиваемся XMI на входе MDA и используем RDF.\\[0.3em]
+
 \end{frame}
 
 \begin{frame}
@@ -232,12 +246,11 @@
   \includegraphics[width=1\linewidth]{pics/architecture-mda-lod-ext-ru.pdf}
 \end{frame}
 
-
 \begin{frame}[fragile]
   \frametitle{Порождение PSM класса}
-
-%\begin{multicols}{2}
-\begin{minted}{logtalk}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+\begin{minted}[fontsize=\tiny]{logtalk}
 :- object(direct(_Package,_LocalProf,_CodeProf)).    % Параметризованный объект для синтеза
 :- public([tr/4,tr/3]).                              % определения класса
 :- protected([package/1, profiles/2, profile/1]).
@@ -247,24 +260,24 @@ profile(Profile):- parameter(3, Profile).
 profiles(L):-
     findall(Profile, ::profile(Profile), L).
 tr(class, Class, ClassID):- ::package(Package),      % Синтез класса (первый параметр метода)
-    query(Package)::class(Name, ClassID),            % Запрос к структуре пакета XMI
-    create_object(Class,                             % Создание экземпляра объекта <<Класс>>
+    query(Package)::class(Name, ClassID),            % Запрос к структуре XMI
+    create_object(Class,                             % Создание <<Класс>>
         [instantiates(class)],[],[]),
-    create_object(Attributes,                        % Создание объекта <<Атрибуты>>
+    create_object(Attributes,                        % ... <<Атрибуты>>
         [instantiates(params)],[],[]),
     create_object(Methods,                           % ...<<Методы>>.
         [instantiates(methodlist)],[],[]),
-    Class::name(Name),                               % Задать имя классу.
-    forall(                                          % Странсформировать атрибуты класса,
-        ::tr(attribute,Attribute,ClassID,_AttrID),   % добавляя каждый в общий список.
-        Attributes::append(Attribute) ),
+    Class::name(Name),                               % имя классу.
+    forall(                                          % атрибуты
+        ::tr(attribute,Attribute,ClassID,_AttrID),   % ...
+        Attributes::append(Attribute) ),             % в общий список.
     forall(                                          % ...методы...
         ::tr(method, Method, ClassID, _MethodID),
         Methods::append(Method) ),
-    Class::attributes(Attributes),                   % Задать классу атрибуты.
-    Class::methods(Methods).                         % ...методы.
-tr(attribute, Attribute, ClassID, AttributeID):-     % Трансформация атрибута
-    ::package(Package),
+    Class::attributes(Attributes),     % Сообщить классу атрибуты.
+    Class::methods(Methods).           % и методы.
+tr(attribute, Attribute, ClassID, AttributeID):-     % Трансформация
+    ::package(Package),                              % атрибута
     query(Package)::attribute(Name,ClassID,AttrID),
     create_object(Attribute,
         [instantiates(param)],[],[]),
@@ -277,7 +290,11 @@ tr(method, Method, ClassID, MethodID):-              % Трансляция ме
     Method::name(Name).                              % Имя метода
 :- end_object.                                       % Граница объекта
 \end{minted}
-%\end{multicols}
+    \end{column}
+    \begin{column}{0.4\linewidth}
+      \includegraphics[width=1\linewidth]{scenario.pdf}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -289,13 +306,13 @@ tr(method, Method, ClassID, MethodID):-              % Трансляция ме
 xmi(XMI) :- parameter(1, XMI).
 class(Name, ID):-               % Распознавание класса в RDF
     ::xmi(XMI),
-    XMI::rdf(ID,rdf:type,uml,'Class'),
+    XMI::rdf(ID,rdf:type,uml:'Class'),
     XMI::rdf(ID,rdfs:label, literal(Name)).
 attribute(Name, ClassID, ID):-  % ...атрибута...
     ::xmi(XMI),
     XMI::graph(G),
     XMI::rdf(ClassID, G:ownedAttribute, ID),
-    % XMI::rdf(ID, rdf:type, uml,'Property'),
+    % XMI::rdf(ID, rdf:type, uml:'Property'),
     XMI::rdf(ID, rdfs:label, literal(Name)).
 method(Name, ClassID, ID):-     % ...метода...
     ::xmi(XMI),
@@ -303,29 +320,33 @@ method(Name, ClassID, ID):-     % ...метода...
     XMI::rdf(ClassID, G:ownedOperation, ID),
     XMI::rdf(ID, rdfs:label, literal(Name)).
 :- end_object.
+
+% query(Package)::method(Name,ClassID,MethodID),
 \end{minted}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Порождение исходного кода абстрактного элемента}
-  Идея реализации взята из библиотеки \verb|llvmlib|.
-\begin{minted}{logtalk}
+  \frametitle{Блок кода (идея почерпнута из проекта \href{https://github.com/numba/llvmlite}{llvmlite})}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \flushleft
+\begin{minted}[fontsize=\tiny]{logtalk}
 :- object(code_block, specializes(root)).
-:- public([append/1, prepend/1, clear/0,      % Внешний интерфейс объекта
-   render/1, render_to/1, remove/1, item/1,
+:- public([append/1, prepend/1, clear/0,      % Внешний интерфейс
+   render/1, render_to/1, remove/1, item/1,   % объекта
    items/1 ]).
 :- dynamic([item_/1]).                        % Элементы кодового блока
 :- private([item_/1]).
-:- protected([renderitem/2, render_to/2]).    % Методы, специализируемые при наследовании
-
+:- protected([renderitem/2, render_to/2]).    % Методы, специализируемые
+                                              % при наследовании
 item(Item)   :- ::item_(Item).
 items(Items) :- bagof(I, ::item(I), Items).
 append(Item) :- ::assertz(item_(Item)).       % Добавить элемент в конец
 prepend(Item):- ::asserta(item_(Item)).       % ...в начало
 remove(Item) :- ::retract(item_(Item)).       % Удалить элемент
 clear        :- ::retractall(item_(_)).       % Очистить блок кода.
-render(_)    :- writef::writef("ERROR: \      % Преобразовать блок в исходный код
-Implement render/1 by a subclass!\n"), fail.
+render(_)    :- writef::writef("ERROR:"\      % Преобразовать блок
+"Implement render/1 by a subclass!\n"), fail. % в исходный код
 
 render_to(Stream):- ::render(List),
     ::render_to(List, Stream).
@@ -334,74 +355,63 @@ render_to(List, Stream):-
     forall(lists::member(X,List),
        ::render_to(X, Stream)).
 render_to(X,_) :- write(X),nl.
-renderitem(Object, String):-                  % Способ преобразования элемента-объекта
-    current_object(Object), !,                % по умолчанию (попросить его самого это сделать)
-    Object::render(String).
-renderitem(literal(Item), String):-!,         % Преобразование литерала (строка, число,...)
-    atom_string(Item, String).
-renderitem(Item, String):-                    % ...строки.
+renderitem(Object, String):-    % Преобразование элемента-объекта
+    current_object(Object), !,  % по умолчанию (попросить его самого
+    Object::render(String).     % это сделать)
+renderitem(literal(Item), String):-!, % Преобразование литерала
+    atom_string(Item, String).        % (строка, число,...)
+renderitem(Item, String):-            % ...строки.
     root::iswritef(String, '%q', [Item]).
 :- end_object.
 \end{minted}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \includegraphics[width=1\linewidth]{code_block.pdf}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Порождение исходного кода класса Python}
-  Класс-генератор -- это специализация кодового блока.  Элементами блока являются другие блоки: список наследуемых классов, список атрибутов и список методов.
-
-  Чтобы сгенерировать исходный код класса, сначала надо сформировать кодовые блоки, и затем запустить \verb|render/1|. В переменную \verb|Result| помещается список строк кода.
-\begin{multicols}{2}
-\begin{minted}{logtalk}
+    \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \flushleft
+\begin{minted}[fontsize=\tiny]{logtalk}
 :- object(class, specializes(code_block),
    imports([named])). % Категория поименованных сущностей
 :- public([classlist/1, methods/1, attributes/1]).
-classlist(ClassList):- % Список наследуемых классов
-    ::prepend(classlist(ClassList)).
-attributes(Attributes):- % Список атрибутов
-    ::prepend(attributes(Attributes)).
-methods(MethodList):-    % Список методов
-    ::append(methods(MethodList)).
-
-renderitem(Item, Result):- % по умолчанию
-    ^^renderitem(Item, Result).
-render(Result):-         % Генератор кода
-    ^^render(Name),
+% . . . . . . . . . . . . . .
+renderitem(Item, Result):-      % Использовать
+    ^^renderitem(Item, Result). % унаследованный.
+render(Result):-         % Генератор исходного кода,
+    ^^render(Name),      % реализованный в категории
     ( ::item(classlist(List)) ->
-      List::render(ClassList),
-      root::iswritef(Signature,'class %w(%w):',
-        [Name, ClassList]);
-      root::iswritef(Signature,'class %w:',
+     % . . . . . . . . . . .
         [Name]) ),
-    root::indent,        % добавить отступ
     ( ::item(attributes(Attributes))->
-      Attributes::render(DefAttrList),
-      root::iswritef(ConstructorDef,
-        'def __init__(self, %w):',
+     % . . . . . . . . . . .
         [DefAttrList]),
-      root::indent,      % еще отступ
       Attributes::items(InstanceAttrs),
-      findall(S, ( % инициализация атрибутов
-         lists::member(Attr, InstanceAttrs),
-         Attr::item(name(AttrName)),
-         root::iswritef(S, "self.%w=%w",
-           [AttrName, AttrName])
+      findall(S, ( % initialize attributes
+         % . . . . . . . . .
          ), AttrAssigns),
         root::unindent,
         AttrList=[ConstructorDef|AttrAssigns];
-        root::iswritef(ConstructorDef,
-          'def __init__(self): ', []),
-        root::indent,
-        root::iswritef(Pass,'pass', []),
-        root::unindent,
+         % . . . . . . . . .
         AttrList=[ConstructorDef, Pass] ),
-    ( ::item(methods(Methods))-> % Если есть...
+    ( ::item(methods(Methods))-> % Если есть ...
       Methods::render(MethodList);
       MethodList=[] ),
     lists::append(AttrList,MethodList,StringList),
     root::unindent, Result=[Signature|StringList].
 :- end_object.
 \end{minted}
-\end{multicols}
+    \end{column}
+    \begin{column}{0.4\linewidth}
+      \includegraphics[width=1\linewidth]{code_block_class.pdf}
+        Класс-генератор -- это специализация кодового блока.
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -420,7 +430,7 @@ render(String):-  % Как генерировать код
 \end{minted}
 Категория поименованных сущностей, имеющих тип
 \begin{minted}{logtalk}
-:- category(namedtyped, extends(named)).
+:- category(namedtyped, extends(named)).  % Дополняем категорию <<named>>
 :- public([type/1,render/2, separator_option/2,list_separator/1]).
 :- protected([renderitem/2]).
 type(Type):- ::append(type(Type)).
@@ -446,20 +456,178 @@ list_separator(Separator):-
 \end{minted}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Доступ к сервисам SPARQL}
 
+  \begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{minted}[fontsize=\scriptsize]{logtalk}
+:- category(sparql).
+:- public(query/2).
+query(Pattern,Parameters,Row):-
+    prepare(Pattern,Parameters,Query),
+    server(Host,Port,Path),
+    sparql_query(Query, Row,
+        [host(Host),port(Port),path(Path)]).
+:- protected(server/3).  % нужно реализовать
+                         % в подклассе.
+:- protected(prepare/3). % Подготовить строку
+% . . . . . . . . . .    % запроса.
+:- end_category.
 
-% ЁЁЁ
-% ----------------------------------------------------------------
+:- object(dbpedia, extends(sparql)).
+:- protected(server/3).
+server('dbpedia.org',80,'/sparql').
+:- public(entity_name/2).
+entity_name(Entity,Language,Name):-
+    query('select ?name where { '
+          ' %w rdfs:label ?name. '
+          'FILTER langMatches( lang(?label),'
+          ' "%w" )}', [Entity, Language],
+          row(Name)).
+:- end_object.
 
+% ?- dbpedia::entity_name(dbr:'Passport', 'ru', Name).
+\end{minted}
+\end{column}
+\begin{column}{0.5\textwidth}
+  \flushright
+\includegraphics[width=0.8\linewidth]{simple-diag.pdf}
+\end{column}
+\end{columns}
+\end{frame}
 
 
 \begin{frame}
-  \frametitle{Заключение}
-  Основная решаемая задача в исследовании -- изучить применимость SysML, BPMN и CMMN в качестве CIM при разработке информационных систем. Кроме того
+  \frametitle{Порождение модулей Rapidminer по исходному коду Mothur}
+  \begin{center}
+
+  \includegraphics[width=1\linewidth]{pics/architecture-mda-lod-ext-ru-rapidminer.pdf}
+
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Пример синтезированного исходного кода модуля}
+\begin{minted}{java}
+package com.rapidminer.ngs.operator;
+
+. . . . . . . . . . . .
+import com.rapidminer.parameter.*;
+
+public class MothurRemoveOtusOperator extends MothurGeneratedOperator {
+
+	private InputPort accnosInPort = getInputPorts().createPort("accnos");
+	. . . . . . . . . . . .
+	private InputPort sharedInPort = getInputPorts().createPort("shared");
+	private OutputPort constaxonomyOutPort = getOutputPorts().createPort("constaxonomy");
+	. . . . . . . . . . . .
+	private OutputPort sharedOutPort = getOutputPorts().createPort("shared");
+	private static final String LABEL_LABEL = "label:";
+	. . . . . . . . . . . .
+	private static final String OUTPUTDIR_LABEL = "outputdir:";
+
+	public MothurRemoveOtusOperator (OperatorDescription description) {
+		super(description);  // NOTE: Auto-generated constructor stub
+	}
+
+	@Override
+	public void doWork() throws OperatorException {
+		super.doWork();
+		clearArguments();
+		FileNameObject accnosFile = accnosInPort.getData(FileNameObject.class);
+		addArgument("accnos",accnosFile.getName());
+		. . . . . . . . . . . .
+		executeMothurCommand();
+		. . . . . . . . . . . .
+		otucorrOutPort.deliver(new FileNameObject(fileName+".otucorr","otucorr"));
+		sharedOutPort.deliver(new FileNameObject(fileName+".shared","shared"));
+	}
+
+	@Override
+	public List<ParameterType> getParameterTypes() {
+		List<ParameterType> parameterTypes = super.getParameterTypes();
+		parameterTypes.add(new ParameterTypeString(LABEL_LABEL, "TODO: Add description", "", true));
+		. . . . . . . . . . . .
+		return parameterTypes;
+	}
+	. . . . . . . . . . . .
+}
+\end{minted}
+\end{frame}
+\begin{frame}
+  \frametitle{Представление NGS в виде диаграммы потоков данных}
+  \begin{columns}
+    \begin{column}{0.6\textwidth}
+      \begin{raggedright}
+        \includegraphics[width=1\linewidth]{Dataflow-color-en.png}
+      \end{raggedright}
+    \end{column}
+    \begin{column}{0.4\textwidth}\footnotesize
+      \begin{tabular}{ll}
+        Термин & Расшифровка \\
+        \hline
+        NGS & Секвенирование нового\\ & поколения\\
+        Ампликон & Часть ДНК или РНК, \\
+               & скопированная много \\
+               & раз \\
+        Mothur & Прикладной пакет для\\ & исследований в NGS \\
+        Rapidminer & Инструмент визуально- \\
+             & го моделирования \\
+             & вычислительных \\
+             & процессов
+      \end{tabular}
+      ${}$\\[1em]
+      Зеленые блоки -- модули Mothur. Остальные -- модули Rapidminer.
+    \end{column}
+  \end{columns}
+  \vspace{1em}
+  Сгенерировано \textbf{145 классов Java} для каждой операции Mothur, а также \textbf{два файла} с описанием структуры пакета NGS для Rapidminer (XML).
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Результаты}
+  Общее впечатление от применения LogTalk:
   \begin{itemize}
-  \item В рамках возможного реинжениринга БП ИООД создать платформу интеграции существующих ИС друг с другом и бизнес-процессами <<To Be>>.
-  \item Создать инструментальные средства MDA для порождения каркасов информационных систем на основе сформированных моделей БП.
+  \item Logtalk и RDF -- это гибкая, достаточно универсальная и удобная в реализации инфраструктура MDA;
+  \item Самые замечательные средства реализации -- это обрамление запросов в предикаты Prolog и инкапсуляция правил в объекты LogTalk;
+  \item Не все структуры LogTalk задействованы в реализации: можно разработать и более специфические методики программирования, например, с использованием перехвата сообщений.
   \end{itemize}
+  Технические сопутствующие проблемы:
+  \begin{itemize}
+  \item Самые простые задачи требуют больших усилий, например, обработка текста: преобразование идентификатора в CamelCase;
+  \item Достаточно трудно найти подходящую онтологию в Интернет, но это в далекой перспективе более продуктивно, чем разрабатывать свою;
+  \item Prolog и LogTalk не являются популярными языками: приходится самому вырабатывать приемы программирования.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Заключение}
+  К настоящему времени получены следующие результаты:
+  \begin{itemize}
+  \item Разработана методика представления визуальных моделей ПО и входных данных MDA.
+  \item Выработан ряд приемов программирования модулей трансформации на ОО-языке LogTalk.
+  \item Реализована $\alpha$-версия библиотеки трансформации.
+  \item Разработанный инструментарий протестирован на двух задачах: Mothur $\to$ Rapidminer и синтез протокола обмена с контрольно-кассовой машиной.
+  \end{itemize}
+  Направления дальнейшего развития:
+  \begin{itemize}
+  \item Обеспечить семантическую разметку интерфейсов и выходных документов на основе логического вывода семантики публикуемых данных.
+  \item Разработать методики программирования трансформации, минимизируя количество динамических объектов.
+  \item Создать профессиональную среду разработки программного обеспечения из имеющегося прототипа.
+  \item Разработать методику синтеза реализаций протоколов обмена информацией (OSPFv6) и различных ORM.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \vfill
+  \begin{center}
+    {\Huge Спасибо за внимание!}
+  \end{center}
+  \vfill
+  Исходный код (без документации) доступен на github.com: \url{https://github.com/isu-enterprise/icc.xmitransform}, \url{https://github.com/eugeneai/icc.mothurpim}.
 \end{frame}
 
 
@@ -475,7 +643,6 @@ list_separator(Separator):-
   \centering
     \includegraphics[width=1\linewidth]{qms-pics/cmmn.png}
 \end{frame}
-
 
 \end{document}
 
