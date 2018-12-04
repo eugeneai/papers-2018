@@ -1,6 +1,6 @@
 .PHONY: compile tests test-pdflatex test-lualatex test-xelatex
 
-SOURCE=Cherkashin.tex
+SOURCE=talk-new.tex
 #SOURCE=example.tex
 TARGET=$(SOURCE:.tex=.pdf)
 LATEXPARAMS= -shell-escape
@@ -8,7 +8,8 @@ LATEXPARAMS= -shell-escape
 PDFLATEX=pdflatex $(LATEXPARAMS)
 LUALATEX=lualatex $(LATEXPARAMS)
 XELATEX=xelatex $(LATEXPARAMS)
-LATEX=$(LUALATEX)
+LATEXMK=latexmk -pdf $(LATEXPARAMS)
+LATEX=$(LATEXMK)
 
 ENGSRC=test-eng.tex
 ENGTRG=$(ENGSRC:.tex=.pdf)
