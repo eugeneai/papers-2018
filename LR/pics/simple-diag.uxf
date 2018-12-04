@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>140</y>
+      <w>220</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>foaf:Person
+--
++ name: 'foaf:Name'
+. . . . . . . . . . . . . . . . . . . . . . . .
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>250</y>
+      <w>220</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>dbr:Passport
+--
++ 'dbr:Series':'xsd:Integer'
++ 'dbr:Number':'xsd:Integer'
+. . . . . . . . . . . . . . . . . . . . . . . .
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>200</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
