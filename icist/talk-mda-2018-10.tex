@@ -378,7 +378,7 @@ query(Pattern,Parameters,Row):-
 % . . . . . . . . . .    %             string.
 :- end_category.
 
-:- object(dbpedia, extends(sparql)).
+:- object(dbpedia, imports(sparql)).
 :- protected(server/3).
 server('dbpedia.org',80,'/sparql').
 :- public(entity_name/2).
